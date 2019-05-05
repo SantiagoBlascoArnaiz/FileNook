@@ -21,7 +21,7 @@ and open the template in the editor.
     </head>
     <body >
         <%
-        String userName = request.getParameter("userName");
+        String userName = (String) request.getAttribute("userName");
         %>
         <div class="content">
             <header class="header">
@@ -45,8 +45,9 @@ and open the template in the editor.
                         <div class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
                                 <%
-                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAtributte("usuarios");
-                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAtributte("nooks");
+                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
+                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
+                                    System.out.println(nooks.size());
                                     for(int i=0;i<nooks.size();i++){
                                 %>
                                 <div class="item"><a href='paginaNook.html'><%=nooks.get(i).getNombre()%> </a></div>

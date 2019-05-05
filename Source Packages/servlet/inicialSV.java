@@ -5,23 +5,26 @@
  */
 package servlet;
 
+import conexionDB.nookDB;
 import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Nook;
 import modelo.Usuario;
 
 /**
  *
  * @author Fnac
  */
-@WebServlet(name = "inicio", urlPatterns = {"/inicio"})
-public class inicio extends HttpServlet {
+@WebServlet(name = "inicialSV", urlPatterns = {"/inicialSV"})
+public class inicialSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,21 +38,15 @@ public class inicio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String correo = request.getParameter("email");
-        String nombre = request.getParameter("nom");
-        String usuario = request.getParameter("usr");
-        String clave = request.getParameter("psw");
-        
-        Usuario pepito = new Usuario();
-        pepito.setNombre(nombre);
-        pepito.setApellidos(nombre);
-        pepito.setNombreUsuario(usuario);
-        pepito.setClave(clave);
-        pepito.setCorreo(correo);
-        usuarioDB.insert(pepito);
-        
-        
-        String url = "/inicial";
+        /*Falta crear la clase*/
+        ArrayList<Nook> nooks=nookDB.getNooks();
+        ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
+        for (Nook n:nooks){
+            usuarios.add(usuarioDB.getUsuario(n.getAutor()));
+        }
+        String url = "/inicial.jsp";
+        request.setAttribute("nooks", nooks);
+        request.setAttribute("usuarios",usuarios);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

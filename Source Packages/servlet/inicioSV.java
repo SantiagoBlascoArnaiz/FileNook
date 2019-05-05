@@ -37,12 +37,13 @@ public class inicioSV extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String correo = request.getParameter("email");
         String nombre = request.getParameter("nom");
+        String apellidos = request.getParameter("ape");
         String usuario = request.getParameter("usr");
         String clave = request.getParameter("psw");
         
         Usuario user = new Usuario();
         user.setNombre(nombre);
-        user.setApellidos(nombre);
+        user.setApellidos(apellidos);
         user.setNombreUsuario(usuario);
         user.setClave(clave);
         user.setCorreo(correo);

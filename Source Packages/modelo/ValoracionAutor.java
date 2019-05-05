@@ -9,19 +9,23 @@ package modelo;
 
 public class ValoracionAutor {
 
-    private Usuario autor;
+    private String autor;
     private double puntuacion;
+    
+    public ValoracionAutor(){
+        
+    }
    
-    public ValoracionAutor(Usuario autor, double puntuacion) {
+    public ValoracionAutor(String autor, double puntuacion) {
         this.autor = autor;
         this.puntuacion = puntuacion;
     }
 
-    public Usuario getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void getAutor(Usuario autor) {
+    public void getAutor(String autor) {
         this.autor = autor;
     }
 

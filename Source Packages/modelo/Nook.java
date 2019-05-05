@@ -18,6 +18,10 @@ public class Nook {
     private Date fechaModificacion;
     private int descargas;
    
+    public Nook(){
+        
+    }
+    
     public Nook(int idNook, String nombre, String resumen, String autor, Date fechaCreacion, Date fechaModificacion, int descargas) {
         this.idNook = idNook;
         this.nombre = nombre;

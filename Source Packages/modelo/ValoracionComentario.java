@@ -14,9 +14,13 @@ public class ValoracionComentario {
     private Comentario comentario;
     private int puntuacion;
     private Date fecha;
-    private Usuario usuario;
+    private String usuario;
+    
+    public ValoracionComentario(){
+        
+    }
    
-    public ValoracionComentario(Comentario comentario, int puntuacion, Date fecha, Usuario usuario) {
+    public ValoracionComentario(Comentario comentario, int puntuacion, Date fecha, String usuario) {
         this.comentario = comentario;
         this.puntuacion = puntuacion;
         this.fecha = fecha;
@@ -48,11 +52,11 @@ public class ValoracionComentario {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

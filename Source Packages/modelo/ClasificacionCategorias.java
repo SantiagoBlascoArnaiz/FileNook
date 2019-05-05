@@ -9,21 +9,25 @@ package modelo;
 
 public class ClasificacionCategorias {
 
-    private Nook idNook;
+    private int idNook;
     private String categoria;
     
    
-    public ClasificacionCategorias(Nook idNook, String categoria) {
+    public ClasificacionCategorias(){
+        
+    }
+       
+    public ClasificacionCategorias(int idNook, String categoria) {
         this.idNook = idNook;
         this.categoria = categoria;
     }
 
 
-    public Nook getIdNook() {
+    public int getIdNook() {
         return idNook;
     }
 
-    public void setIdNook(Nook idNook) {
+    public void setIdNook(int idNook) {
         this.idNook = idNook;
     }
 

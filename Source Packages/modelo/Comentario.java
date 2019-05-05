@@ -13,10 +13,14 @@ public class Comentario {
 
     private int idComentario;
     private Date fecha;
-    private Usuario autor;
+    private String autor;
     private String texto;    
    
-    public Comentario(int idComentario, Date fecha, Usuario autor, String texto) {
+    public Comentario(){
+        
+    }
+    
+    public Comentario(int idComentario, Date fecha, String autor, String texto) {
         this.idComentario = idComentario;
         this.fecha = fecha;
         this.autor = autor;
@@ -40,11 +44,11 @@ public class Comentario {
         this.fecha = fecha;
     }
 
-    public Usuario getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(Usuario autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 

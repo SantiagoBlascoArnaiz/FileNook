@@ -11,12 +11,16 @@ import java.util.Date;
 
 public class ValoracionesNook {
 
-    private Nook nook;
-    private Usuario usuario;
+    private int nook;
+    private String usuario;
     private int puntuacion;
     private Date fecha;
+    
+    public ValoracionesNook(){
+        
+    }
    
-    public ValoracionesNook(Nook nook, Usuario usuario, int puntuacion, Date fecha) {
+    public ValoracionesNook(int nook, String usuario, int puntuacion, Date fecha) {
         this.nook = nook;
         this.usuario = usuario;
         this.puntuacion = puntuacion;
@@ -24,19 +28,19 @@ public class ValoracionesNook {
     }
 
 
-    public Nook getNook() {
+    public int getNook() {
         return nook;
     }
 
-    public void setNook(Nook nook) {
+    public void setNook(int nook) {
         this.nook = nook;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
@@ -44,7 +48,7 @@ public class ValoracionesNook {
         return puntuacion;
     }
 
-    public void setPuntuacion(int resumen) {
+    public void setPuntuacion(int puntuacion) {
         this.puntuacion = puntuacion;
     }
 
@@ -52,7 +56,7 @@ public class ValoracionesNook {
         return fecha;
     }
 
-    public void setFecha(Date autor) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

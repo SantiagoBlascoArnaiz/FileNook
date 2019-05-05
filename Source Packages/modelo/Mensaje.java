@@ -15,10 +15,14 @@ public class Mensaje {
     private Date fecha;
     private int leido;
     private String tipo;
-    private Usuario autor;
-    private Usuario destinatario;
+    private String autor;
+    private String destinatario;
    
-    public Mensaje(int idMensaje, String texto, Date fecha, int leido, String tipo, Usuario autor, Usuario destinatario) {
+    public Mensaje(){
+        
+    }
+    
+    public Mensaje(int idMensaje, String texto, Date fecha, int leido, String tipo, String autor, String destinatario) {
         this.idMensaje = idMensaje;
         this.texto = texto;
         this.fecha = fecha;
@@ -69,19 +73,19 @@ public class Mensaje {
         this.tipo = tipo;
     }
 
-    public Usuario getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(Usuario autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    public Usuario getDestinatario() {
+    public String getDestinatario() {
         return destinatario;
     }
 
-    public void setDestinatario(Usuario destinatario) {
+    public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
 }

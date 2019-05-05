@@ -11,6 +11,9 @@ public class Documento {
     private Date fechaCreacion;
     private Date fechaModificacion;
     
+    public Documento(){
+        
+    }
    
     public Documento(int nook, String nombre, String resumen, Date fechaCreacion, Date fechaModificacion) {
         this.nook = nook;

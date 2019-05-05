@@ -45,8 +45,8 @@ and open the template in the editor.
                         <div class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
                                 <%
-                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getParameter("usuarios");
-                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getParameter("nooks");
+                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAtributte("usuarios");
+                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAtributte("nooks");
                                     for(int i=0;i<nooks.size();i++){
                                 %>
                                 <div class="item"><a href='paginaNook.html'><%=nooks.get(i).getNombre()%> </a></div>

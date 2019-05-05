@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import conexionDB.nookDB;
 import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Nook;
+import modelo.Usuario;
 
 /**
  *
@@ -37,8 +39,8 @@ public class inicial extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /*Falta crear la clase*/
-        ArrayList<Nook> nooks=nookDB.getInicial();
-        ArrayList<Usuario> usuarios=ArrayList<Usuario>();
+        ArrayList<Nook> nooks=nookDB.getNooks();
+        ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
         for (Nook n:nooks){
             usuarios.add(usuarioDB.getUsuario(n.getAutor()));
         }

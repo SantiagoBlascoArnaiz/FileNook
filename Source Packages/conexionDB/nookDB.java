@@ -55,12 +55,14 @@ public class nookDB {
                 nook.setDescargas(rs.getInt("descargas"));
                 nooks.add(nook);
                 }
+            
                 rs.close();
                 ps.close();
                 pool.freeConnection(connection);
             return nooks;
         } catch (SQLException e) {
             e.printStackTrace();
+            
         return null;
         }
     }

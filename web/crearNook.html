@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es">
+    <head>
+        <title>FileNook</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body >
+        <div class="content">
+        <header class="header">
+            <div class="container logo-nav-container">
+                <a href="inicial.html" class="logo">FILENOOK</a>
+                <nav class="navigation">
+                    <ul>
+                        <li class="navigation-usuario"><a href="perfil.html">Elena_123</a></li>
+                        <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                                                       alt="Imagen del perfil de usuario"></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+            <main class="main">
+                <div class="container">
+                        <h3 style="margin-top: 3rem;">CREAR NOOK</h3>
+                    <div class="pag-crearNook">
+                        <div class="tablamensajetexto">
+                            <div class="partes">
+                                <label class="nombreNook" style="padding-right: 2.5em;">Nombre:</label>
+                                <textarea class="tablaNooktext"></textarea>
+                            </div>
+
+                            <div class="partes">
+                                <label class="etiquetasNook" style="padding-right: 2em;">Etiquetas:</label>
+                                <textarea class="tablaNooktext"></textarea>
+                            </div>
+
+                            <div class="partes" >
+                                <label class="descripcionNook" style="padding-right: 1em;">Descripción:</label>
+                                <textarea class="tablaNooktext"></textarea>
+                            </div>
+
+
+                            <div class="partes" >
+                                <label class="SubirArchivo" style="padding-right: 2em;">Subir Archivo:</label>
+                            </div>
+                              <input type="submit" name="boton" value="Subir archivo" id="boton">
+                              <input type="file" multiple="multiple"/>
+                            </div>
+
+                            <div class="partes" >
+                                <textarea class="archivosSubidos"></textarea>
+                            </div>
+
+                              <div class="partes" >
+                                <input type="button" class="button mainaction" tabindex="10" id="crear_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="CREAR" >
+                                <input type="button" class="button mainaction" tabindex="10" id="borrar_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="BORRAR" >
+                            </div>
+                        </div>
+                        <!--
+                        <table class="tabla_crearNook" style="margin: 0 auto">
+                                <tr>
+                                    <td><label class="nombreNook">Nombre del Nook</label></td>
+                                    <td><textarea class="tablaNooktext"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="etiquetasNook">Etiquetas</label></td>
+                                    <td><textarea class="tablaNooktext"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="descripcionNook">Descripción</label></td>
+                                    <td><textarea class="tablaNooktext"></textarea></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td><label class="SubirArchivo">Subir Archivo</label></td>
+                                </tr>
+                                <tr>
+                                     <td> <input type="submit" name="boton" value="Subir archivo" id="boton"></td>
+                                     <td> <input type="file" multiple="multiple"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div class="archivosSubidos">
+                                            <table>
+                                                <tr>
+                                                    <td><label>text.txt</label></td>
+                                                    <td><label>text2.txt</label></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <td>
+
+                                    <td>
+                                        <input type="button" class="button mainaction" tabindex="10" id="crear_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="CREAR" >
+                                        <input type="button" class="button mainaction" tabindex="10" id="borrar_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="BORRAR" >
+                                    </td>
+                                </tr>
+
+
+
+                        </table>
+
+                        -->
+
+
+                    </div>
+            </main>
+          </div>
+          <footer class="footer">
+            © Proyecto Filenook - 2019 - Andrés Cabero Mata -  Patricia Aguado Labrador - Rafael Higelmo San Millán - Santiago Blasco Arnaiz
+          </footer>
+    </body>
+</html>
+
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>FileNook</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body >
+        <div class="content">
+        <header class="header">
+            <div class="container logo-nav-container">
+                <a href="index.html" class="logo">FILENOOK</a>
+            </div>
+        </header>
+            <main class="main">
+                <div class="container">
+                    <form class="pag-registro"  method="post" action="/inicio">
+                        <h1>Página de Registro</h1>
+                        <hr>
+                            <label for="email"><b>Email</b></label>
+                            <input class="input" type="text" placeholder="Email" name="email" required>
+
+                            <label for="nom">Nombre y Apellidos</label>
+                            <input class="input" type="text" placeholder="Nombre y Apellidos" name="nom" required >
+
+                            <label for="nom">Usuario</label>
+                            <input class="input" type="text" placeholder="Usuario" name="usr" required >
+
+                            <label for="psw"><b>Contraseña</b></label>
+                            <input class="input" type="password" placeholder="Contraseña" name="psw" required>
+
+                            <label for="psw-repeat"><b>Repetir Contraseña</b></label>
+                            <input class="input" type="password" placeholder="Repetir Contraseña" name="psw-repeat" required>
+
+                            <div class="clearfix">
+                                <button type="submit" class="signupbtn">Registrarse</button>
+                            </div>
+                            <label>¿Ya tienes cuenta? <a href="inicioSesion.html">Inicia Sesión</a>
+                    </form>
+                </div>
+            </main>
+            </div>
+            <footer class="footer">
+              © Proyecto Filenook - 2019 - Andrés Cabero Mata -  Patricia Aguado Labrador - Rafael Higelmo San Millán - Santiago Blasco Arnaiz
+            </footer>
+    </body>
+</html>

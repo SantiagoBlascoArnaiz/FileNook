@@ -44,6 +44,7 @@ public class inicialSV extends HttpServlet {
         for (Nook n:nooks){
             usuarios.add(usuarioDB.getUsuario(n.getAutor()));
         }
+        
         String url = "/inicial.jsp";
         request.setAttribute("nooks", nooks);
         request.setAttribute("usuarios",usuarios);

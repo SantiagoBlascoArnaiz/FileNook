@@ -47,6 +47,7 @@ public class inicioSV extends HttpServlet {
         user.setNombreUsuario(usuario);
         user.setClave(clave);
         user.setCorreo(correo);
+        
         usuarioDB.insert(user);
         
         

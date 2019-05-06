@@ -40,9 +40,9 @@ public class nookDB {
         Connection connection = pool.getConnection();
         ArrayList<Nook> nooks=new ArrayList();
         ResultSet rs = null;
-        String query = "SELECT * FROM Nook";
+        String consulta = "SELECT * FROM Nook";
         try {
-            PreparedStatement ps = connection.prepareStatement(query);
+            PreparedStatement ps = connection.prepareStatement(consulta);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Nook nook=new Nook();
@@ -53,6 +53,7 @@ public class nookDB {
                 nook.setFechaCreacion(rs.getDate("fechaCreacion"));
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
+                
                 nooks.add(nook);
                 }
             

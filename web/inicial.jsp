@@ -1,3 +1,4 @@
+<%@page import="java.security.Principal"%>
 <%@page import="modelo.Nook"%>
 <%@page import="modelo.Nook"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,7 +22,9 @@ and open the template in the editor.
     </head>
     <body >
         <%
-        String userName = (String) request.getAttribute("userName");
+        //Principal principal=request.getUserPrincipal();
+        //System.out.println("PRINCIPALPRINCIPALPRINCIPAL" + principal);
+        //String userName=principal.getName();
         %>
         <div class="content">
             <header class="header">
@@ -29,7 +32,7 @@ and open the template in the editor.
                     <a href="inicial.html" class="logo">FILENOOK</a>
                     <nav class="navigation">
                         <ul>
-                            <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
+                            <li class="navigation-usuario"><a href="perfil.html"><%//=userName%></a></li>
                             <li><a href="perfil.html"><img src="imagenes/chica2.png"
                                                            alt="Imagen del perfil de usuario"></a></li>
                         </ul>

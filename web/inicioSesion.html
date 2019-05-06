@@ -15,20 +15,20 @@
         </header>
             <main class="main">
                 <div class="container">
-                    <div class="pag-registro">
+                    <form class="pag-registro"  method="post" action="/inicioSV">
                         <h1>Página de Inicio de Sesión</h1>
                         <hr>
-                            <label for="email"><b>Email</b></label>
-                            <input type="text" placeholder="Email" name="email" required>
+                            <label for="usr"><b>Usuario</b></label>
+                            <input type="text" placeholder="Email" name="usr" required>
 
                             <label for="psw"><b>Contraseña</b></label>
                             <input type="password" placeholder="Contraseña" name="psw" required>
 
                             <div class="clearfix">
-                                <button type="submit" class="signupbtn" onclick="window.location.href='inicial.jsp?userName=Elena1234'">Iniciar Sesión</button>
+                                <button type="submit" class="signupbtn">Iniciar Sesión</button>
                             </div>
                             <label>¿Nuevo en Filenook? <a href="registro.html">Registrate ahora </a>
-                    </div>
+                    </form>
                 </div>
             </main>
             </div>

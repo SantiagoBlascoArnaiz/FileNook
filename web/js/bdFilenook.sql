@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 DROP TABLE ClasificacionCategorias;
 DROP TABLE ValoracionComentario;
 DROP TABLE Comentario;

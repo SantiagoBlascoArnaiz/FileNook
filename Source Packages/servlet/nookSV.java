@@ -56,7 +56,6 @@ public class nookSV extends HttpServlet {
         nook.setFechaCreacion(fecha);
         nook.setFechaModificacion(fecha);
         nook.setDescargas(0);
-        System.out.println("HOLI");
         nookDB.insert(nook);
         
         String url = "/misNooks";

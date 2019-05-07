@@ -50,14 +50,14 @@ public class nookSV extends HttpServlet {
         
         Nook nook = new Nook();
         //para darle valor al id primero tenemos que hacer el insert y luego cargar el id autogenerado
+        
         nook.setNombre(nombre);
         nook.setResumen(descripcion);
         nook.setFechaCreacion(fecha);
         nook.setFechaModificacion(fecha);
         nook.setDescargas(0);
-        
+        System.out.println("HOLI");
         nookDB.insert(nook);
-        
         
         String url = "/misNooks";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

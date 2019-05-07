@@ -5,9 +5,12 @@
  */
 package servlet;
 
+import conexionDB.nookDB;
 import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,18 +39,23 @@ public class nookSV extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        String clave = request.getParameter("psw");
         
+        String nombre = request.getParameter("nombre");
+        String etiquetas = request.getParameter("etiquetas");
+        String descripcion = request.getParameter("descripcion");
         
+        Date date = new Date();
+        String fecha= new SimpleDateFormat("yyyy-MM-dd").format(date);
         
-        Nook user = new Nook();
-        user.setNombre(nombre);
-        user.setApellidos(apellidos);
-        user.setNombreUsuario(usuario);
-        user.setClave(clave);
-        user.setCorreo(correo);
+        Nook nook = new Nook();
+        //para darle valor al id primero tenemos que hacer el insert y luego cargar el id autogenerado
+        nook.setNombre(nombre);
+        nook.setResumen(descripcion);
+        nook.setFechaCreacion(fecha);
         
-        usuarioDB.insert(user);
+
+        
+        nookDB.insert(nook);
         
         
         String url = "/inicialSV";

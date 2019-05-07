@@ -17,7 +17,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
-        <script src="js/jqueary-2.2.4.min.js"></script>
+        <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/multislider.min.js"></script>
     </head>
     <body >
@@ -28,45 +28,73 @@ and open the template in the editor.
         %>
         <div class="content">
             <header class="header">
-                <div class="container logo-nav-container">
+                <nav class="container logo-nav-container">
                     <a href="inicial.html" class="logo">FILENOOK</a>
-                    <nav class="navigation">
+                    <div class="navigation">
                         <ul>
-                            <li class="navigation-usuario"><a href="perfil.html"><%//=userName%></a></li>
+                            <li class="navigation-usuario"><a href="perfil.html">fafafa<%//=userName%></a></li>
                             <li><a href="perfil.html"><img src="imagenes/chica2.png"
                                                            alt="Imagen del perfil de usuario"></a></li>
                         </ul>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
             </header>
             <main class="main">
                 <div class="container">
-                    <div class="pag-inicial2">
+                    <div class="proyectos-inicial">
                         <div class="search-bar">
-                            <input type="search" placeholder="? Busca aquí nooks..." name="search" required>
+                            <input type="search" placeholder="Busca aquí nooks..." name="search" required>
                         </div>
-                        <div class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
+                        
+                        <p>Populares</p>
+                        <div id="populares" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
-                                <%
-                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
-                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
-                                    System.out.println(nooks.size());
-                                    for(int i=0;i<nooks.size();i++){
-                                %>
-                                <div class="item"><a href='paginaNook.html'><%=nooks.get(i).getNombre()%> </a></div>
-                                <%}%>
+                                <a href="http://www.google.es"><div class="item"> Item 1 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 2 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 3 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 4 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 5 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 6 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 7 </div></a>
+                                <a href="http://www.google.es"><div class="item"> Item 8 </div></a>
+
                             </div>
                             <div class="MS-controls">
                                 <button class="MS-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
                                 <button class="MS-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                             </div>
-                            <script>
-                                $('.slider').multislider({
-                                    interval:0,
-                                    slideAll:false
-                                });
-                            </script>
                         </div>
+              
+                        <p>Descargas</p>
+                        <div id="descargas" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
+                            <div class="MS-content">
+                                <div class="item"> Item 2 </div>
+                                <div class="item"> Item 3 </div>
+                                <div class="item"> Item 4 </div>
+                                <div class="item"> Item 5 </div>
+                                <div class="item"> Item 6 </div>
+                                <div class="item"> Item 7 </div>
+                                <div class="item"> Item 8 </div>
+                                <div class="item"> Item 9 </div>
+
+                            </div>
+                            <div class="MS-controls">
+                                <button class="MS-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                                <button class="MS-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+              
+                        <script>
+                            $('#populares').multislider({
+                                interval:0,
+                                duration: 100
+                            });
+                            
+                            $('#descargas').multislider({
+                                interval:0,
+                                duration: 100
+                            });
+                        </script>
                     </div>
                 </div>
             </main>

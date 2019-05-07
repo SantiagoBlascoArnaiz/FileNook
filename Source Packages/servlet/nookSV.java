@@ -10,7 +10,7 @@ import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,21 +44,22 @@ public class nookSV extends HttpServlet {
         String etiquetas = request.getParameter("etiquetas");
         String descripcion = request.getParameter("descripcion");
         
-        Date date = new Date();
-        String fecha= new SimpleDateFormat("yyyy-MM-dd").format(date);
+        java.util.Date date = new java.util.Date();  
+        Date fecha = new Date(date.getTime());
+        
         
         Nook nook = new Nook();
         //para darle valor al id primero tenemos que hacer el insert y luego cargar el id autogenerado
         nook.setNombre(nombre);
         nook.setResumen(descripcion);
         nook.setFechaCreacion(fecha);
-        
-
+        nook.setFechaModificacion(fecha);
+        nook.setDescargas(0);
         
         nookDB.insert(nook);
         
         
-        String url = "/inicialSV";
+        String url = "/misNooks";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

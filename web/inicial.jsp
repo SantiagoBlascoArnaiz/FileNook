@@ -29,7 +29,7 @@ and open the template in the editor.
         <div class="content">
             <header class="header">
                 <nav class="container logo-nav-container">
-                    <a href="inicial.html" class="logo">FILENOOK</a>
+                    <a href="/inicialSV" class="logo">FILENOOK</a>
                     <div class="navigation">
                         <ul>
                             <li class="navigation-usuario"><a href="perfil.html">fafafa<%//=userName%></a></li>
@@ -49,15 +49,13 @@ and open the template in the editor.
                         <p>Populares</p>
                         <div id="populares" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
-                                <a href="http://www.google.es"><div class="item"> Item 1 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 2 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 3 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 4 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 5 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 6 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 7 </div></a>
-                                <a href="http://www.google.es"><div class="item"> Item 8 </div></a>
-
+                                <%
+                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
+                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
+                                    for(int i=0;i<nooks.size();i++){
+                                %>
+                                <div class="item"><a href='paginaNook.html'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <%}%>
                             </div>
                             <div class="MS-controls">
                                 <button class="MS-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
@@ -68,22 +66,18 @@ and open the template in the editor.
                         <p>Descargas</p>
                         <div id="descargas" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
-                                <div class="item"> Item 2 </div>
-                                <div class="item"> Item 3 </div>
-                                <div class="item"> Item 4 </div>
-                                <div class="item"> Item 5 </div>
-                                <div class="item"> Item 6 </div>
-                                <div class="item"> Item 7 </div>
-                                <div class="item"> Item 8 </div>
-                                <div class="item"> Item 9 </div>
-
+                                <%
+                                    for(int i=0;i<nooks.size();i++){
+                                %>
+                                <div class="item"><a href='paginaNook.html'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <%}%>
                             </div>
                             <div class="MS-controls">
                                 <button class="MS-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
                                 <button class="MS-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                             </div>
                         </div>
-              
+
                         <script>
                             $('#populares').multislider({
                                 interval:0,

@@ -29,91 +29,68 @@ and open the template in the editor.
                 <div class="container">
                         <h3 style="margin-top: 3rem;">CREAR NOOK</h3>
                     <div class="pag-crearNook">
-                        <div class="tablamensajetexto">
+                       <!-- <form class="pag-registro"  method="post" action="/inicioSV">
+                        <h1>Página de Registro</h1>
+                        <hr>
+                            <label for="email"><b>Email</b></label>
+                            <input class="input" type="text" placeholder="Email" name="email" required>
+
+                            <label for="nom">Nombre</label>
+                            <input class="input" type="text" placeholder="Nombre" name="nom" required >
+                            
+                            <label for="nom">Apellidos</label>
+                            <input class="input" type="text" placeholder="Apellidos" name="ape" required >
+
+                            <label for="nom">Usuario</label>
+                            <input class="input" type="text" placeholder="Usuario" name="usr" required >
+
+                            <label for="psw"><b>Contraseña</b></label>
+                            <input class="input" type="password" placeholder="Contraseña" name="psw" required>
+
+                            <label for="psw-repeat"><b>Repetir Contraseña</b></label>
+                            <input class="input" type="password" placeholder="Repetir Contraseña" name="psw-repeat" required>
+
+                            <div class="clearfix">
+                                <button type="submit" class="signupbtn">Registrarse</button>
+                            </div>
+                            <label>¿Ya tienes cuenta? <a href="inicioSesion.html">Inicia Sesión</a>
+                    </form> -->
+                        <form class="tablamensajetexto"  method="post" action="/inicioSV">
+
                             <div class="partes">
-                                <label class="nombreNook" style="padding-right: 2.5em;">Nombre:</label>
-                                <textarea class="tablaNooktext"></textarea>
+                                <label for="nombre" class="nombreNook" style="padding-right: 2.5em;">Nombre:</label>
+                                <input class="tablaNooktext" name="nombre" required>
                             </div>
 
                             <div class="partes">
-                                <label class="etiquetasNook" style="padding-right: 2em;">Etiquetas:</label>
-                                <textarea class="tablaNooktext"></textarea>
+                                <label for="etiquetas" class="etiquetasNook" style="padding-right: 2em;">Etiquetas:</label>
+                                <input class="tablaNooktext" name="etiquetas" required>
                             </div>
 
                             <div class="partes" >
-                                <label class="descripcionNook" style="padding-right: 1em;">Descripción:</label>
-                                <textarea class="tablaNooktext"></textarea>
+                                <label for="descripcion" class="descripcionNook" style="padding-right: 1em;">Descripción:</label>
+                                <input class="tablaNooktext" name="descripcion" required>
                             </div>
 
 
                             <div class="partes" >
-                                <label class="SubirArchivo" style="padding-right: 2em;">Subir Archivo:</label>
+                                <label for="subirarchivo" class="SubirArchivo" style="padding-right: 2em;">Subir Archivo:</label>
                             </div>
-                              <input type="submit" name="boton" value="Subir archivo" id="boton">
-                              <input type="file" multiple="multiple"/>
-                            </div>
-
+                                    <input type="file" multiple="multiple"/>
+                               
+                            
                             <div class="partes" >
                                 <textarea class="archivosSubidos"></textarea>
                             </div>
 
                               <div class="partes" >
-                                <input type="button" class="button mainaction" tabindex="10" id="crear_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="CREAR" >
+                                <input type="submit" class="button mainaction" tabindex="10" id="crear_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="CREAR" >
                                 <input type="button" class="button mainaction" tabindex="10" id="borrar_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="BORRAR" >
                             </div>
+                        </form>
+                       
                         </div>
-                        <!--
-                        <table class="tabla_crearNook" style="margin: 0 auto">
-                                <tr>
-                                    <td><label class="nombreNook">Nombre del Nook</label></td>
-                                    <td><textarea class="tablaNooktext"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td><label class="etiquetasNook">Etiquetas</label></td>
-                                    <td><textarea class="tablaNooktext"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td><label class="descripcionNook">Descripción</label></td>
-                                    <td><textarea class="tablaNooktext"></textarea></td>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td><label class="SubirArchivo">Subir Archivo</label></td>
-                                </tr>
-                                <tr>
-                                     <td> <input type="submit" name="boton" value="Subir archivo" id="boton"></td>
-                                     <td> <input type="file" multiple="multiple"/></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div class="archivosSubidos">
-                                            <table>
-                                                <tr>
-                                                    <td><label>text.txt</label></td>
-                                                    <td><label>text2.txt</label></td>
-                                                </tr>
-                                            </table>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                <td>
-
-                                    <td>
-                                        <input type="button" class="button mainaction" tabindex="10" id="crear_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="CREAR" >
-                                        <input type="button" class="button mainaction" tabindex="10" id="borrar_NOOKbotton" onclick="return rcmail.command('send','',this,event)" value="BORRAR" >
-                                    </td>
-                                </tr>
-
-
-
-                        </table>
-
-                        -->
-
-
+                      
                     </div>
             </main>
           </div>

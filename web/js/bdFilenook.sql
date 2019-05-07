@@ -38,7 +38,7 @@ CREATE TABLE Mensaje(
 CREATE TABLE Nook(
 	idNook INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
 	nombre VARCHAR(50),
-	resumen VARCHAR(180),
+	descripcion VARCHAR(180),
 	autor VARCHAR(10),
 	fechaCreacion DATE,
 	fechaModificacion DATE,
@@ -131,8 +131,8 @@ INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','santiag
 INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',1,'Enviado','patagua','rafhige');
 INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',0,'Recibido','rafhige','patagua');
 
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);
+INSERT INTO Nook (nombre,descripcion,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
+INSERT INTO Nook (nombre,descripcion,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);
 
 INSERT INTO Documento VALUES (0,'Sumador.s','Programa MIPS para suamr número en hexadecimal y que muestre el resultado en binario complemento a dos.','2016-06-20','2016-06-20');
 INSERT INTO Documento VALUES (0,'Shunting.s','Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como su entrada.','2016-06-20','2016-06-20');

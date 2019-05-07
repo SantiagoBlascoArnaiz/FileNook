@@ -15,7 +15,7 @@ CREATE TABLE Usuario(
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
         valoracionMedia DOUBLE,
-	PRIMARY KEY (nombreUsuario)
+	PRIMARY KEY (nombreUsuario, correo)
 );
 
 
@@ -62,11 +62,14 @@ CREATE TABLE Documento(
 );
 
 
-CREATE TABLE ValoracionAutor(
+CREATE TABLE ValoracionesAutor(
 	autor VARCHAR(10),
+        usuario VARCHAR(10),
 	puntuacion DOUBLE,
-	PRIMARY KEY (autor, puntuacion),
+	PRIMARY KEY (autor, usuario),
 	CONSTRAINT FK_VALAUTOR FOREIGN KEY (autor)
+		REFERENCES Usuario (nombreUsuario),
+        CONSTRAINT FK_VALAUTOR2 FOREIGN KEY (usuario)
 		REFERENCES Usuario (nombreUsuario)
 );
 
@@ -89,13 +92,14 @@ CREATE TABLE Comentario(
 	fecha DATE,
 	autor VARCHAR(10),
 	texto VARCHAR(180),
+        valoracionMedia DOUBLE,
 	PRIMARY KEY (idComentario),
 	CONSTRAINT FK_COMENTARIO FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
 );
 
 
-CREATE TABLE ValoracionComentario(
+CREATE TABLE ValoracionesComentario(
 	comentario INTEGER,
 	puntuacion INTEGER,
 	fecha DATE,
@@ -119,32 +123,34 @@ CREATE TABLE ClasificacionCategorias(
 
 INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es');
 
-INSERT INTO Usuario VALUES ('Andrés','Cabero Mata','andcabe','1122','andres.cabero@alumnos.uva.es');
-INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','andres.cabero@alumnos.uva.es');
-INSERT INTO Usuario VALUES ('Patricia','Aguado Labrador','patagua','5566','andres.cabero@alumnos.uva.es');
-INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','andres.cabero@alumnos.uva.es');
+INSERT INTO Usuario VALUES ('Andrés','Cabero Mata','andcabe','1122','andres.cabero@alumnos.uva.es',0.0);
+INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','rafael.higelmo@alumnos.uva.es',3.0);
+INSERT INTO Usuario VALUES ('Patricia','Aguado Labrador','patagua','5566','patricia.aguado@alumnos.uva.es',0.0);
+INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','santiago.blasco@alumnos.uva.es',0.0);
 
 INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',1,'Enviado','patagua','rafhige');
 INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',0,'Recibido','rafhige','patagua');
 
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0);
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);
 
 INSERT INTO Documento VALUES (0,'Sumador.s','Programa MIPS para suamr número en hexadecimal y que muestre el resultado en binario complemento a dos.','2016-06-20','2016-06-20');
 INSERT INTO Documento VALUES (0,'Shunting.s','Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como su entrada.','2016-06-20','2016-06-20');
-INSERT INTO Documento VALUES (0,'Conversor.s','Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como.','2016-06-21','2016-06-21');
+INSERT INTO Documento VALUES (0,'Conversor.s','Algoritmo que pasa de hexadecimal a binario.','2016-06-21','2016-06-21');
 INSERT INTO Documento VALUES (1,'Ejercicios Resueltos.pdf','Ejercicios de codificación y decodificación de códigos Reed-Solomon.','2018-12-20','2018-12-20');
 
-INSERT INTO ValoracionAutor VALUES ('rafhige',9.3333);
+INSERT INTO ValoracionesAutor VALUES ('rafhige','patagua',2);
+INSERT INTO ValoracionesAutor VALUES ('rafhige','sanblas',4);
+
 
 INSERT INTO ValoracionesNook VALUES (0,'patagua',5,'2016-11-12');
 INSERT INTO ValoracionesNook VALUES (0,'sanblas',3,'2017-08-06');
 INSERT INTO ValoracionesNook VALUES (0,'andcabe',4,'2018-05-15');
 
-INSERT INTO Comentario (fecha,autor,texto) VALUES ('2017-08-06','sanblas','Buen nook!!');
-INSERT INTO Comentario (fecha,autor,texto) VALUES ('2016-11-13','andcabe','Tengo una duda con el archivo Sumador.s te mando un correo.');
+INSERT INTO Comentario (fecha,autor,texto) VALUES ('2017-08-06','sanblas','Buen nook!!',4.0);
+INSERT INTO Comentario (fecha,autor,texto) VALUES ('2016-11-13','andcabe','Tengo una duda con el archivo Sumador.s te mando un correo.',0.0);
 
-INSERT INTO ValoracionComentario VALUES (0,4,'2017-09-16','rafhige');
+INSERT INTO ValoracionesComentario VALUES (0,4,'2017-09-16','rafhige');
 
 INSERT INTO ClasificacionCategorias VALUES (0,'MIPS');
 INSERT INTO ClasificacionCategorias VALUES (0,'IngenieríaInformática');

@@ -14,6 +14,7 @@ CREATE TABLE Usuario(
 	nombreUsuario VARCHAR(10),
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
+        valoracionMedia DOUBLE,
 	PRIMARY KEY (nombreUsuario)
 );
 
@@ -42,6 +43,7 @@ CREATE TABLE Nook(
 	fechaCreacion DATE,
 	fechaModificacion DATE,
 	descargas INTEGER,
+        valoracionMedia DOUBLE,
 	PRIMARY KEY (idNook),
 	CONSTRAINT FK_NOOK FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)

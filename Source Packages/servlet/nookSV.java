@@ -38,7 +38,7 @@ public class nookSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        response.setContentType("text/html;charset=UTF-8");
+        //response.setContentType("text/html;charset=UTF-8");
         
         String nombre = request.getParameter("nombre");
         String etiquetas = request.getParameter("etiquetas");
@@ -58,7 +58,7 @@ public class nookSV extends HttpServlet {
         nook.setDescargas(0);
         nookDB.insert(nook);
         
-        String url = "/misNooks";
+        String url = "/misNooks.html";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

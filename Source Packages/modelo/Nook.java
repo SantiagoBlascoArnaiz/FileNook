@@ -17,12 +17,13 @@ public class Nook {
     private Date fechaCreacion;
     private Date fechaModificacion;
     private int descargas;
+    private double valoracionMedia;
    
     public Nook(){
         
     }
     
-    public Nook(int idNook, String nombre, String resumen, String autor, Date fechaCreacion, Date fechaModificacion, int descargas) {
+    public Nook(int idNook, String nombre, String resumen, String autor, Date fechaCreacion, Date fechaModificacion, int descargas, double valoracionMedia) {
         this.idNook = idNook;
         this.nombre = nombre;
         this.resumen = resumen;
@@ -30,6 +31,7 @@ public class Nook {
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
         this.descargas = descargas;
+        this.valoracionMedia = valoracionMedia;
     }
 
 
@@ -87,6 +89,14 @@ public class Nook {
 
     public void setDescargas(int descargas) {
         this.descargas = descargas;
+    }
+    
+    public double getValoracionMedia() {
+        return valoracionMedia;
+    }
+
+    public void setValoracionMedia(double valoracionMedia) {
+        this.valoracionMedia = valoracionMedia;
     }
 }
     

@@ -14,17 +14,19 @@ public class Comentario {
     private int idComentario;
     private Date fecha;
     private String autor;
-    private String texto;    
+    private String texto; 
+    private double valoracionMedia;
    
     public Comentario(){
         
     }
     
-    public Comentario(int idComentario, Date fecha, String autor, String texto) {
+    public Comentario(int idComentario, Date fecha, String autor, String texto, double valoracionMedia) {
         this.idComentario = idComentario;
         this.fecha = fecha;
         this.autor = autor;
         this.texto = texto;
+        this.valoracionMedia = valoracionMedia;
     }
 
 
@@ -58,6 +60,14 @@ public class Comentario {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+    
+    public double getValoracionMedia() {
+        return valoracionMedia;
+    }
+
+    public void setValoracionMedia(double valoracionMedia) {
+        this.valoracionMedia = valoracionMedia;
     }
 
 }

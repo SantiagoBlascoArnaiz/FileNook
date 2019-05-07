@@ -12,9 +12,9 @@ public class usuarioDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
-        String query="INSERT INTO Usuario (nombre,apellidos,nombreUsuario,clave,correo) VALUES (?, ?, ?, ?, ?)";
+        String consulta="INSERT INTO Usuario (nombre,apellidos,nombreUsuario,clave,correo) VALUES (?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps =connection.prepareStatement(query);
+            PreparedStatement ps =connection.prepareStatement(consulta);
             ps.setString(1, user.getNombre());
             ps.setString(2, user.getApellidos());
             ps.setString(3, user.getNombreUsuario());

@@ -11,7 +11,6 @@ import java.util.Date;
 public class Mensaje {
 
     private int idMensaje;
-    private String asunto;
     private String texto;
     private Date fecha;
     private int leido;
@@ -23,9 +22,8 @@ public class Mensaje {
         
     }
     
-    public Mensaje(int idMensaje, String asunto, String texto, Date fecha, int leido, String tipo, String autor, String destinatario) {
+    public Mensaje(int idMensaje, String texto, Date fecha, int leido, String tipo, String autor, String destinatario) {
         this.idMensaje = idMensaje;
-        this.asunto = asunto;
         this.texto = texto;
         this.fecha = fecha;
         this.leido = leido;
@@ -41,14 +39,6 @@ public class Mensaje {
 
     public void setIdMensaje(int idMensaje) {
         this.idMensaje = idMensaje;
-    }
-
-    public String getAsunto() {
-        return asunto;
-    }
-
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
     }
 
     public String getTexto() {

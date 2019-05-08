@@ -1,13 +1,12 @@
 DROP TABLE ClasificacionCategorias;
-DROP TABLE ValoracionComentario;
+DROP TABLE ValoracionesComentario;
 DROP TABLE Comentario;
 DROP TABLE ValoracionesNook;
-DROP TABLE ValoracionAutor;
+DROP TABLE ValoracionesAutor;
 DROP TABLE Documento;
 DROP TABLE Nook;
 DROP TABLE Mensaje;
 DROP TABLE Usuario;
-
 
 
 CREATE TABLE Usuario(
@@ -16,8 +15,8 @@ CREATE TABLE Usuario(
 	nombreUsuario VARCHAR(10),
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
-        valoracionMedia DOUBLE,
-	PRIMARY KEY (nombreUsuario, correo)
+        valoracionMedia DECIMAL(2,1),
+	PRIMARY KEY (nombreUsuario)
 );
 
 
@@ -45,7 +44,7 @@ CREATE TABLE Nook(
 	fechaCreacion DATE,
 	fechaModificacion DATE,
 	descargas INTEGER,
-        valoracionMedia DOUBLE,
+        valoracionMedia DECIMAL(2,1),
 	PRIMARY KEY (idNook),
 	CONSTRAINT FK_NOOK FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
@@ -94,7 +93,7 @@ CREATE TABLE Comentario(
 	fecha DATE,
 	autor VARCHAR(10),
 	texto VARCHAR(180),
-        valoracionMedia DOUBLE,
+        valoracionMedia DECIMAL(2,1),
 	PRIMARY KEY (idComentario),
 	CONSTRAINT FK_COMENTARIO FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
@@ -123,7 +122,7 @@ CREATE TABLE ClasificacionCategorias(
 );
 
 
-INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es');
+INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es',0.0);
 
 INSERT INTO Usuario VALUES ('Andrés','Cabero Mata','andcabe','1122','andres.cabero@alumnos.uva.es',0.0);
 INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','rafael.higelmo@alumnos.uva.es',3.0);
@@ -133,8 +132,8 @@ INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','santiag
 INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',1,'Enviado','patagua','rafhige');
 INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',0,'Recibido','rafhige','patagua');
 
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);
 
 INSERT INTO Documento VALUES (0,'Sumador.s','Programa MIPS para suamr número en hexadecimal y que muestre el resultado en binario complemento a dos.','2016-06-20','2016-06-20');
 INSERT INTO Documento VALUES (0,'Shunting.s','Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como su entrada.','2016-06-20','2016-06-20');
@@ -149,8 +148,8 @@ INSERT INTO ValoracionesNook VALUES (0,'patagua',5,'2016-11-12');
 INSERT INTO ValoracionesNook VALUES (0,'sanblas',3,'2017-08-06');
 INSERT INTO ValoracionesNook VALUES (0,'andcabe',4,'2018-05-15');
 
-INSERT INTO Comentario (fecha,autor,texto) VALUES ('2017-08-06','sanblas','Buen nook!!',4.0);
-INSERT INTO Comentario (fecha,autor,texto) VALUES ('2016-11-13','andcabe','Tengo una duda con el archivo Sumador.s te mando un correo.',0.0);
+INSERT INTO Comentario (fecha,autor,texto,valoracionMedia) VALUES ('2017-08-06','sanblas','Buen nook!!',4.0);
+INSERT INTO Comentario (fecha,autor,texto,valoracionMedia) VALUES ('2016-11-13','andcabe','Tengo una duda con el archivo Sumador.s te mando un correo.',0.0);
 
 INSERT INTO ValoracionesComentario VALUES (0,4,'2017-09-16','rafhige');
 

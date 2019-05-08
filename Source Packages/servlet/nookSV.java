@@ -42,7 +42,7 @@ public class nookSV extends HttpServlet {
         
         String nombre = request.getParameter("nombre");
         String etiquetas = request.getParameter("etiquetas");
-        String descripcion = request.getParameter("descripcion");
+        String resumen = request.getParameter("resumen");
         
         java.util.Date date = new java.util.Date();  
         Date fecha = new Date(date.getTime());
@@ -52,7 +52,7 @@ public class nookSV extends HttpServlet {
         //para darle valor al id primero tenemos que hacer el insert y luego cargar el id autogenerado
         
         nook.setNombre(nombre);
-        nook.setResumen(descripcion);
+        nook.setResumen(resumen);
         nook.setFechaCreacion(fecha);
         nook.setFechaModificacion(fecha);
         nook.setDescargas(0);

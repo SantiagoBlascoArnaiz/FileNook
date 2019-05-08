@@ -20,17 +20,16 @@ public class mensajeDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
-        String consulta ="INSERT INTO Mensaje (idMensaje,asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String consulta ="INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
-            ps.setInt(1, mensaje.getIdMensaje());
-            ps.setString(2, mensaje.getAsunto());
-            ps.setString(3, mensaje.getTexto());
-            ps.setDate(4, (Date) mensaje.getFecha());
-            ps.setInt(5, mensaje.getLeido());
-            ps.setString(6, mensaje.getTipo());
-            ps.setString(7, mensaje.getAutor());
-            ps.setString(8, mensaje.getDestinatario());
+            ps.setString(1, mensaje.getAsunto());
+            ps.setString(2, mensaje.getTexto());
+            ps.setDate(3, (Date) mensaje.getFecha());
+            ps.setInt(4, mensaje.getLeido());
+            ps.setString(5, mensaje.getTipo());
+            ps.setString(6, mensaje.getAutor());
+            ps.setString(7, mensaje.getDestinatario());
             
             int res = ps.executeUpdate();
             ps.close();

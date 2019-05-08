@@ -56,8 +56,6 @@ public class crearMensajeSV extends HttpServlet {
         
         mensajeDB.insert(mensajeEnv);
         
-        System.out.println("HOLIIIIIIIIIIIIIIIIIIIII MENSAJEENV"+ mensajeEnv.getAsunto());
-        
         Mensaje mensajeRec = new Mensaje();
         
         mensajeRec.setAsunto(asunto);
@@ -69,8 +67,6 @@ public class crearMensajeSV extends HttpServlet {
         mensajeRec.setDestinatario("patagua");  //USUARIO LOGUEADO
         
         mensajeDB.insert(mensajeRec);
-        
-        System.out.println("HOLIIIIIIIIIIIIIIIIIIIII MENSAJEREC"+ mensajeRec.getAsunto());
         
         String url = "/enviados.html";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

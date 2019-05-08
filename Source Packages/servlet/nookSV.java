@@ -49,13 +49,15 @@ public class nookSV extends HttpServlet {
         
         
         Nook nook = new Nook();
-        //para darle valor al id primero tenemos que hacer el insert y luego cargar el id autogenerado
         
         nook.setNombre(nombre);
         nook.setResumen(resumen);
+        nook.setAutor("patagua"); //AQUI VA EL USUARIO LOGUEADO
         nook.setFechaCreacion(fecha);
         nook.setFechaModificacion(fecha);
         nook.setDescargas(0);
+        nook.setValoracionMedia(0.0);
+        
         nookDB.insert(nook);
         
         String url = "/misNooks.html";

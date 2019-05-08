@@ -13,7 +13,7 @@ DROP TABLE Usuario;
 CREATE TABLE Usuario(
 	nombre	CHAR(50) NOT NULL,
 	apellidos VARCHAR(50) NOT NULL,
-	nombreUsuario VARCHAR(10),
+	nombreUsuario VARCHAR(10) NOT NULL,
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
         valoracionMedia DOUBLE,
@@ -24,7 +24,7 @@ CREATE TABLE Usuario(
 CREATE TABLE Mensaje(
 	idMensaje INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
         asunto VARCHAR(100) NOT NULL,
-	texto VARCHAR(180) NOT NULL,
+	texto VARCHAR(180),
 	fecha DATE,
 	leido INTEGER CHECK (leido IN (0,1)),
 	tipo VARCHAR(10) CHECK (tipo IN ('Enviado', 'Recibido')),
@@ -40,9 +40,9 @@ CREATE TABLE Mensaje(
 
 CREATE TABLE Nook(
 	idNook INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
-	nombre VARCHAR(50),
+	nombre VARCHAR(50) NOT NULL,
 	resumen VARCHAR(180),
-	autor VARCHAR(10),
+	autor VARCHAR(10) NOT NULL,
 	fechaCreacion DATE,
 	fechaModificacion DATE,
 	descargas INTEGER,
@@ -54,8 +54,8 @@ CREATE TABLE Nook(
 
 
 CREATE TABLE Documento(
-	nook INTEGER,
-	nombre VARCHAR(50),
+	nook INTEGER NOT NULL,
+	nombre VARCHAR(50) NOT NULL,
 	resumen VARCHAR(180),
 	fechaCreacion DATE,
 	fechaModificacion DATE,
@@ -66,9 +66,9 @@ CREATE TABLE Documento(
 
 
 CREATE TABLE ValoracionesAutor(
-	autor VARCHAR(10),
-        usuario VARCHAR(10),
-	puntuacion DOUBLE,
+	autor VARCHAR(10) NOT NULL,
+        usuario VARCHAR(10) NOT NULL,
+	puntuacion DOUBLE NOT NULL,
 	PRIMARY KEY (autor, usuario),
 	CONSTRAINT FK_VALAUTOR FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario),
@@ -78,9 +78,9 @@ CREATE TABLE ValoracionesAutor(
 
 
 CREATE TABLE ValoracionesNook(
-	nook INTEGER,
-	usuario VARCHAR(10),
-	puntuacion INTEGER,
+	nook INTEGER NOT NULL,
+	usuario VARCHAR(10) NOT NULL,
+	puntuacion INTEGER NOT NULL,
 	fecha DATE,
 	PRIMARY KEY (nook, usuario),
 	CONSTRAINT FK_VALNOOK FOREIGN KEY (nook)
@@ -93,8 +93,8 @@ CREATE TABLE ValoracionesNook(
 CREATE TABLE Comentario(
 	idComentario INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
 	fecha DATE,
-	autor VARCHAR(10),
-	texto VARCHAR(180),
+	autor VARCHAR(10) NOT NULL,
+	texto VARCHAR(180) NOT NULL,
         valoracionMedia DOUBLE,
 	PRIMARY KEY (idComentario),
 	CONSTRAINT FK_COMENTARIO FOREIGN KEY (autor)
@@ -116,8 +116,8 @@ CREATE TABLE ValoracionesComentario(
 
 
 CREATE TABLE ClasificacionCategorias(
-	idNook INTEGER,
-	categoria VARCHAR(30),
+	idNook INTEGER NOT NULL,
+	categoria VARCHAR(30) NOT NULL,
 	PRIMARY KEY (idNook, categoria),
 	CONSTRAINT FK_CLASCATEGORIAS FOREIGN KEY (idNook)
 		REFERENCES Nook (idNook)

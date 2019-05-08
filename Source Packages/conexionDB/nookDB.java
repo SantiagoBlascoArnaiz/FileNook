@@ -13,16 +13,15 @@ public class nookDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
-        String query="INSERT INTO Nook (idNook,nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query="INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps =connection.prepareStatement(query);
-            ps.setInt(1, nook.getIdNook());
-            ps.setString(2, nook.getNombre());
-            ps.setString(3, nook.getResumen());
-            ps.setString(4, nook.getAutor());
-            ps.setDate(5, (Date) nook.getFechaCreacion());
-            ps.setDate(6, (Date) nook.getFechaModificaion());
-            ps.setInt(7, nook.getDescargas());
+            ps.setString(1, nook.getNombre());
+            ps.setString(2, nook.getResumen());
+            ps.setString(3, nook.getAutor());
+            ps.setDate(4, (Date) nook.getFechaCreacion());
+            ps.setDate(5, (Date) nook.getFechaModificaion());
+            ps.setInt(6, nook.getDescargas());
            
             int res = ps.executeUpdate();
             ps.close();

@@ -9,19 +9,21 @@ DROP TABLE Mensaje;
 DROP TABLE Usuario;
 
 
+
 CREATE TABLE Usuario(
 	nombre	CHAR(50) NOT NULL,
 	apellidos VARCHAR(50) NOT NULL,
 	nombreUsuario VARCHAR(10),
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
-        valoracionMedia DECIMAL(2,1),
+        valoracionMedia DOUBLE,
 	PRIMARY KEY (nombreUsuario)
 );
 
 
 CREATE TABLE Mensaje(
 	idMensaje INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
+        asunto VARCHAR(100) NOT NULL,
 	texto VARCHAR(180) NOT NULL,
 	fecha DATE,
 	leido INTEGER CHECK (leido IN (0,1)),
@@ -44,7 +46,7 @@ CREATE TABLE Nook(
 	fechaCreacion DATE,
 	fechaModificacion DATE,
 	descargas INTEGER,
-        valoracionMedia DECIMAL(2,1),
+        valoracionMedia DOUBLE,
 	PRIMARY KEY (idNook),
 	CONSTRAINT FK_NOOK FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
@@ -93,7 +95,7 @@ CREATE TABLE Comentario(
 	fecha DATE,
 	autor VARCHAR(10),
 	texto VARCHAR(180),
-        valoracionMedia DECIMAL(2,1),
+        valoracionMedia DOUBLE,
 	PRIMARY KEY (idComentario),
 	CONSTRAINT FK_COMENTARIO FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
@@ -129,8 +131,8 @@ INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','raf
 INSERT INTO Usuario VALUES ('Patricia','Aguado Labrador','patagua','5566','patricia.aguado@alumnos.uva.es',0.0);
 INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','santiago.blasco@alumnos.uva.es',0.0);
 
-INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',1,'Enviado','patagua','rafhige');
-INSERT INTO Mensaje (texto,fecha,leido,tipo,autor,destinatario) VALUES ('Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',0,'Recibido','rafhige','patagua');
+INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES ('duda','Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',1,'Enviado','patagua','rafhige');
+INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES ('duda','Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',0,'Recibido','rafhige','patagua');
 
 INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
 INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);

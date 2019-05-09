@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.Usuario;
 
 /**
  *
@@ -34,11 +37,35 @@ public class inicioSesionSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        String nombreUsuario = request.getParameter("usr");
+        String clave = request.getParameter("psw");
         
+        Usuario usr = usuarioDB.getUsuario(nombreUsuario);
         
-        String url = "/inicialSV";
+        System.out.println("PATAGUAAAAAAAAA2\n\n\n");
+        System.out.println(usr);
+        
+        String url;
+        
+        if(usr == null){
+            
+            url = "/perfil.html";
+        
+            
+        }else{
+            
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("usuario",nombreUsuario);
+
+            url = "/inicialSV";
+            
+        }
+        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

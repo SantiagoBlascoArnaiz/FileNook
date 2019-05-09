@@ -22,9 +22,8 @@ and open the template in the editor.
     </head>
     <body >
         <%
-        //Principal principal=request.getUserPrincipal();
-        //System.out.println("PRINCIPALPRINCIPALPRINCIPAL" + principal);
-        //String userName=principal.getName();
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
         %>
         <div class="content">
             <header class="header">
@@ -32,7 +31,7 @@ and open the template in the editor.
                     <a href="/inicialSV" class="logo">FILENOOK</a>
                     <div class="navigation">
                         <ul>
-                            <li class="navigation-usuario"><a href="perfil.html">fafafa<%//=userName%></a></li>
+                            <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
                             <li><a href="perfil.html"><img src="imagenes/chica2.png"
                                                            alt="Imagen del perfil de usuario"></a></li>
                         </ul>

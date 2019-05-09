@@ -36,21 +36,28 @@ public class usuarioDB {
         Connection connection = pool.getConnection();
         Usuario usuario = new Usuario();
         ResultSet rs = null;
-        String consulta = "SELECT nombreUsuario FROM Usuario "+ "WHERE nombreUsuario = ?";
+        String consulta = "SELECT nombreUsuario FROM Usuario WHERE nombreUsuario = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
             rs = ps.executeQuery();
             
+            if(rs.next() == false){
+                usuario =  null;
+            }else{
             usuario.setNombre(rs.getString("nombre"));
+            System.out.println(usuario.getNombre());
             usuario.setApellidos(rs.getString("apellidos"));
             usuario.setNombreUsuario(rs.getString("nombreUsuario"));
             usuario.setClave(rs.getString("clave"));
             usuario.setCorreo(rs.getString("correo"));
             usuario.setImagenPerfil(rs.getString("imagenPerfil"));
+                
+            }
 
             rs.close();
             ps.close();
             pool.freeConnection(connection);
+            
             return usuario;
         } catch (SQLException e) {
             e.printStackTrace();

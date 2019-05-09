@@ -50,7 +50,7 @@ public class registroSV extends HttpServlet {
         
         usuarioDB.insert(user);
         
-        String url = "/inicioSesionSV";
+        String url = "/inicioSesion.html";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
         

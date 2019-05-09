@@ -73,7 +73,7 @@ public class crearMensajeSV extends HttpServlet {
         
         mensajeDB.insert(mensajeRec);
         
-        String url = "/enviados.html";
+        String url = "/enviados.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

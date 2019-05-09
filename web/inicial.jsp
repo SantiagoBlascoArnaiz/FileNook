@@ -1,8 +1,5 @@
-<%@page import="java.security.Principal"%>
-<%@page import="modelo.Nook"%>
 <%@page import="modelo.Nook"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="modelo.Usuario"%>
 <%@page import="modelo.Usuario"%>
 <!DOCTYPE html>
 <!--

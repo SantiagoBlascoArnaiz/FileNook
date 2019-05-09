@@ -6,7 +6,6 @@
 package conexionDB;
 import java.sql.*;
 import modelo.Usuario;
-import java.util.ArrayList;
 public class usuarioDB {
     public static int insert(Usuario user) {
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -36,16 +35,17 @@ public class usuarioDB {
         Connection connection = pool.getConnection();
         Usuario usuario = new Usuario();
         ResultSet rs = null;
-        String consulta = "SELECT nombreUsuario FROM Usuario WHERE nombreUsuario = ?";
+        Boolean existe;
+        String consulta = "SELECT * FROM Usuario WHERE nombreUsuario = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setString(1,nombreUsuario);
             rs = ps.executeQuery();
-            
-            if(rs.next() == false){
+            existe = rs.next();
+            if(existe== false){
                 usuario =  null;
             }else{
             usuario.setNombre(rs.getString("nombre"));
-            System.out.println(usuario.getNombre());
             usuario.setApellidos(rs.getString("apellidos"));
             usuario.setNombreUsuario(rs.getString("nombreUsuario"));
             usuario.setClave(rs.getString("clave"));

@@ -35,29 +35,30 @@ public class inicioSesionSV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         
         String nombreUsuario = request.getParameter("usr");
         String clave = request.getParameter("psw");
         
         Usuario usr = usuarioDB.getUsuario(nombreUsuario);
         
-        System.out.println("PATAGUAAAAAAAAA2\n\n\n");
-        System.out.println(usr);
-        
         String url;
         
         if(usr == null){
             
-            url = "/perfil.html";
-        
-            
+            url = "/inicioSesion.html";
+
         }else{
             
-            HttpSession sesion = request.getSession();
+            if(usr.getClave().equals(clave)){
+                HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario",nombreUsuario);
 
             url = "/inicialSV";
+            }else{
+                url = "/inicioSesion.html";
+            }
+            
+            
             
         }
         

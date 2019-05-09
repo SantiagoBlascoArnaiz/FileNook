@@ -23,8 +23,8 @@ and open the template in the editor.
                     <a href="/inicialSV" class="logo">FILENOOK</a>
                     <nav class="navigation">
                         <ul>
-                            <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                            <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                            <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
+                            <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
                                                            alt="Imagen del perfil de usuario"></a></li>
                         </ul>
                     </nav>
@@ -57,22 +57,22 @@ and open the template in the editor.
                     </div>
                     <div class="pag-nook">
                            <div class="nook">
-                                   <a href="paginaNook.html"><img src="imagenes/sumador.png" alt="Imagen del perfil de usuario"></a>
+                                   <a href="paginaNook.jsp"><img src="imagenes/sumador.png" alt="Imagen del perfil de usuario"></a>
                                     <h3>Sumador.s</h3>
                                     <p>Programa MIPS para suamr número en hexadecimal y que muestre el resultado en binario complemento a dos.</p>
                            </div>
                         <div class="nook">
-                                   <a href="paginaNook.html"><img src="imagenes/shunting.png" alt="Imagen del perfil de usuario"></a>
+                                   <a href="paginaNook.jsp"><img src="imagenes/shunting.png" alt="Imagen del perfil de usuario"></a>
                                     <h3>Shunting.s</h3>
                                     <p>Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como su entrada.</p>
                            </div>
                         <div class="nook">
-                                   <a href="paginaNook.html"><img src="imagenes/conversor.png" alt="Imagen del perfil de usuario"></a>
+                                   <a href="paginaNook.jsp"><img src="imagenes/conversor.png" alt="Imagen del perfil de usuario"></a>
                                    <h3>Conversor.s</h3>
                                     <p>Programa MIPS que convierte número de hexadecimal a binario.</p>
                            </div>
                         <div class="nook">
-                                   <a href="paginaNook.html"><img src="imagenes/segmentacion.png" alt="Imagen del perfil de usuario"></a>
+                                   <a href="paginaNook.jsp"><img src="imagenes/segmentacion.png" alt="Imagen del perfil de usuario"></a>
                                     <h3>Segmentacion.pdf</h3>
                                     <p>Apuntes sobre la segmentaciónd de los procesadores vistos en la asignatura de Arquitectura y Organización de Computadoras</p>
                            </div>

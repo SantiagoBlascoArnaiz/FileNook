@@ -28,8 +28,8 @@ and open the template in the editor.
                     <a href="/inicialSV" class="logo">FILENOOK</a>
                     <div class="navigation">
                         <ul>
-                            <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                            <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                            <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
+                            <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
                                                            alt="Imagen del perfil de usuario"></a></li>
                         </ul>
                     </div>
@@ -50,7 +50,7 @@ and open the template in the editor.
                                     ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
                                     for(int i=0;i<nooks.size();i++){
                                 %>
-                                <div class="item"><a href='paginaNook.html'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='paginaNook.jsp'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">
@@ -65,7 +65,7 @@ and open the template in the editor.
                                 <%
                                     for(int i=0;i<nooks.size();i++){
                                 %>
-                                <div class="item"><a href='paginaNook.html'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='paginaNook.jsp'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">

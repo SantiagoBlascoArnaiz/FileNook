@@ -23,8 +23,8 @@ and open the template in the editor.
                 <a href="/inicialSV" class="logo">FILENOOK</a>
                 <nav class="navigation">
                     <ul>
-                        <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                        <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                        <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
+                        <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
@@ -42,7 +42,7 @@ and open the template in the editor.
                 <div class="pag-archivo">
                     <div class="archivo">
                         <ul>
-                            <li><a href="archivosNook.html"><img src="imagenes/mips.png" alt="Imagen de nook"></a></li>
+                            <li><a href="archivosNook.jsp"><img src="imagenes/mips.png" alt="Imagen de nook"></a></li>
                             <li><p>Prácticas de lenguaje ensamblador. Se centran en el conocimiento de
                                    la arquitectura del juego de instrucciones de un procesador y el modo en que éstas se
                                    relacionan con la programación del computador y los lenguajes de alto nivel.</p></li>
@@ -51,12 +51,12 @@ and open the template in the editor.
 
                     <div class="opciones">
                         <ul>
-                            <li><a href="autor.html"><img src="imagenes/chico1.png"
+                            <li><a href="autor.jsp"><img src="imagenes/chico1.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
-                            <li><a href="autor.html">PedroGonz5</a></li>
+                            <li><a href="autor.jsp">PedroGonz5</a></li>
                             <li>15/08/2018</li>
                             <li><button type="button">Descargar</button></li>
-                            <li><button type="button" onclick="window.location.href='archivosNook.html'">Ver archivos</button></li>
+                            <li><button type="button" onclick="window.location.href='archivosNook.jsp'">Ver archivos</button></li>
                             <li><button type="button">?</button></li>
                         </ul>
                     </div>
@@ -74,7 +74,7 @@ and open the template in the editor.
                         <ul>
                             <li>
                                 <div class="comentarioTexto">
-                                    <p class="usuario"><a href="autor.html"><img src="imagenes/chica2.png"
+                                    <p class="usuario"><a href="autor.jsp"><img src="imagenes/chica2.png"
                                                                   alt="Imagen del perfil de usuario"></a> Carlota21<p>
                                     <p>Buen nook!!</p>
                                     <div class="star1">
@@ -97,7 +97,7 @@ and open the template in the editor.
                             </li>
                             <li>
                                 <div class="comentarioTexto">
-                                    <p class="usuario"><a href="autor.html"><img src="imagenes/chico2.png"
+                                    <p class="usuario"><a href="autor.jsp"><img src="imagenes/chico2.png"
                                                                   alt="Imagen del perfil de usuario"></a> luisito_comunica<p>
                                     <p>Tengo una duda con el archivo Sumador.s te mando un correo.</p>
                                     <div class="star1">
@@ -120,7 +120,7 @@ and open the template in the editor.
                             </li>
                             <li>
                                 <div class="comentarioTexto">
-                                    <p class="usuario"><a href="autor.html"><img src="imagenes/chico3.png"
+                                    <p class="usuario"><a href="autor.jsp"><img src="imagenes/chico3.png"
                                                                   alt="Imagen del perfil de usuario"></a> David_Carretero<p>
                                     <p>Excelente trabajo.</p>
                                     <div class="star1">

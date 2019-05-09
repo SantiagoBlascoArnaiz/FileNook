@@ -23,8 +23,8 @@ and open the template in the editor.
                 <a href="/inicialSV" class="logo">FILENOOK</a>
                 <nav class="navigation">
                     <ul>
-                        <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                        <li><a href="perfil.html"><img src="imagenes/chica2.png" alt="Imagen del perfil de usuario"></a></li>
+                        <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
+                        <li><a href="perfil.jsp"><img src="imagenes/chica2.png" alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
             </div>

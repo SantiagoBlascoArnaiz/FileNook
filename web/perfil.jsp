@@ -22,8 +22,8 @@ and open the template in the editor.
                 <a href="/inicialSV" class="logo">FILENOOK</a>
                 <nav class="navigation">
                     <ul>
-                        <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                        <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                        <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
+                        <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
@@ -38,10 +38,10 @@ and open the template in the editor.
                         <div class="opcionesPerfil">
                             <ul>
                                 <li><a href="nookSV">? Mis nooks</a></li>
-                                <li><a href="buzon.html">? Buzón de entrada</a></li>
-                                <li><a href="enviados.html">? Mensajes enviados</a></li>
-                                <li><a href="configuracionUsuario.html">?? Configuración</a></li>
-                                <li><a href="index.html">? Salir de la cuenta</a></li>
+                                <li><a href="buzon.jsp">? Buzón de entrada</a></li>
+                                <li><a href="enviados.jsp">? Mensajes enviados</a></li>
+                                <li><a href="configuracionUsuario.jsp">?? Configuración</a></li>
+                                <li><a href="index.jsp">? Salir de la cuenta</a></li>
                             </ul>
                         </div>
                     </div>

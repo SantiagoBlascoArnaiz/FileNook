@@ -22,8 +22,8 @@ and open the template in the editor.
                 <a href="/inicialSV" class="logo">FILENOOK</a>
                 <nav class="navigation">
                     <ul>
-                        <li class="navigation-usuario"><a href="perfil.html">>%=userName%></a></li>
-                        <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                        <li class="navigation-usuario"><a href="perfil.jsp">>%=userName%></a></li>
+                        <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
@@ -52,8 +52,8 @@ and open the template in the editor.
 
 
                             <div class="partes" >
-                                <input type="button" class="button" tabindex="10" id="enviarmensajebotton" style="margin-left: 5em" onclick="window.location.href='crearMensaje.html'" value="Responder" >
-                                <input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='buzon.html'"   value="Volver al buzón">
+                                <input type="button" class="button" tabindex="10" id="enviarmensajebotton" style="margin-left: 5em" onclick="window.location.href='crearMensaje.jsp'" value="Responder" >
+                                <input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='buzon.jsp'"   value="Volver al buzón">
                             </div>
                         </div>
                         <!--

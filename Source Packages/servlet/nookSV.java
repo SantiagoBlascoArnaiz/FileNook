@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Nook;
 
 /**
@@ -52,7 +53,11 @@ public class nookSV extends HttpServlet {
         
         nook.setNombre(nombre);
         nook.setResumen(resumen);
-        nook.setAutor("patagua"); //AQUI VA EL USUARIO LOGUEADO
+        
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
+        
+        nook.setAutor(userName); //AQUI VA EL USUARIO LOGUEADO
         nook.setFechaCreacion(fecha);
         nook.setFechaModificacion(fecha);
         nook.setDescargas(0);

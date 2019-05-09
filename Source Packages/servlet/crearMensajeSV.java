@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Mensaje;
 
 /**
@@ -51,7 +52,11 @@ public class crearMensajeSV extends HttpServlet {
         mensajeEnv.setFecha(fecha);
         mensajeEnv.setLeido(0);
         mensajeEnv.setTipo("Enviado");
-        mensajeEnv.setAutor("patagua"); //USUARIO LOGUEADO
+        
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
+        
+        mensajeEnv.setAutor(userName); //USUARIO LOGUEADO
         mensajeEnv.setDestinatario(destinatario);
         
         mensajeDB.insert(mensajeEnv);

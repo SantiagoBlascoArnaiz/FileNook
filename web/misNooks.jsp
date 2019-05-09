@@ -23,8 +23,8 @@ and open the template in the editor.
                 <a href="/inicialSV" class="logo">FILENOOK</a>
                 <nav class="navigation">
                     <ul>
-                        <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                        <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                        <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
+                        <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
@@ -41,7 +41,7 @@ and open the template in the editor.
 
 
                 <div class="nooks">
-                    <button type="submit" class="signupbtn" onclick="window.location.href='crearNook.html'">Nuevo Nook</button>
+                    <button type="submit" class="signupbtn" onclick="window.location.href='crearNook.jsp'">Nuevo Nook</button>
                 </div>
 
 
@@ -50,7 +50,7 @@ and open the template in the editor.
 
                        <div class="nook_n">
 
-                               <a href="paginaNook.html"><img src="imagenes/integrales.png"></a>
+                               <a href="paginaNook.jsp"><img src="imagenes/integrales.png"></a>
                                <div class="titulo_nook">
                                 <h3>Integrales </h3>
                                 <h4>Categoria:matematicas,integrales,ejercicios,ejemplos</h4>
@@ -78,7 +78,7 @@ and open the template in the editor.
 
                                <div class="nook_n">
 
-                                    <a href="paginaNook.html"><img src="imagenes/java.png"></a>
+                                    <a href="paginaNook.jsp"><img src="imagenes/java.png"></a>
                                     <div class="titulo_nook">
                                      <h3>Programación java principiante</h3>
                                       <h4>Categoria:java,programacion,ejercicios,ejemplos</h4>
@@ -104,7 +104,7 @@ and open the template in the editor.
 
                         <div class="nook_n">
 
-                               <a href="paginaNook.html"><img src="imagenes/WW2.png"></a>
+                               <a href="paginaNook.jsp"><img src="imagenes/WW2.png"></a>
                                <div class="titulo_nook">
                                 <h3>Historia la Segunda Guerra Mundial</h3>
                                  <h4>Categoria:resumen,historia,guerra,mundial,imagenes</h4>

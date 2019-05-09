@@ -18,7 +18,8 @@ public class Nook {
     private Date fechaModificacion;
     private int descargas;
     private double valoracionMedia;
-   
+    private String categorias;
+    
     public Nook(){
         
     }
@@ -97,6 +98,14 @@ public class Nook {
 
     public void setValoracionMedia(double valoracionMedia) {
         this.valoracionMedia = valoracionMedia;
+    }
+    
+    public String getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(String categorias) {
+        this.categorias = categorias;
     }
 }
     

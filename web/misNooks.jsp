@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Nook"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -47,14 +49,18 @@ and open the template in the editor.
 
                 <div class="pag-nook_n">
 
-
+                    <%
+                        ArrayList<Nook> misNooks = (ArrayList<Nook>) request.getAttribute("misNooks");
+                        
+                        for(int i = 0; i < misNooks.size(); i++){
+                    %>
                        <div class="nook_n">
 
-                               <a href="paginaNook.jsp"><img src="imagenes/integrales.png"></a>
+                               <a href=""><img src=""></a>
                                <div class="titulo_nook">
-                                <h3>Integrales </h3>
+                                <h3><% misNooks.get(i).getNombre(); %></h3>
                                 <h4>Categoria:matematicas,integrales,ejercicios,ejemplos</h4>
-                                <p>Ejemplos y ejercicios de integrales de complejidad ascendente.</p>
+                                <p><% misNooks.get(i).getResumen(); %></p>
                                </div>
                             <div class="star">
                                 <form>
@@ -73,7 +79,7 @@ and open the template in the editor.
                                 </form>
                             </div>
                        </div>
-
+                    <%;%>
 
 
                                <div class="nook_n">

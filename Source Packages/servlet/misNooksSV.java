@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import conexionDB.clasificacionCategoriasDB;
 import conexionDB.nookDB;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,6 +44,20 @@ public class misNooksSV extends HttpServlet {
         }
         
         ArrayList<Nook> nooks= nookDB.getNooksUsuario(name);
+        StringBuilder str;
+        ArrayList<String> categorias;
+        
+        for(int i=0; i < nooks.size(); i++){
+            str =  new StringBuilder();
+            categorias = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
+            for(int j = 0; j < categorias.size(); j++ ){
+                str.append(categorias.get(j));
+                str.append(',');
+            }
+            str.deleteCharAt(str.length()-1);
+            nooks.get(i).setCategorias(str.toString());
+        }
+        
         request.setAttribute("misNooks", nooks);
         
         String url = "/misNooks.jsp";

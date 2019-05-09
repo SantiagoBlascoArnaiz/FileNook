@@ -7,8 +7,9 @@ package conexionDB;
 import java.sql.*;
 import modelo.Nook;
 import java.util.ArrayList;
-import java.util.List;
+
 public class nookDB {
+    
     public static int insert(Nook nook) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

@@ -75,6 +75,7 @@ public class nookDB {
         String consulta = "SELECT * FROM Nook WHERE autor = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setString(1, nombre);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Nook nook=new Nook();

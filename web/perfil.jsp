@@ -37,11 +37,11 @@ and open the template in the editor.
                         </h1>
                         <div class="opcionesPerfil">
                             <ul>
-                                <li><a href="nookSV">? Mis nooks</a></li>
+                                <li><a href="misNooksSV">? Mis nooks</a></li>
                                 <li><a href="buzon.jsp">? Buzón de entrada</a></li>
                                 <li><a href="enviados.jsp">? Mensajes enviados</a></li>
                                 <li><a href="configuracionUsuario.jsp">?? Configuración</a></li>
-                                <li><a href="index.jsp">? Salir de la cuenta</a></li>
+                                <li><a href="cerrarSesionSV">? Salir de la cuenta</a></li>
                             </ul>
                         </div>
                     </div>

@@ -46,20 +46,21 @@ and open the template in the editor.
                             <li><input type='file' multiple ='multiple' name = 'button'></li>
                         </ul>
                     </div>
-                        <div class="pag-config">
+                        
+                             <form class="pag-config"  method="post" action="/cambioPassSV">
 
                                 <label for="psw"><b>Antigua contraseña</b></label>
                                 <input class="input" type="password" placeholder="Antigua contraseña" name="psw" required>
 
                                 <label for="psw"><b>Nueva contraseña</b></label>
-                                <input class="input" type="password" placeholder="Contraseña" name="psw" required>
+                                <input class="input" type="password" placeholder="Contraseña" name="pswN" required>
 
                                 <label for="psw-repeat"><b>Repetir nueva contraseña</b></label>
-                                <input class="input" type="password" placeholder="Repetir Contraseña" name="psw-repeat" required>
+                                <input class="input" type="password" placeholder="Repetir Contraseña" name="pswrepeat" required>
 
-                                <button type="button">Cambiar contrasñea</button>
-
-                        </div>
+                                <button type="submit">Cambiar contrasñea</button>
+                             </form>
+                        
                 </div>
             </div>
         </main>

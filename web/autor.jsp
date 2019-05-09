@@ -13,13 +13,17 @@ and open the template in the editor.
         <link href="style.css" rel="stylesheet">
     </head>
     <body >
+        <%
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
+        %>
         <div class="content">
             <header class="header">
                 <div class="container logo-nav-container">
                     <a href="/inicialSV" class="logo">FILENOOK</a>
                     <nav class="navigation">
                         <ul>
-                            <li class="navigation-usuario"><a href="perfil.html">Elena_123</a></li>
+                            <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
                             <li><a href="perfil.html"><img src="imagenes/chica2.png"
                                                            alt="Imagen del perfil de usuario"></a></li>
                         </ul>

@@ -45,12 +45,12 @@ public class usuarioDB {
             if(existe== false){
                 usuario =  null;
             }else{
-            usuario.setNombre(rs.getString("nombre"));
-            usuario.setApellidos(rs.getString("apellidos"));
-            usuario.setNombreUsuario(rs.getString("nombreUsuario"));
-            usuario.setClave(rs.getString("clave"));
-            usuario.setCorreo(rs.getString("correo"));
-            usuario.setImagenPerfil(rs.getString("imagenPerfil"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellidos(rs.getString("apellidos"));
+                usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuario.setClave(rs.getString("clave"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setImagenPerfil(rs.getString("imagenPerfil"));
                 
             }
 

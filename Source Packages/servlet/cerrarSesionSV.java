@@ -5,7 +5,6 @@
  */
 package servlet;
 
-import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -15,14 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Usuario;
 
 /**
  *
  * @author andres
  */
-@WebServlet(name = "inicioSesionSV", urlPatterns = {"/inicioSesionSV"})
-public class inicioSesionSV extends HttpServlet {
+@WebServlet(name = "cerrarSesionSV", urlPatterns = {"/cerrarSesionSV"})
+public class cerrarSesionSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,40 +33,20 @@ public class inicioSesionSV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nombreUsuario = request.getParameter("usr");
-        String clave = request.getParameter("psw");
-        
-        Usuario usr = usuarioDB.getUsuario(nombreUsuario);
-        
-        String url;
-        
-        if(usr == null){
-            
-            url = "/inicioSesion.html";
+        response.setContentType("text/html;charset=UTF-8");
 
-        }else{
-            
-            if(usr.getClave().equals(clave)){
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("usuario",nombreUsuario);
-
-                url = "/inicialSV";
-            }else{
-                url = "/inicioSesion.html";
-            }
-            
-            
-            
-        }
+        HttpSession session = request.getSession();
+        session.invalidate();
         
+        String url = "/index.html";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
         
-        
-        
     }
 
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

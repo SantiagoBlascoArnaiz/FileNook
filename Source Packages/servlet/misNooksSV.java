@@ -5,9 +5,9 @@
  */
 package servlet;
 
-import conexionDB.usuarioDB;
+import conexionDB.nookDB;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Usuario;
+import modelo.Nook;
 
 /**
  *
  * @author andres
  */
-@WebServlet(name = "inicioSesionSV", urlPatterns = {"/inicioSesionSV"})
-public class inicioSesionSV extends HttpServlet {
+@WebServlet(name = "misNooksSV", urlPatterns = {"/misNooksSV"})
+public class misNooksSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,38 +35,20 @@ public class inicioSesionSV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nombreUsuario = request.getParameter("usr");
-        String clave = request.getParameter("psw");
-        
-        Usuario usr = usuarioDB.getUsuario(nombreUsuario);
-        
-        String url;
-        
-        if(usr == null){
-            
-            url = "/inicioSesion.html";
-
-        }else{
-            
-            if(usr.getClave().equals(clave)){
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("usuario",nombreUsuario);
-
-                url = "/inicialSV";
-            }else{
-                url = "/inicioSesion.html";
-            }
-            
-            
-            
+        response.setContentType("text/html;charset=UTF-8");
+        String name = "";
+        HttpSession session = request.getSession(false);
+        if (session != null){
+            name = (String)session.getAttribute("usuario");
         }
         
+        ArrayList<Nook> nooks= nookDB.getNooksUsuario(name);
+        request.setAttribute("misNooks", nooks);
+        
+        String url = "/misNooks.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
-        
-        
-        
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

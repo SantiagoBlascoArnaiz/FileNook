@@ -33,7 +33,7 @@ public class nookDB {
         }
     }
     
-    //obtener lista de partidos
+    //obtener lista de nooks
     public static ArrayList<Nook> getNooks() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -66,5 +66,37 @@ public class nookDB {
         return null;
         }
     }
-   
+
+        public static ArrayList<Nook> getNooksUsuario(String nombre) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        ArrayList<Nook> nooks=new ArrayList();
+        ResultSet rs = null;
+        String consulta = "SELECT * FROM Nook WHERE autor = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Nook nook=new Nook();
+                nook.setIdNook(rs.getInt("idNook"));
+                nook.setNombre(rs.getString("nombre"));
+                nook.setResumen(rs.getString("resumen"));
+                nook.setAutor(rs.getString("autor"));
+                nook.setFechaCreacion(rs.getDate("fechaCreacion"));
+                nook.setFechaModificacion(rs.getDate("fechaModificacion"));
+                nook.setDescargas(rs.getInt("descargas"));
+                
+                nooks.add(nook);
+                }
+            
+                rs.close();
+                ps.close();
+                pool.freeConnection(connection);
+            return nooks;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 }

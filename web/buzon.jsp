@@ -46,7 +46,6 @@ and open the template in the editor.
                         
                         <%
                             ArrayList<Mensaje> mensajes= (ArrayList<Mensaje>)request.getAttribute("mensajes");
-                            System.out.println(mensajes.size() + "SIZEEEEEEEEEEE");
                             for(int i=0;i<mensajes.size();i++){
                         %>
                         <div class="mensajeBuzon">

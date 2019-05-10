@@ -46,12 +46,13 @@ and open the template in the editor.
                         
                         <%
                             ArrayList<Mensaje> mensajes= (ArrayList<Mensaje>)request.getAttribute("mensajes");
+                            System.out.println(mensajes.size() + "SIZEEEEEEEEEEE");
                             for(int i=0;i<mensajes.size();i++){
                         %>
                         <div class="mensajeBuzon">
-                            <p class="usuario"><% mensajes.get(i).getAutor(); %><p>
-                            <p class="asunto"><% mensajes.get(i).getAsunto(); %></p>
-                            <p class="fecha"><% mensajes.get(i).getFecha(); %></p>
+                            <p class="usuario"><%= mensajes.get(i).getAutor() %><p>
+                            <p class="asunto"><%= mensajes.get(i).getAsunto() %></p>
+                            <p class="fecha"><%= mensajes.get(i).getFecha() %></p>
                             <p class="verMensaje"><button type="submit" onclick="window.location.href='mensaje.jsp'">Ver</button></p>
                         </div>
                         <%}%>

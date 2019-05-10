@@ -39,7 +39,6 @@ public class buzonSV extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(false);
-        
         String name = (String)session.getAttribute("usuario");
         
         ArrayList<Mensaje> mensajes = mensajeDB.getMensajesBuzon(name);

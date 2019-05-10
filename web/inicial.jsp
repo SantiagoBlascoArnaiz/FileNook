@@ -39,7 +39,7 @@ and open the template in the editor.
                 <div class="container">
                     <div class="proyectos-inicial">
                         <div class="search-bar">
-                            <input type="search" placeholder="?Busca aquí nooks..." name="search" required>
+                            <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
                         </div>
                         
                         <p>Populares</p>

@@ -32,7 +32,7 @@
 
 
 
-                      <input type="search" placeholder="? Busca aquí nooks..." name="search" required>
+                      <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
 
                   </div>
                  <div class="pag-nook_n">

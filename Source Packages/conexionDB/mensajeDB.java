@@ -6,9 +6,8 @@
 package conexionDB;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import modelo.Mensaje;
 
 /**
@@ -38,6 +37,63 @@ public class mensajeDB {
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+    
+    public static Mensaje getMensaje(int idMensaje) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        Mensaje mensaje = new Mensaje();
+        String consulta ="SELECT * FROM Mensaje WHERE idMensaje = ?";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setInt(1, idMensaje);
+            
+            ps.close();
+            pool.freeConnection(connection);
+            return mensaje;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static ArrayList<Mensaje> getMensajesBuzon (String usuario){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        ArrayList <Mensaje> mensajes = new ArrayList();
+        ResultSet rs = null;
+        String consulta ="SELECT * FROM Mensaje WHERE destinatario = ?";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setString(1,usuario);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Mensaje mensaje = new Mensaje();
+                mensaje.setIdMensaje(rs.getInt("idMensaje"));
+                mensaje.setAsunto(rs.getString("asunto"));
+                mensaje.setTexto(rs.getString("texto"));
+                mensaje.setFecha(rs.getDate("fecha"));
+                mensaje.setLeido(rs.getInt("leido"));
+                mensaje.setTipo(rs.getString("tipo"));
+                mensaje.setAutor(rs.getString("autor"));
+                mensaje.setDestinatario(rs.getString("destinatario"));
+                
+                mensajes.add(mensaje);
+                
+            }
+            rs.close();
+            ps.close();
+            pool.freeConnection(connection);
+            
+        return mensajes;    
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

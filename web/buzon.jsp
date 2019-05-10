@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Mensaje"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -41,41 +43,19 @@ and open the template in the editor.
                 <div class="pag-buzon">
 
                     <div class="mensajesBuzon">
-                        <ul>
-                            <li>
-                                <div class="mensajeBuzon">
-                                    <p class="usuario">Carlota21<p>
-                                    <p class="asunto">¿Subirás más cosas de literatura?</p>
-                                    <p class="fecha">17/03/2019</p>
-                                    <p class="verMensaje"><button type="button" onclick="window.location.href='mensaje.html'">Ver</button></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="mensajeBuzon">
-                                    <p class="usuario">luisito_comunica<p>
-                                    <p class="asunto">Duda</p>
-                                    <p class="fecha">01/011/2012</p>
-                                    <p class="verMensaje"><button type="button" onclick="window.location.href='mensaje.html'">Ver</button></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="mensajeBuzon">
-                                    <p class="usuario">David_Carretero<p>
-                                    <p class="asunto">Enhorabuena</p>
-                                    <p class="fecha">07/06/2019</p>
-                                    <p class="verMensaje"><button type="button" onclick="window.location.href='mensaje.html'">Ver</button></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="mensajeBuzon">
-                                    <p class="usuario">David66_tr<p>
-                                    <p class="asunto">Necesito ayuda con este nook</p>
-                                    <p class="fecha">03/07/2018</p>
-                                    <p class="verMensaje"><button type="button" onclick="window.location.href='mensaje.html'">Ver</button></p>
-                                </div>
-                            </li>
-
-                        </ul>
+                        
+                        <%
+                            ArrayList<Mensaje> mensajes= (ArrayList<Mensaje>)request.getAttribute("mensajes");
+                            for(int i=0;i<mensajes.size();i++){
+                        %>
+                        <div class="mensajeBuzon">
+                            <p class="usuario"><% mensajes.get(i).getAutor(); %><p>
+                            <p class="asunto"><% mensajes.get(i).getAsunto(); %></p>
+                            <p class="fecha"><% mensajes.get(i).getFecha(); %></p>
+                            <p class="verMensaje"><button type="submit" onclick="window.location.href='mensaje.jsp'">Ver</button></p>
+                        </div>
+                        <%}%>
+                        
                     </div>
                 </div>
             </div>

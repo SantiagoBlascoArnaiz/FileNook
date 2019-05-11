@@ -38,11 +38,11 @@ public class buzonSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
         
-        String name = (String)request.getAttribute("usuario");
         
-        
-        ArrayList<Mensaje> mensajes = mensajeDB.getMensajesBuzon(name);
+        ArrayList<Mensaje> mensajes = mensajeDB.getMensajesBuzon(userName);
         
         String url = "/buzon.jsp";
         request.setAttribute("mensajes", mensajes);

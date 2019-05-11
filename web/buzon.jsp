@@ -18,6 +18,7 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        System.out.println(userName);
         %>
         <div class="content">
         <header class="header">

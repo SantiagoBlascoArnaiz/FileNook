@@ -63,6 +63,7 @@ public class mensajeDB {
     public static ArrayList<Mensaje> getMensajesBuzon (String usuario){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
+        
         ArrayList <Mensaje> mensajes = new ArrayList();
         ResultSet rs = null;
         String consulta ="SELECT * FROM Mensaje WHERE destinatario = ?";

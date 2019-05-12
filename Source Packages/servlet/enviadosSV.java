@@ -8,20 +8,22 @@ package servlet;
 import conexionDB.mensajeDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Mensaje;
 
 /**
  *
- * @author Patricia
+ * @author Fnac
  */
-@WebServlet(name = "mensajeSV", urlPatterns = {"/mensajeSV"})
-public class mensajeSV extends HttpServlet {
+@WebServlet(name = "enviadosSV", urlPatterns = {"/enviadosSV"})
+public class enviadosSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,17 +38,14 @@ public class mensajeSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int idMensaje = Integer.parseInt(request.getParameter("idMensaje"));
-        String tipo = request.getParameter("tipo");
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
         
-        Mensaje mensaje = mensajeDB.getMensaje(idMensaje);
+        ArrayList<Mensaje> mensajes = mensajeDB.getMensajesEnviados(userName);
         
-        request.setAttribute("mensaje", mensaje);
+        request.setAttribute("mensajes", mensajes);
         
-        String url = "/mensajeEnviado.jsp";
-        if(tipo.equals("Recibido")){
-                url =  "/mensajeRecibido.jsp";
-            }
+        String url = "/enviados.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

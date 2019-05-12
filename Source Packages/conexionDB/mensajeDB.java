@@ -112,4 +112,42 @@ public class mensajeDB {
             return null;
         }
     }
+    
+    public static ArrayList<Mensaje> getMensajesEnviados (String usuario){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        
+        ArrayList <Mensaje> mensajes = new ArrayList();
+        ResultSet rs = null;
+        String consulta ="SELECT * FROM Mensaje WHERE(autor = ? AND tipo = 'Enviado')";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setString(1,usuario);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Mensaje mensaje = new Mensaje();
+                mensaje.setIdMensaje(rs.getInt("idMensaje"));
+                mensaje.setAsunto(rs.getString("asunto"));
+                mensaje.setTexto(rs.getString("texto"));
+                mensaje.setFecha(rs.getDate("fecha"));
+                mensaje.setLeido(rs.getInt("leido"));
+                mensaje.setTipo(rs.getString("tipo"));
+                mensaje.setAutor(rs.getString("autor"));
+                mensaje.setDestinatario(rs.getString("destinatario"));
+                
+                mensajes.add(mensaje);
+                
+            }
+            rs.close();
+            ps.close();
+            pool.freeConnection(connection);
+            
+        return mensajes;    
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

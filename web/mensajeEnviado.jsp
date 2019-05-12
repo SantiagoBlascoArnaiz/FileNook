@@ -19,7 +19,7 @@ and open the template in the editor.
         
         Mensaje mensaje = (Mensaje) request.getAttribute("mensaje");
         
-        String emisor = mensaje.getAutor();
+        String emisor = mensaje.getDestinatario();
         String asunto = mensaje.getAsunto();
         String texto = mensaje.getTexto();
                 
@@ -44,7 +44,7 @@ and open the template in the editor.
 
                         <div class="tablamensajetexto">
                             <div class="partes">
-                                <label style="padding-right: 2.4em;">De: </label>
+                                <label style="padding-right: 1em;">Para: </label>
                                 <textarea class="usuarioEmisoryAsunto"><%=emisor%></textarea>
                             </div>
 
@@ -60,31 +60,10 @@ and open the template in the editor.
 
 
                             <div class="partes" >
-                                <input type="button" class="button" tabindex="10" id="enviarmensajebotton" style="margin-left: 5em" onclick="window.location.href='crearMensaje.jsp'" value="Responder" >
-                                <input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='buzonSV'"   value="Volver al buzón">
+                                <input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='enviadosSV'"   value="Volver al buzón">
                             </div>
                         </div>
-                        <!--
-                        <table class="tablamensajetexto" style="margin: 0 auto">
-                                <tr>
-                                    <td><label>De: </label></td>
-                                    <td><textarea class="usuarioEmisoryAsunto"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Asunto:</label></td>
-                                    <td><textarea class="usuarioEmisoryAsunto"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td><label class="mensajeEntero">Mensaje:</label></td>
-                                    <td><textarea class="mensajeEnterotext"></textarea></td>
-                                </tr>
-                                 <tr>
-                                     <td><input type="button" class="button" tabindex="10" id="enviarmensajebotton"  value="Responder" ></td>
-                                     <td><input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='inicial.html'"   value="Volver al buzón"></td>
-                                </tr>
-
-                        </table>
-                        -->
+                    
                     </div>
                 </div>
             </main>

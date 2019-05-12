@@ -49,9 +49,7 @@ public class buzonSV extends HttpServlet {
         String url = "/buzon.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
-        
-        
-        
+
     }
     
 

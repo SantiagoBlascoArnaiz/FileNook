@@ -56,7 +56,7 @@ public class crearMensajeSV extends HttpServlet {
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
         
-        mensajeEnv.setAutor(userName); //USUARIO LOGUEADO
+        mensajeEnv.setAutor(userName);
         mensajeEnv.setDestinatario(destinatario);
         
         mensajeDB.insert(mensajeEnv);
@@ -68,12 +68,12 @@ public class crearMensajeSV extends HttpServlet {
         mensajeRec.setFecha(fecha);
         mensajeRec.setLeido(0);
         mensajeRec.setTipo("Recibido");
-        mensajeRec.setAutor(destinatario);
-        mensajeRec.setDestinatario("patagua");  //USUARIO LOGUEADO
+        mensajeRec.setAutor(userName);
+        mensajeRec.setDestinatario(destinatario);
         
         mensajeDB.insert(mensajeRec);
         
-        String url = "/enviados.jsp";
+        String url = "/enviadosSV";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

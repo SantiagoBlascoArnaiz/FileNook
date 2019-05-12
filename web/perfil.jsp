@@ -39,7 +39,7 @@ and open the template in the editor.
                             <ul>
                                 <li><a href="misNooksSV">&#128193 Mis nooks</a></li>
                                 <li><a href="buzonSV">&#128229 Buzón de entrada</a></li>
-                                <li><a href="enviados.jsp">&#128228 Mensajes enviados</a></li>
+                                <li><a href="enviadosSV">&#128228 Mensajes enviados</a></li>
                                 <li><a href="configuracionUsuario.jsp">&#9881;&#65039 Configuración</a></li>
                                 <li><a href="cerrarSesionSV">&#128682 Salir de la cuenta</a></li>
                             </ul>

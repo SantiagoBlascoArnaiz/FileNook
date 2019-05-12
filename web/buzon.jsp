@@ -18,7 +18,6 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
-        System.out.println(userName);
         %>
         <div class="content">
         <header class="header">
@@ -53,7 +52,7 @@ and open the template in the editor.
                             <p class="usuario"><%= mensajes.get(i).getAutor() %><p>
                             <p class="asunto"><%= mensajes.get(i).getAsunto() %></p>
                             <p class="fecha"><%= mensajes.get(i).getFecha() %></p>
-                            <p class="verMensaje"><button type="submit" onclick="window.location.href='mensajeSV?idMensaje=<%=mensajes.get(i).getIdMensaje()%>'">Ver</button></p>
+                            <p class="verMensaje"><button type="submit" onclick="window.location.href='mensajeSV?idMensaje=<%=mensajes.get(i).getIdMensaje()%>&tipo=<%=mensajes.get(i).getTipo()%>'">Ver</button></p>
                         </div>
                         <%}%>
                         

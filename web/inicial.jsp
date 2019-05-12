@@ -46,11 +46,10 @@ and open the template in the editor.
                         <div id="populares" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
                                 <%
-                                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
                                     ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
                                     for(int i=0;i<nooks.size();i++){
                                 %>
-                                <div class="item"><a href='paginaNook.jsp'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/verNookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">
@@ -65,7 +64,7 @@ and open the template in the editor.
                                 <%
                                     for(int i=0;i<nooks.size();i++){
                                 %>
-                                <div class="item"><a href='paginaNook.jsp'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/verNookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">

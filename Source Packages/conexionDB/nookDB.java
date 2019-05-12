@@ -101,4 +101,35 @@ public class nookDB {
         }
     }
     
+    public static Nook getNook(int idNook) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        Nook nook = new Nook();
+        ResultSet rs = null;
+        String consulta = "SELECT * FROM Nook WHERE idNook = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setInt(1,idNook);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                nook.setIdNook(rs.getInt("idNook"));
+                nook.setNombre(rs.getString("nombre"));
+                nook.setResumen(rs.getString("resumen"));
+                nook.setAutor(rs.getString("autor"));
+                nook.setFechaCreacion(rs.getDate("fechaCreacion"));
+                nook.setFechaModificacion(rs.getDate("fechaModificacion"));
+                nook.setDescargas(rs.getInt("descargas"));
+                }
+            
+                rs.close();
+                ps.close();
+                pool.freeConnection(connection);
+            return nook;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        return null;
+        }
+    }
+    
 }

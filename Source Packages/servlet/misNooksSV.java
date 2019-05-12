@@ -37,30 +37,38 @@ public class misNooksSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         String name = "";
         HttpSession session = request.getSession(false);
         if (session != null){
             name = (String)session.getAttribute("usuario");
         }
         
-        ArrayList<Nook> nooks= nookDB.getNooksUsuario(name);
         StringBuilder str;
-        ArrayList<String> categorias;
-        
+        ArrayList<String> categoriasNook;
+        ArrayList<String> categorias = new ArrayList<>();
+        ArrayList<Nook> nooks= nookDB.getNooksUsuario(name);
+
         for(int i=0; i < nooks.size(); i++){
             str =  new StringBuilder();
-            categorias = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
-            for(int j = 0; j < categorias.size(); j++ ){
-                str.append(categorias.get(j));
+            categoriasNook = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
+            for(int j = 0; j < categoriasNook.size(); j++ ){
+                str.append(categoriasNook.get(j));
                 str.append(',');
             }
-            str.deleteCharAt(str.length()-1);
-            nooks.get(i).setCategorias(str.toString());
+            if(str.length() > 0){
+                str.deleteCharAt(str.length()-1);
+                categorias.add(str.toString());
+            }else{
+                categorias.add(null);
+            }
         }
         
+        request.setAttribute("misNooksCategorias", categorias);
         request.setAttribute("misNooks", nooks);
         
         String url = "/misNooks.jsp";
+        System.out.println(url);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     

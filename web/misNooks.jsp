@@ -51,16 +51,21 @@ and open the template in the editor.
 
                     <%
                         ArrayList<Nook> misNooks = (ArrayList<Nook>) request.getAttribute("misNooks");
-                        
+                        ArrayList<String> misNooksCategorias = (ArrayList<String>) request.getAttribute("misNooksCategorias");
                         for(int i = 0; i < misNooks.size(); i++){
+                            System.out.println(misNooks.get(i).getNombre());
                     %>
                        <div class="nook_n">
 
-                               <a href=""><img src=""></a>
+                           <a href="/nookSV?<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
                                <div class="titulo_nook">
-                                <h3><% misNooks.get(i).getNombre(); %></h3>
-                                <h4>Categoria:matematicas,integrales,ejercicios,ejemplos</h4>
-                                <p><% misNooks.get(i).getResumen(); %></p>
+                                <h3><%=misNooks.get(i).getNombre()%></h3>
+                                <%if(misNooksCategorias.get(i)!=null){%>
+                                <h4>Categoria: <%=misNooksCategorias.get(i)%></h4>
+                                <%}else{%>
+                                <h4>Categoria: none<h4>
+                                <%}%>
+                                <p><%=misNooks.get(i).getResumen()%></p>
                                </div>
                             <div class="star">
                                 <form>
@@ -79,62 +84,7 @@ and open the template in the editor.
                                 </form>
                             </div>
                        </div>
-                    <%;%>
-
-
-                               <div class="nook_n">
-
-                                    <a href="paginaNook.jsp"><img src="imagenes/java.png"></a>
-                                    <div class="titulo_nook">
-                                     <h3>Programación java principiante</h3>
-                                      <h4>Categoria:java,programacion,ejercicios,ejemplos</h4>
-                                     <p>Programas sencillos y conceptos básicos de la progrmación en lenguaje java. </p>
-                                  </div>
-                            <div class="star">
-                                <form>
-                                    <p class="clasificacion">
-                                    <input id="radio21" type="radio" name="estrellas" value="5">
-                                    <label for="radio21">?</label>
-                                    <input id="radio22" type="radio" name="estrellas" value="4">
-                                    <label for="radio22">?</label>
-                                    <input id="radio23" type="radio" name="estrellas" value="3">
-                                    <label for="radio23">?</label>
-                                    <input id="radio24" type="radio" name="estrellas" value="2">
-                                    <label for="radio24">?</label>
-                                    <input id="radio25" type="radio" name="estrellas" value="1">
-                                    <label for="radio25">?</label>
-                                    </p>
-                                </form>
-                            </div>
-                       </div>
-
-                        <div class="nook_n">
-
-                               <a href="paginaNook.jsp"><img src="imagenes/WW2.png"></a>
-                               <div class="titulo_nook">
-                                <h3>Historia la Segunda Guerra Mundial</h3>
-                                 <h4>Categoria:resumen,historia,guerra,mundial,imagenes</h4>
-                                <p>Resumenes amplios e imágenes para mostrar el trasncurso del conflicto.</p>
-                               </div>
-                            <div class="star">
-                                <form>
-                                    <p class="clasificacion">
-                                    <input id="radio31" type="radio" name="estrellas" value="5">
-                                    <label for="radio31">?</label>
-                                    <input id="radio32" type="radio" name="estrellas" value="4">
-                                    <label for="radio32">?</label>
-                                    <input id="radio33" type="radio" name="estrellas" value="3">
-                                    <label for="radio33">?</label>
-                                    <input id="radio34" type="radio" name="estrellas" value="2">
-                                    <label for="radio34">?</label>
-                                    <input id="radio35" type="radio" name="estrellas" value="1">
-                                    <label for="radio35">?</label>
-                                    </p>
-                                </form>
-                            </div>
-                       </div>
-
-
+                    <%}%>
                 </div>
         </div>
         </main>

@@ -43,13 +43,28 @@ public class mensajeDB {
     public static Mensaje getMensaje(int idMensaje) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
+        
         Mensaje mensaje = new Mensaje();
+        ResultSet rs = null;
         String consulta ="SELECT * FROM Mensaje WHERE idMensaje = ?";
         
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
             ps.setInt(1, idMensaje);
+            rs = ps.executeQuery();
             
+            while (rs.next()) {
+                mensaje.setIdMensaje(rs.getInt("idMensaje"));
+                mensaje.setAsunto(rs.getString("asunto"));
+                mensaje.setTexto(rs.getString("texto"));
+                mensaje.setFecha(rs.getDate("fecha"));
+                mensaje.setLeido(rs.getInt("leido"));
+                mensaje.setTipo(rs.getString("tipo"));
+                mensaje.setAutor(rs.getString("autor"));
+                mensaje.setDestinatario(rs.getString("destinatario"));
+            }
+            
+            rs.close();
             ps.close();
             pool.freeConnection(connection);
             return mensaje;
@@ -66,7 +81,7 @@ public class mensajeDB {
         
         ArrayList <Mensaje> mensajes = new ArrayList();
         ResultSet rs = null;
-        String consulta ="SELECT * FROM Mensaje WHERE destinatario = ?";
+        String consulta ="SELECT * FROM Mensaje WHERE(destinatario = ? AND tipo = 'Recibido')";
         
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);

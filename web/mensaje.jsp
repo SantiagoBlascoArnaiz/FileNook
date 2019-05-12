@@ -55,13 +55,13 @@ and open the template in the editor.
 
                             <div class="partes" >
                                 <label class="mensajeEntero">Mensaje:</label>
-                                <textarea class="mensajeEnterotext"><%=mensaje%></textarea>
+                                <textarea class="mensajeEnterotext"><%=texto%></textarea>
                             </div>
 
 
                             <div class="partes" >
                                 <input type="button" class="button" tabindex="10" id="enviarmensajebotton" style="margin-left: 5em" onclick="window.location.href='crearMensaje.jsp'" value="Responder" >
-                                <input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='buzon.jsp'"   value="Volver al buzón">
+                                <input type="button"  class="button" tabindex="10" id="volverbuzonbotton" style="margin-left: 50em" onclick="window.location.href='buzonSV'"   value="Volver al buzón">
                             </div>
                         </div>
                         <!--

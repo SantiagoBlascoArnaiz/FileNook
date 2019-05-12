@@ -45,17 +45,17 @@ and open the template in the editor.
                         <div class="tablamensajetexto">
                             <div class="partes">
                                 <label style="padding-right: 1em;">Para: </label>
-                                <textarea class="usuarioEmisoryAsunto"><%=emisor%></textarea>
+                                <textarea disabled class="usuarioEmisoryAsunto"><%=emisor%></textarea>
                             </div>
 
                             <div class="partes">
                                 <label style="padding-right: 0.5em;">Asunto:</label>
-                                <textarea class="usuarioEmisoryAsunto"><%=asunto%></textarea>
+                                <textarea disabled class="usuarioEmisoryAsunto"><%=asunto%></textarea>
                             </div>
 
                             <div class="partes" >
                                 <label class="mensajeEntero">Mensaje:</label>
-                                <textarea class="mensajeEnterotext"><%=texto%></textarea>
+                                <textarea disabled class="mensajeEnterotext"><%=texto%></textarea>
                             </div>
 
 

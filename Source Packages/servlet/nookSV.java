@@ -65,7 +65,7 @@ public class nookSV extends HttpServlet {
         
         nookDB.insert(nook);
         
-        String url = "/misNooks.jsp";
+        String url = "/misNooksSV";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

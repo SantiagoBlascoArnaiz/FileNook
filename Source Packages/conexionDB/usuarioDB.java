@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package conexionDB;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 import modelo.Usuario;
 public class usuarioDB {
@@ -50,7 +52,7 @@ public class usuarioDB {
                 usuario.setNombreUsuario(rs.getString("nombreUsuario"));
                 usuario.setClave(rs.getString("clave"));
                 usuario.setCorreo(rs.getString("correo"));
-                usuario.setImagenPerfil(rs.getString("imagenPerfil"));
+               // usuario.setImagenPerfil(rs.getPart("imagenPerfil"));
                 
             }
 
@@ -85,5 +87,55 @@ public class usuarioDB {
             return 0;
         }
     }
+     
+     ////para cambiar la imagen
+     public static int insertImagen(Usuario usr, Blob foto) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        
+        String consulta="UPDATE  Usuario  SET imagenPerfil=? WHERE nombre= ?";
+        try {
+            PreparedStatement ps =connection.prepareStatement(consulta);
+           
+            ps.setBlob(1,foto ); 
+            ps.setString(2, usr.getNombre());
+           
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+     
+     public static void getImagen(String nombre, OutputStream respuesta) {
+    try {
+            ConnectionPool pool = ConnectionPool.getInstance();
+            Connection connection = pool.getConnection();
+            PreparedStatement statement = null;
+            statement = connection.prepareStatement(
+            "SELECT imagen FROM imagenPerfil WHERE nombre=? ");
+            statement.setString(1, nombre);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                Blob blob = result.getBlob("imagen");
+                if (!result.wasNull() && blob.length() > 1) {
+                InputStream imagen = blob.getBinaryStream();
+                byte[] buffer = new byte[1000];
+                int len = imagen.read(buffer);
+                while (len != -1) {
+                    respuesta.write(buffer, 0, len);
+                    len = imagen.read(buffer);
+                }
+                imagen.close();
+            } }
+            pool.freeConnection(connection);
+    } catch (Exception e) {
+       e.printStackTrace();
+    } 
+  }
+
 
 }

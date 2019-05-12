@@ -17,7 +17,7 @@ CREATE TABLE Usuario(
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
         valoracionMedia NUMERIC(3,1),
-        imagenPerfil VARCHAR(50),
+        imagenPerfil blob,
 	PRIMARY KEY (nombreUsuario)
 );
 

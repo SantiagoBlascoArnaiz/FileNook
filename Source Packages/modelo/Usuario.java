@@ -6,20 +6,23 @@
 
 package modelo;
 
-public class Usuario {
+import java.io.Serializable;
+import javax.servlet.http.Part;
+
+public class Usuario  implements Serializable{
 
     private String nombre;
     private String apellidos;
     private String nombreUsuario;
     private String clave;
     private String correo;
-    private String imagenPerfil;
+    private Part imagenPerfil;
    
     public Usuario(){
         
     }
     
-    public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, String imagenPerfil) {
+    public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, Part imagenPerfil) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nombreUsuario = nombreUsuario;
@@ -69,11 +72,11 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getImagenPerfil() {
+    public Part getImagenPerfil() {
         return imagenPerfil;
     }
 
-    public void setImagenPerfil(String imagenPerfil) {
+    public void setImagenPerfil(Part imagenPerfil) {
         this.imagenPerfil = imagenPerfil;
     }
 }

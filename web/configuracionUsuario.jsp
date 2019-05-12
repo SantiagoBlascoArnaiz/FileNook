@@ -1,3 +1,5 @@
+<%@page import="modelo.Usuario"%>
+<%@page import="conexionDB.usuarioDB"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,6 +18,7 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        
         %>
         <div class="content">
         <header class="header">
@@ -40,12 +43,17 @@ and open the template in the editor.
                 </div>
 
                 <div class="pag-archivo">
-                    <div class="archivo">
-                        <ul>
-                            <li><a href="archivosNook.jsp"><img src="imagenes/chica2.png" alt="Imagen del perfil de usuario"></a></li>
-                            <li><input type='file' multiple ='multiple' name = 'button'></li>
-                        </ul>
-                    </div>
+                    
+                    <form class="archivo"  method="post" enctype="multipart/form-data" action="/cambioImagenSV">
+                            <ul>
+                                 
+                                <li><a href="archivosNook.jsp"><img src= " Imagen?name= " alt="Imagen del perfil de usuario"></a></li>
+                                <li><input type="file"  name ="foto"></li>
+                                <li><button type="submit" name="Cambiar">Cambiar</button></li>
+
+                            </ul>
+                    </form>
+                   
                         
                              <form class="pag-config"  method="post" action="/cambioPassSV">
 
@@ -57,7 +65,7 @@ and open the template in the editor.
 
                                 <label for="psw-repeat"><b>Repetir nueva contraseña</b></label>
                                 <input class="input" type="password" placeholder="Repetir Contraseña" name="pswrepeat" required>
-
+                                    
                                 <button type="submit">Cambiar contrasñea</button>
                              </form>
                         

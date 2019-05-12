@@ -16,7 +16,7 @@ CREATE TABLE Usuario(
 	nombreUsuario VARCHAR(10) NOT NULL,
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
-        valoracionMedia DOUBLE,
+        valoracionMedia NUMERIC(3,1),
         imagenPerfil VARCHAR(50),
 	PRIMARY KEY (nombreUsuario)
 );
@@ -47,7 +47,7 @@ CREATE TABLE Nook(
 	fechaCreacion DATE,
 	fechaModificacion DATE,
 	descargas INTEGER,
-        valoracionMedia DOUBLE,
+        valoracionMedia NUMERIC(3,1),
 	PRIMARY KEY (idNook),
 	CONSTRAINT FK_NOOK FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
@@ -69,7 +69,7 @@ CREATE TABLE Documento(
 CREATE TABLE ValoracionesAutor(
 	autor VARCHAR(10) NOT NULL,
         usuario VARCHAR(10) NOT NULL,
-	puntuacion DOUBLE NOT NULL,
+	puntuacion NUMERIC(3,1) NOT NULL,
 	PRIMARY KEY (autor, usuario),
 	CONSTRAINT FK_VALAUTOR FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario),
@@ -96,7 +96,7 @@ CREATE TABLE Comentario(
 	fecha DATE,
 	autor VARCHAR(10) NOT NULL,
 	texto VARCHAR(180) NOT NULL,
-        valoracionMedia DOUBLE,
+        valoracionMedia NUMERIC(3,1),
 	PRIMARY KEY (idComentario),
 	CONSTRAINT FK_COMENTARIO FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)

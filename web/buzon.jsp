@@ -53,7 +53,7 @@ and open the template in the editor.
                             <p class="usuario"><%= mensajes.get(i).getAutor() %><p>
                             <p class="asunto"><%= mensajes.get(i).getAsunto() %></p>
                             <p class="fecha"><%= mensajes.get(i).getFecha() %></p>
-                            <p class="verMensaje"><button type="submit" onclick="window.location.href='mensaje.jsp'">Ver</button></p>
+                            <p class="verMensaje"><button type="submit" onclick="window.location.href='mensajeSV<%=mensajes.get(i).getIdMensaje()%>'">Ver</button></p>
                         </div>
                         <%}%>
                         

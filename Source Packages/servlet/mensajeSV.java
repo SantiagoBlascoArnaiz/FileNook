@@ -5,13 +5,16 @@
  */
 package servlet;
 
+import conexionDB.mensajeDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Mensaje;
 
 /**
  *
@@ -33,8 +36,15 @@ public class mensajeSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        int idMensaje = Integer.parseInt(request.getParameter("idMensaje"));
         
+        Mensaje mensaje = mensajeDB.getMensaje(idMensaje);
         
+        request.setAttribute("mensaje", mensaje);
+        
+        String url = "/mensaje.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

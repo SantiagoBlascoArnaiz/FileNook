@@ -1,3 +1,4 @@
+<%@page import="modelo.Mensaje"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -15,6 +16,13 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        
+        Mensaje mensaje = (Mensaje) request.getAttribute("mensaje");
+        
+        String emisor = mensaje.getAutor();
+        String asunto = mensaje.getAsunto();
+        String texto = mensaje.getTexto();
+                
         %>
         <div class="content">
         <header class="header">
@@ -37,17 +45,17 @@ and open the template in the editor.
                         <div class="tablamensajetexto">
                             <div class="partes">
                                 <label style="padding-right: 2.4em;">De: </label>
-                                <textarea class="usuarioEmisoryAsunto"></textarea>
+                                <textarea class="usuarioEmisoryAsunto"><%=emisor%></textarea>
                             </div>
 
                             <div class="partes">
                                 <label style="padding-right: 0.5em;">Asunto:</label>
-                                <textarea class="usuarioEmisoryAsunto"></textarea>
+                                <textarea class="usuarioEmisoryAsunto"><%=asunto%></textarea>
                             </div>
 
                             <div class="partes" >
                                 <label class="mensajeEntero">Mensaje:</label>
-                                <textarea class="mensajeEnterotext"> </textarea>
+                                <textarea class="mensajeEnterotext"><%=mensaje%></textarea>
                             </div>
 
 

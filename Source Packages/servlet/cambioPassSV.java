@@ -54,7 +54,7 @@ public class cambioPassSV extends HttpServlet {
         Usuario usr = usuarioDB.getUsuario(name);
         if(usr.getClave().equals(passAntigua)){
             
-              usuarioDB.insertClave(name,passNueva);
+              usuarioDB.insertClave(usr,passNueva);
                           
               
        }

@@ -65,16 +65,16 @@ public class usuarioDB {
         }
     }
     
-     public static int insertClave(String name,String passNuev) {
+     public static int insertClave(Usuario usr,String passNuev) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
-
+        
         String consulta="UPDATE  Usuario  SET clave=? WHERE nombre= ?";
         try {
             PreparedStatement ps =connection.prepareStatement(consulta);
            
             ps.setString(1, passNuev); 
-            ps.setString(2, name);
+            ps.setString(2, usr.getNombre());
            
             int res = ps.executeUpdate();
             ps.close();

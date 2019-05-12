@@ -40,14 +40,9 @@ public class inicialSV extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         /*Falta crear la clase*/
         ArrayList<Nook> nooks=nookDB.getNooks();
-        ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
-        for (Nook n:nooks){
-            usuarios.add(usuarioDB.getUsuario(n.getAutor()));
-        }
         
         String url = "/inicial.jsp";
         request.setAttribute("nooks", nooks);
-        request.setAttribute("usuarios",usuarios);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

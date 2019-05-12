@@ -9,18 +9,18 @@ package modelo;
 
 import java.util.Date;
 
-public class ValoracionesNook {
+public class ValoracionNook {
 
     private int nook;
     private String usuario;
     private int puntuacion;
     private Date fecha;
     
-    public ValoracionesNook(){
+    public ValoracionNook(){
         
     }
    
-    public ValoracionesNook(int nook, String usuario, int puntuacion, Date fecha) {
+    public ValoracionNook(int nook, String usuario, int puntuacion, Date fecha) {
         this.nook = nook;
         this.usuario = usuario;
         this.puntuacion = puntuacion;

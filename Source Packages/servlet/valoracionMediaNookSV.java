@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import conexionDB.valoracionesNookDB;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author andres
  */
-@WebServlet(name = "valoracionesNookSV", urlPatterns = {"/valoracionesNookSV"})
-public class valoracionesNookSV extends HttpServlet {
+@WebServlet(name = "valoracionMediaNookSV", urlPatterns = {"/valoracionMediaNookSV"})
+public class valoracionMediaNookSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +34,8 @@ public class valoracionesNookSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        
+        int idNook = Integer.parseInt(request.getParameter("idNook"));
+        double media = valoracionesNookDB.valoracionMediaNook(idNook);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

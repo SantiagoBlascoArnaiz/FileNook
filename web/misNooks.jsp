@@ -53,11 +53,10 @@ and open the template in the editor.
                         ArrayList<Nook> misNooks = (ArrayList<Nook>) request.getAttribute("misNooks");
                         ArrayList<String> misNooksCategorias = (ArrayList<String>) request.getAttribute("misNooksCategorias");
                         for(int i = 0; i < misNooks.size(); i++){
-                            System.out.println(misNooks.get(i).getNombre());
                     %>
                        <div class="nook_n">
 
-                           <a href="/nookSV?<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
+                           <a href="/nookSV?idNook=<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
                                <div class="titulo_nook">
                                 <h3><%=misNooks.get(i).getNombre()%></h3>
                                 <%if(misNooksCategorias.get(i)!=null){%>
@@ -68,7 +67,7 @@ and open the template in the editor.
                                 <p><%=misNooks.get(i).getResumen()%></p>
                                </div>
                             <div class="star">
-                                <form class="valoracion"  method="post" action="/valoracionesNookSV?<%=misNooks.get(i).getIdNook()%>">
+                                <form class="valoracion"  method="post" action="/valoracionMediaNookSV?idNook=<%=misNooks.get(i).getIdNook()%>">
                                     <p class="clasificacion">
                                     <input id="<%=misNooks.get(i).getIdNook()%>,5" type="radio" name="estrellas" value="5">
                                     <label for="<%=misNooks.get(i).getIdNook()%>,5">&#11088;</label>

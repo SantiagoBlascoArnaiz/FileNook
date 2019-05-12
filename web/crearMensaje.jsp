@@ -14,7 +14,12 @@ and open the template in the editor.
     <body >
         <%
         HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");     
+        String userName = (String) sesion.getAttribute("usuario");
+        
+        String emisor = request.getParameter("emisor");
+        if(emisor == null){
+            emisor = "";
+        }
         %>
         <div class="content">
         <header class="header">
@@ -38,7 +43,7 @@ and open the template in the editor.
                         
                             <div class="partes">
                                 <label>Enviar a: </label>
-                                <input class="usuarioEmisoryAsunto"  name="destinatario" required>
+                                <input class="usuarioEmisoryAsunto" value="<%=emisor%>" name="destinatario" required>
                             </div>
 
                             <div class="partes">

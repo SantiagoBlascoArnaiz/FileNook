@@ -44,8 +44,9 @@ public class buzonSV extends HttpServlet {
         
         ArrayList<Mensaje> mensajes = mensajeDB.getMensajesBuzon(userName);
         
-        String url = "/buzon.jsp";
         request.setAttribute("mensajes", mensajes);
+        
+        String url = "/buzon.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
         

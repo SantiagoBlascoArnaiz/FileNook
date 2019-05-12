@@ -56,7 +56,7 @@ and open the template in the editor.
                     %>
                        <div class="nook_n">
 
-                           <a href="/nookSV?idNook=<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
+                           <a href="/verNookSV?idNook=<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
                                <div class="titulo_nook">
                                 <h3><%=misNooks.get(i).getNombre()%></h3>
                                 <%if(misNooksCategorias.get(i)!=null){%>

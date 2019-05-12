@@ -1,3 +1,4 @@
+<%@page import="modelo.Nook"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,6 +17,13 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        
+        Nook nook = (Nook) request.getAttribute("nook");
+        
+        String nombre = nook.getNombre();
+        String resumen = nook.getResumen();
+        String autor = nook.getAutor();
+        
         %>
         <div class="content">
         <header class="header">
@@ -35,7 +43,7 @@ and open the template in the editor.
             <div class="container">
                 <div class="nookstitulo">
                     <h1>
-                    MIPS
+                    <%=nombre%>
                     </h1>
                 </div>
 
@@ -43,9 +51,7 @@ and open the template in the editor.
                     <div class="archivo">
                         <ul>
                             <li><a href="archivosNook.jsp"><img src="imagenes/mips.png" alt="Imagen de nook"></a></li>
-                            <li><p>Prácticas de lenguaje ensamblador. Se centran en el conocimiento de
-                                   la arquitectura del juego de instrucciones de un procesador y el modo en que éstas se
-                                   relacionan con la programación del computador y los lenguajes de alto nivel.</p></li>
+                            <li><p><%=resumen%></p></li>
                         </ul>
                     </div>
 
@@ -53,7 +59,7 @@ and open the template in the editor.
                         <ul>
                             <li><a href="autor.jsp"><img src="imagenes/chico1.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
-                            <li><a href="autor.jsp">PedroGonz5</a></li>
+                            <li><a href="autor.jsp"><%=autor%></a></li>
                             <li>15/08/2018</li>
                             <li><button type="button">Descargar</button></li>
                             <li><button type="button" onclick="window.location.href='archivosNook.jsp'">Ver archivos</button></li>

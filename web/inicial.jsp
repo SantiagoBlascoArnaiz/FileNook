@@ -49,7 +49,7 @@ and open the template in the editor.
                                     ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
                                     for(int i=0;i<nooks.size();i++){
                                 %>
-                                <div class="item"><a href='/verNookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/nookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">
@@ -64,7 +64,7 @@ and open the template in the editor.
                                 <%
                                     for(int i=0;i<nooks.size();i++){
                                 %>
-                                <div class="item"><a href='/verNookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/nookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">

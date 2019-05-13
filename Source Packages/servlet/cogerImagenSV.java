@@ -24,9 +24,9 @@ import modelo.Usuario;
  *
  * @author Usuario
  */
-@WebServlet(name = "cambioImagenSV", urlPatterns = {"/cambioImagenSV"})
+@WebServlet(name = "cogerImagenSV", urlPatterns = {"/cogerImagenSV"})
 @MultipartConfig
-public class cambioImagenSV extends HttpServlet {
+public class cogerImagenSV extends HttpServlet {
 
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

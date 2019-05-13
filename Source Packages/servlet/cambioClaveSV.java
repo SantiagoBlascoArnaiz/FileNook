@@ -21,8 +21,8 @@ import modelo.Usuario;
  *
  * @author Usuario
  */
-@WebServlet(name = "cambioPassSV", urlPatterns = {"/cambioPassSV"})
-public class cambioPassSV extends HttpServlet {
+@WebServlet(name = "cambioClaveSV", urlPatterns = {"/cambioClaveSV"})
+public class cambioClaveSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

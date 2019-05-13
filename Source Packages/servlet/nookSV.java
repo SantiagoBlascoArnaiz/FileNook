@@ -6,18 +6,13 @@
 package servlet;
 
 import conexionDB.nookDB;
-import conexionDB.usuarioDB;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import modelo.Nook;
 
 /**
@@ -38,36 +33,19 @@ public class nookSV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         
-        //response.setContentType("text/html;charset=UTF-8");
+        int idNook = Integer.parseInt(request.getParameter("idNook"));
         
-        String nombre = request.getParameter("nombre");
-        String etiquetas = request.getParameter("etiquetas");
-        String resumen = request.getParameter("resumen");
+        Nook nook = nookDB.getNook(idNook);
         
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
+        request.setAttribute("nook", nook);
         
+        String url = "/paginaNook.jsp";
         
-        Nook nook = new Nook();
-        
-        nook.setNombre(nombre);
-        nook.setResumen(resumen);
-        
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        nook.setAutor(userName); //AQUI VA EL USUARIO LOGUEADO
-        nook.setFechaCreacion(fecha);
-        nook.setFechaModificacion(fecha);
-        nook.setDescargas(0);
-        nook.setValoracionMedia(0.0);
-        
-        nookDB.insert(nook);
-        
-        String url = "/misNooksSV";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

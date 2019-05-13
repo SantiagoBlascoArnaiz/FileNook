@@ -34,7 +34,7 @@ and open the template in the editor.
                         <h3 style="margin-top: 3rem;">CREAR NOOK</h3>
                     <div class="pag-crearNook">
 
-                        <form class="tablamensajetexto"  method="post" action="/nookSV">
+                        <form class="tablamensajetexto"  method="post" action="/crearNookSV">
 
                             <div class="partes">
                                 <label for="nombre" class="nombreNook" style="padding-right: 2.5em;">Nombre:</label>

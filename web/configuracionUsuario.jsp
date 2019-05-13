@@ -44,7 +44,7 @@ and open the template in the editor.
 
                 <div class="pag-archivo">
                     
-                    <form class="archivo"  method="post" enctype="multipart/form-data" action="/cambioImagenSV">
+                    <form class="archivo"  method="post" enctype="multipart/form-data" action="/cogerImagenSV">
                             <ul>
                                  
                                 <li><a href="archivosNook.jsp"><img src= " Imagen?name= " alt="Imagen del perfil de usuario"></a></li>
@@ -55,7 +55,7 @@ and open the template in the editor.
                     </form>
                    
                         
-                             <form class="pag-config"  method="post" action="/cambioPassSV">
+                             <form class="pag-config"  method="post" action="/cambioClaveSV">
 
                                 <label for="psw"><b>Antigua contraseña</b></label>
                                 <input class="input" type="password" placeholder="Antigua contraseña" name="psw" required>

@@ -17,7 +17,8 @@ CREATE TABLE Usuario(
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
         valoracionMedia NUMERIC(3,1),
-        imagenPerfil BLOB,
+        /*imagenPerfil BLOB,*/
+        imagenPerfil VARCHAR(50),
 	PRIMARY KEY (nombreUsuario)
 );
 
@@ -25,7 +26,7 @@ CREATE TABLE Usuario(
 CREATE TABLE Mensaje(
 	idMensaje INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
         asunto VARCHAR(100) NOT NULL,
-	texto VARCHAR(180),
+	texto VARCHAR(400),
 	fecha DATE,
 	leido INTEGER CHECK (leido IN (0,1)),
 	tipo VARCHAR(10) CHECK (tipo IN ('Enviado', 'Recibido')),
@@ -41,8 +42,8 @@ CREATE TABLE Mensaje(
 
 CREATE TABLE Nook(
 	idNook INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
-	nombre VARCHAR(50) NOT NULL,
-	resumen VARCHAR(180),
+	nombre VARCHAR(180) NOT NULL,
+	resumen VARCHAR(400),
 	autor VARCHAR(10) NOT NULL,
 	fechaCreacion DATE,
 	fechaModificacion DATE,
@@ -57,7 +58,7 @@ CREATE TABLE Nook(
 CREATE TABLE Documento(
 	nook INTEGER NOT NULL,
 	nombre VARCHAR(50) NOT NULL,
-	resumen VARCHAR(180),
+	resumen VARCHAR(400),
 	fechaCreacion DATE,
 	fechaModificacion DATE,
 	PRIMARY KEY (nook, nombre),
@@ -125,7 +126,7 @@ CREATE TABLE ClasificacionCategorias(
 );
 
 
-INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es',0.0,'Helio');
+INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es',0.0,'/web/imagenes/chica1.png');
 
 INSERT INTO Usuario VALUES ('Andrés','Cabero Mata','andcabe','1122','andres.cabero@alumnos.uva.es',0.0,'Andres');
 INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','rafael.higelmo@alumnos.uva.es',3.0,'Rafa');

@@ -54,10 +54,6 @@ public class cambioImagenSV extends HttpServlet {
          respuesta.close();
          response.flushBuffer();
         
-
-      
-       
-       
         url = "/configuracionUsuario.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

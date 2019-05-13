@@ -110,15 +110,16 @@ public class usuarioDB {
         }
     }
      
-     public static void getImagen(String nombre, OutputStream respuesta) {
-    try {
-            ConnectionPool pool = ConnectionPool.getInstance();
-            Connection connection = pool.getConnection();
-            PreparedStatement statement = null;
-            statement = connection.prepareStatement(
-            "SELECT imagen FROM imagenPerfil WHERE nombre=? ");
-            statement.setString(1, nombre);
-            ResultSet result = statement.executeQuery();
+     public static void getImagen(String nombre, OutputStream respuesta) { 
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection(); 
+            
+        String consulta = "SELECT imagen FROM imagenPerfil WHERE nombre=? ";
+        try {
+            PreparedStatement ps  = connection.prepareStatement(consulta);
+            ps.setString(1, nombre);
+            ResultSet result = ps.executeQuery();
+            
             if (result.next()) {
                 Blob blob = result.getBlob("imagen");
                 if (!result.wasNull() && blob.length() > 1) {

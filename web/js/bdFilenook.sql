@@ -142,13 +142,41 @@ INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES ('
 INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES ('Pregunta sobre Criptografía','Buenos días, me gustaria una explicación más ampliada del ejercicio 5, gracias de antemano.','2019-12-25',0,'Recibido','andcabe','patagua');
 
 
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',0,4.0);
-INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2018-12-20','2018-12-20',0,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('MIPS','Prácticas en lenguaje ensamblador de primero de carrera de Ingeniería Informática','rafhige','2016-06-20','2016-06-21',16,4.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Códigos Reed-Solomon','Ejercicios de la asignatura de Criptografía','patagua','2017-12-20','2017-12-20',0,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Estructura del vehiculo','Diagnostico de daños estructurales','rafhige','2016-07-10','2016-07-10',2,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Gramáticas y lenguajes formales','Expresiones Regulares y autómatas finitos','sanblas','2018-01-12','2018-01-12',120,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Literatura del siglo XX','1984; George Orwell','sanblas','2014-10-05','2014-10-05',29,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('MRP. Publicidad y Relaciones públicas','Aplicación de MRP como un sistema de programación y ordenamiento','sanblas','2016-05-10','2016-05-10',65,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Derecho','Acta de constitución de sociedad mercantil','andcabe','2014-05-05','2014-05-05',78,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Derecho mercantil','Arrendamiento financiero. Leasing','andcabe','2015-01-20','2015-01-20',12,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Blockchain','Tecnologías de la actualidad','patagua','2018-03-12','2018-03-12',10,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Electrónica y Mecánica','Curso 1, primer cuatrimestre','rafhige','2018-10-05','2018-10-05',83,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Diseño y diagnóstico de organizaciones en entornos complejos','Cibernética organizacional','sanblas','2018-05-10','2018-05-10',17,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Ingeniería de elevación','Aparatos de elevación motorizados','rafhige','2019-01-20','2019-01-20',3,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Psicología','Acoso psicológico laboral','andcabe','2016-05-05','2016-05-05',37,0.0);
+INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionMedia) VALUES ('Criptomonedas','Diferencia entre criptomoneda, moneda virtual y dinero digital','patagua','2018-10-12','2018-10-12',91,0.0);
 
-INSERT INTO Documento VALUES (0,'Sumador.s','Programa MIPS para suamr número en hexadecimal y que muestre el resultado en binario complemento a dos.','2016-06-20','2016-06-20');
+INSERT INTO Documento VALUES (0,'Sumador.s','Programa MIPS para sumar número en hexadecimal y que muestre el resultado en binario complemento a dos.','2016-06-20','2016-06-20');
 INSERT INTO Documento VALUES (0,'Shunting.s','Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como su entrada.','2016-06-20','2016-06-20');
 INSERT INTO Documento VALUES (0,'Conversor.s','Algoritmo que pasa de hexadecimal a binario.','2016-06-21','2016-06-21');
-INSERT INTO Documento VALUES (1,'Ejercicios Resueltos.pdf','Ejercicios de codificación y decodificación de códigos Reed-Solomon.','2018-12-20','2018-12-20');
+INSERT INTO Documento VALUES (1,'Ejercicios Resueltos.pdf','Ejercicios de codificación y decodificación de códigos Reed-Solomon.','2017-12-20','2017-12-20');
+INSERT INTO Documento VALUES (2,'Análisis visual de una colisión.doc','Diagnóstico previo de las deformaciones que haya podido sufrir un vehículo en una colisión.','2016-07-10','2016-07-10');
+INSERT INTO Documento VALUES (3,'Practica1.pdf','Procesamiento de ficheros CSV.','2018-01-12','2018-01-12');
+INSERT INTO Documento VALUES (3,'Práctica2.pdf','Análisis Léxico: Resumen de ficheros HTML.','2018-01-12','2018-01-12');
+INSERT INTO Documento VALUES (3,'Practica3.pdf','Intérprete para el lenguaje P.','2018-01-12','2018-01-12');
+INSERT INTO Documento VALUES (4,'1984.pdf','Resumen de la obra 1984 escrita por George Orwell.','2014-10-05','2014-10-05');
+INSERT INTO Documento VALUES (5,'MRP.pdf','Sistema de planificación y administración, normalmente asociado con un software que planifica la producción y un sistema de control de inventarios.','2016-05-10','2016-05-10');
+INSERT INTO Documento VALUES (6,'Sociedad mercantil.pdf','Acta de constitución de sociedad mercantil.','2014-05-05','2014-05-05');
+INSERT INTO Documento VALUES (7,'Leasing.pdf','El arrendamiento financiero es un contrato mediante el cual, el arrendador traspasa el derecho a usar un bien a un arrendatario, a cambio del pago de rentas de arrendamiento durante un plazo determinado, al término del cual el arrendatario tiene la opción de comprar el bien arrendado pagando un precio determinado, devolverlo o renovar el contrato.','2015-01-20','2015-01-20');
+INSERT INTO Documento VALUES (8,'Blockchain.pdf','Criptografía básica para entender la tecnología blockchain.','2018-03-12','2018-03-12');
+INSERT INTO Documento VALUES (9,'ExpresiónGráfica.pdf','Primera prueba escrita.','2018-10-05','2018-10-05');
+INSERT INTO Documento VALUES (9,'Fundamentos de la Informática.pdf','Practica 1.','2018-10-05','2018-10-05');
+INSERT INTO Documento VALUES (10,'Kybernetes.pdf','Pérez Ríos, J. (2004). A self-organizing network for the systems community. Kybernetes: The International Journal of Systems & Cybernetics. Vol.33 Nº3/4.','2018-05-10','2018-05-10');
+INSERT INTO Documento VALUES (11,'Aparatos de elevación motorizados.doc','Resumen y diferencias de los distintos aparatos de elevación motorizados.','2019-01-20','2019-01-20');
+INSERT INTO Documento VALUES (12,'Acoso.pdf','¿Qué tipos de conductas son acoso y cuáles se pueden confundir con esta situación?.','2016-05-05','2016-05-05');
+INSERT INTO Documento VALUES (13,'Criptomonedas.pdf','Actualidad. Resumen y diferencias entre criptomoneda, moneda virtual y dinero digital.','2018-10-12','2018-10-12');
+
 
 INSERT INTO ValoracionesAutor VALUES ('rafhige','patagua',2);
 INSERT INTO ValoracionesAutor VALUES ('rafhige','sanblas',4);

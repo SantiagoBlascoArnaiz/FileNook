@@ -1,4 +1,6 @@
 <%@page import="modelo.Nook"%>
+<%@page import="modelo.Comentario"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -106,8 +108,6 @@ and open the template in the editor.
                                 </div>
                             </li>
                             <%}%>
-
-                            
                         </ul>
                     </div>
                 </div>

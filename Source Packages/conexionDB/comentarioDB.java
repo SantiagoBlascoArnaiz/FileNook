@@ -47,7 +47,7 @@ public class comentarioDB {
         Connection connection = pool.getConnection();
         ArrayList<Comentario> comentarios=new ArrayList();
         ResultSet rs = null;
-        String consulta = "SELECT * FROM Comentario WHERE idComentario = ?";
+        String consulta = "SELECT * FROM Comentario WHERE idNook = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
             ps.setInt(1, idNook);

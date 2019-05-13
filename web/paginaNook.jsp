@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="modelo.Nook"%>
 <%@page import="modelo.Comentario"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,8 +24,11 @@ and open the template in the editor.
         Nook nook = (Nook) request.getAttribute("nook");
         
         String nombre = nook.getNombre();
+        Date fecha = nook.getFechaCreacion();
         String resumen = nook.getResumen();
         String autor = nook.getAutor();
+        int descargas = nook.getDescargas();
+        
         
         %>
         <div class="content">
@@ -62,10 +66,10 @@ and open the template in the editor.
                             <li><a href="autor.jsp"><img src="imagenes/chico1.png"
                                                        alt="Imagen del perfil de usuario"></a></li>
                             <li><a href="autor.jsp"><%=autor%></a></li>
-                            <li>15/08/2018</li>
+                            <li><%=fecha%></li>
                             <li><button type="button">Descargar</button></li>
                             <li><button type="button" onclick="window.location.href='archivosNook.jsp'">Ver archivos</button></li>
-                            <li><button type="button">?</button></li>
+                            <li><text>Descargas: <%=descargas%></text></li>
                         </ul>
                     </div>
 
@@ -92,16 +96,16 @@ and open the template in the editor.
                                     <div class="star1">
                                         <form>
                                             <p class="clasificacion">
-                                            <input id="radio51" type="radio" name="estrellas" value="5">
-                                            <label for="radio51">&#9734;</label>
-                                            <input id="radio52" type="radio" name="estrellas" value="4">
-                                            <label for="radio52">&#9734;</label>
-                                            <input id="radio53" type="radio" name="estrellas" value="3">
-                                            <label for="radio53">&#9734;</label>
-                                            <input id="radio54" type="radio" name="estrellas" value="2">
-                                            <label for="radio54">&#9734;</label>
-                                            <input id="radio55" type="radio" name="estrellas" value="1">
-                                            <label for="radio55">&#9734;</label>
+                                                <input id="<%=comentarios.get(i).getIdComentario()%>,5" type="radio" name="estrellas" value="5">
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,5">&#9734;</label>
+                                                <input id="<%=comentarios.get(i).getIdComentario()%>,4" type="radio" name="estrellas" value="4">
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,4">&#9734;</label>
+                                                <input id="<%=comentarios.get(i).getIdComentario()%>,3" type="radio" name="estrellas" value="3">
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,3">&#9734;</label>
+                                                <input id="<%=comentarios.get(i).getIdComentario()%>,2" type="radio" name="estrellas" value="2">
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,2">&#9734;</label>
+                                                <input id="<%=comentarios.get(i).getIdComentario()%>,1" type="radio" name="estrellas" value="1">
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,1">&#9734;</label>
                                             </p>
                                         </form>
                                     </div>

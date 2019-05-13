@@ -10,7 +10,8 @@ package modelo;
 import java.util.Date;
 
 public class Comentario {
-
+    
+    private int idNook;
     private int idComentario;
     private Date fecha;
     private String autor;
@@ -21,7 +22,8 @@ public class Comentario {
         
     }
     
-    public Comentario(int idComentario, Date fecha, String autor, String texto, double valoracionMedia) {
+    public Comentario(int idNook, int idComentario, Date fecha, String autor, String texto, double valoracionMedia) {
+        this.idNook = idNook;
         this.idComentario = idComentario;
         this.fecha = fecha;
         this.autor = autor;
@@ -29,7 +31,15 @@ public class Comentario {
         this.valoracionMedia = valoracionMedia;
     }
 
+    
+    public int getIdNook() {
+        return idNook;
+    }
 
+    public void setIdNook(int idNook) {
+        this.idNook = idNook;
+    }
+    
     public int getIdComentario() {
         return idComentario;
     }

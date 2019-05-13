@@ -39,10 +39,12 @@ public class inicialSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /*Falta crear la clase*/
-        ArrayList<Nook> nooks=nookDB.getNooks();
+        ArrayList<Nook> nooksPopulares =nookDB.getNooksPopulares();
+        ArrayList<Nook> nooksDescargas =nookDB.getNooksDescargas();
         
         String url = "/inicial.jsp";
-        request.setAttribute("nooks", nooks);
+        request.setAttribute("nooksPopulares", nooksPopulares);
+        request.setAttribute("nooksDescargas", nooksDescargas);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

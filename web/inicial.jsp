@@ -46,10 +46,10 @@ and open the template in the editor.
                         <div id="populares" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
                                 <%
-                                    ArrayList<Nook> nooks= (ArrayList<Nook>)request.getAttribute("nooks");
-                                    for(int i=0;i<nooks.size();i++){
+                                    ArrayList<Nook> nooksP = (ArrayList<Nook>)request.getAttribute("nooksPopulares");
+                                    for(int i=0;i<nooksP.size();i++){
                                 %>
-                                <div class="item"><a href='/nookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/nookSV?idNook=<%=nooksP.get(i).getIdNook()%>'><div class="item-link"><%=nooksP.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">
@@ -62,9 +62,10 @@ and open the template in the editor.
                         <div id="descargas" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
                             <div class="MS-content">
                                 <%
-                                    for(int i=0;i<nooks.size();i++){
+                                    ArrayList<Nook> nooksD = (ArrayList<Nook>) request.getAttribute("nooksDescargas");
+                                    for(int i=0;i<nooksD.size();i++){
                                 %>
-                                <div class="item"><a href='/nookSV?idNook=<%=nooks.get(i).getIdNook()%>'><div class="item-link"><%=nooks.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/nookSV?idNook=<%=nooksD.get(i).getIdNook()%>'><div class="item-link"><%=nooksD.get(i).getNombre()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">

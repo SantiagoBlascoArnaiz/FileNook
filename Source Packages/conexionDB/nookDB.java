@@ -34,18 +34,18 @@ public class nookDB {
         }
     }
     
-    //obtener lista de nooks
-    public static ArrayList<Nook> getNooks() {
+    //obtener lista de nooks populares
+    public static ArrayList<Nook> getNooksPopulares() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
-        ArrayList<Nook> nooks=new ArrayList();
+        ArrayList<Nook> nooksPopulares =new ArrayList();
         ResultSet rs = null;
-        String consulta = "SELECT * FROM Nook";
+        String consulta = "SELECT * FROM Nook ORDER BY valoracionMedia DESC";
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Nook nook=new Nook();
+                Nook nook = new Nook();
                 nook.setIdNook(rs.getInt("idNook"));
                 nook.setNombre(rs.getString("nombre"));
                 nook.setResumen(rs.getString("resumen"));
@@ -54,16 +54,46 @@ public class nookDB {
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
                 
-                nooks.add(nook);
+                nooksPopulares.add(nook);
                 }
-            
                 rs.close();
                 ps.close();
                 pool.freeConnection(connection);
-            return nooks;
+            return nooksPopulares;
         } catch (SQLException e) {
             e.printStackTrace();
-            
+        return null;
+        }
+    }
+    
+    //obtener lista de nooks con mas descargas
+    public static ArrayList<Nook> getNooksDescargas() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        ArrayList<Nook> nooksDescargas =new ArrayList();
+        ResultSet rs = null;
+        String consulta = "SELECT * FROM Nook ORDER BY descargas DESC";
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Nook nook = new Nook();
+                nook.setIdNook(rs.getInt("idNook"));
+                nook.setNombre(rs.getString("nombre"));
+                nook.setResumen(rs.getString("resumen"));
+                nook.setAutor(rs.getString("autor"));
+                nook.setFechaCreacion(rs.getDate("fechaCreacion"));
+                nook.setFechaModificacion(rs.getDate("fechaModificacion"));
+                nook.setDescargas(rs.getInt("descargas"));
+                
+                nooksDescargas.add(nook);
+                }
+                rs.close();
+                ps.close();
+                pool.freeConnection(connection);
+            return nooksDescargas;
+        } catch (SQLException e) {
+            e.printStackTrace();
         return null;
         }
     }

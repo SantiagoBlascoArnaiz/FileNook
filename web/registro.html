@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
+         <script type='text/javascript'  src='js/miscripts.js'></script>
     </head>
     <body >
         <div class="content">
@@ -15,11 +16,11 @@
         </header>
             <main class="main">
                 <div class="container">
-                    <form class="pag-registro"  method="post" action="/registroSV">
+                    <form class="pag-registro"  onSubmit="return validarPasswd()" method="post"  action="/registroSV" >
                         <h1>Página de Registro</h1>
                         <hr>
                             <label for="email"><b>Email</b></label>
-                            <input class="input" type="text" placeholder="Email" name="email" required>
+                            <input class="input" type="text" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="email" required>
 
                             <label for="nom">Nombre</label>
                             <input class="input" type="text" placeholder="Nombre" name="nom" required >
@@ -31,10 +32,10 @@
                             <input class="input" type="text" placeholder="Usuario" name="usr" required >
 
                             <label for="psw"><b>Contraseña</b></label>
-                            <input class="input" type="password" placeholder="Contraseña" name="psw" required>
+                            <input class="input" type="password" id="passwd" placeholder="Contraseña"  name="psw" required>
 
                             <label for="psw-repeat"><b>Repetir Contraseña</b></label>
-                            <input class="input" type="password" placeholder="Repetir Contraseña" name="psw-repeat" required>
+                            <input class="input" type="password" id="passwd2" placeholder="Repetir Contraseña" name="psw-repeat" required>
 
                             <div class="clearfix">
                                 <button type="submit" class="signupbtn">Registrarse</button>
@@ -47,5 +48,9 @@
             <footer class="footer">
               © Proyecto Filenook - 2019 - Andrés Cabero Mata -  Patricia Aguado Labrador - Rafael Higelmo San Millán - Santiago Blasco Arnaiz
             </footer>
+       
+       
+        
+       
     </body>
 </html>

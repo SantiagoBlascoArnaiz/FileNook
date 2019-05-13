@@ -94,12 +94,15 @@ CREATE TABLE ValoracionesNook(
 
 CREATE TABLE Comentario(
 	idComentario INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
-	fecha DATE,
+	idNook INTEGER NOT NULL,
+        fecha DATE,
 	autor VARCHAR(10) NOT NULL,
 	texto VARCHAR(180) NOT NULL,
         valoracionMedia NUMERIC(3,1),
 	PRIMARY KEY (idComentario),
-	CONSTRAINT FK_COMENTARIO FOREIGN KEY (autor)
+        CONSTRAINT FK_COMENTARIO FOREIGN KEY (idNook)
+		REFERENCES Nook (idNook),
+	CONSTRAINT FK_COMENTARIO2 FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
 );
 
@@ -187,8 +190,13 @@ INSERT INTO ValoracionesNook VALUES (0,'patagua',5,'2016-11-12');
 INSERT INTO ValoracionesNook VALUES (0,'sanblas',3,'2017-08-06');
 INSERT INTO ValoracionesNook VALUES (0,'andcabe',4,'2018-05-15');
 
-INSERT INTO Comentario (fecha,autor,texto,valoracionMedia) VALUES ('2017-08-06','sanblas','Buen nook!!',4.0);
-INSERT INTO Comentario (fecha,autor,texto,valoracionMedia) VALUES ('2016-11-13','andcabe','Tengo una duda con el archivo Sumador.s te mando un correo.',0.0);
+INSERT INTO Comentario (fecha,idNook,autor,texto,valoracionMedia) VALUES ('2017-08-06',0,'sanblas','Buen nook!!',4.0);
+INSERT INTO Comentario (fecha,idNook,autor,texto,valoracionMedia) VALUES ('2019-10-06',0,'patagua','Hola, muy buenas!!',0.0);
+INSERT INTO Comentario (fecha,idNook,autor,texto,valoracionMedia) VALUES ('2016-11-13',0,'andcabe','Tengo una duda con el archivo Sumador.s te mando un correo.',0.0);
+INSERT INTO Comentario (fecha,idNook,autor,texto,valoracionMedia) VALUES ('2019-05-06',1,'patagua','CHACHI!!',0.0);
+INSERT INTO Comentario (fecha,idNook,autor,texto,valoracionMedia) VALUES ('2019-08-06',2,'andcabe','Holiiiiii!!',0.0);
+
+INSERT INTO Comentario (fecha,idNook,autor,texto,valoracionMedia) VALUES ('2019-09-06',4,'rafhige','Buen nook!!',0.0);
 
 INSERT INTO ValoracionesComentario VALUES (0,4,'2017-09-16','rafhige');
 

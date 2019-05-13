@@ -78,75 +78,36 @@ and open the template in the editor.
 
                     <div class="comentariosUsuarios">
                         <ul>
+                            <%
+                                ArrayList<Comentario> comentarios = (ArrayList<Comentario>) request.getAttribute("comentarios");
+                                for(int i = 0; i < comentarios.size(); i++){
+                            %>
                             <li>
                                 <div class="comentarioTexto">
                                     <p class="usuario"><a href="autor.jsp"><img src="imagenes/chica2.png"
-                                                                  alt="Imagen del perfil de usuario"></a> Carlota21<p>
-                                    <p>Buen nook!!</p>
+                                                                  alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
+                                    <p><%=comentarios.get(i).getTexto()%></p>
                                     <div class="star1">
                                         <form>
                                             <p class="clasificacion">
                                             <input id="radio51" type="radio" name="estrellas" value="5">
-                                            <label for="radio51">?</label>
+                                            <label for="radio51">&#9734;</label>
                                             <input id="radio52" type="radio" name="estrellas" value="4">
-                                            <label for="radio52">?</label>
+                                            <label for="radio52">&#9734;</label>
                                             <input id="radio53" type="radio" name="estrellas" value="3">
-                                            <label for="radio53">?</label>
+                                            <label for="radio53">&#9734;</label>
                                             <input id="radio54" type="radio" name="estrellas" value="2">
-                                            <label for="radio54">?</label>
+                                            <label for="radio54">&#9734;</label>
                                             <input id="radio55" type="radio" name="estrellas" value="1">
-                                            <label for="radio55">?</label>
+                                            <label for="radio55">&#9734;</label>
                                             </p>
                                         </form>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="comentarioTexto">
-                                    <p class="usuario"><a href="autor.jsp"><img src="imagenes/chico2.png"
-                                                                  alt="Imagen del perfil de usuario"></a> luisito_comunica<p>
-                                    <p>Tengo una duda con el archivo Sumador.s te mando un correo.</p>
-                                    <div class="star1">
-                                        <form>
-                                            <p class="clasificacion">
-                                            <input id="radio61" type="radio" name="estrellas" value="5">
-                                            <label for="radio61">?</label>
-                                            <input id="radio62" type="radio" name="estrellas" value="4">
-                                            <label for="radio62">?</label>
-                                            <input id="radio63" type="radio" name="estrellas" value="3">
-                                            <label for="radio63">?</label>
-                                            <input id="radio64" type="radio" name="estrellas" value="2">
-                                            <label for="radio64">?</label>
-                                            <input id="radio65" type="radio" name="estrellas" value="1">
-                                            <label for="radio65">?</label>
-                                            </p>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comentarioTexto">
-                                    <p class="usuario"><a href="autor.jsp"><img src="imagenes/chico3.png"
-                                                                  alt="Imagen del perfil de usuario"></a> David_Carretero<p>
-                                    <p>Excelente trabajo.</p>
-                                    <div class="star1">
-                                        <form>
-                                            <p class="clasificacion">
-                                            <input id="radio71" type="radio" name="estrellas" value="5">
-                                            <label for="radio71">?</label>
-                                            <input id="radio72" type="radio" name="estrellas" value="4">
-                                            <label for="radio72">?</label>
-                                            <input id="radio73" type="radio" name="estrellas" value="3">
-                                            <label for="radio73">?</label>
-                                            <input id="radio74" type="radio" name="estrellas" value="2">
-                                            <label for="radio74">?</label>
-                                            <input id="radio75" type="radio" name="estrellas" value="1">
-                                            <label for="radio75">?</label>
-                                            </p>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
+                            <%}%>
+
+                            
                         </ul>
                     </div>
                 </div>

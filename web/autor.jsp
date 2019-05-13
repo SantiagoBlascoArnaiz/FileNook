@@ -56,15 +56,15 @@ and open the template in the editor.
                                     <form>
                                         <p class="clasificacion">
                                         <input id="radio11" type="radio" name="estrellas" value="5">
-                                        <label for="radio11">?</label>
+                                        <label for="radio11">&#9734;</label>
                                         <input id="radio12" type="radio" name="estrellas" value="4">
-                                        <label for="radio12">?</label>
+                                        <label for="radio12">&#9734;</label>
                                         <input id="radio13" type="radio" name="estrellas" value="3">
-                                        <label for="radio13">?</label>
+                                        <label for="radio13">&#9734;</label>
                                         <input id="radio14" type="radio" name="estrellas" value="2">
-                                        <label for="radio14">?</label>
+                                        <label for="radio14">&#9734;</label>
                                         <input id="radio15" type="radio" name="estrellas" value="1">
-                                        <label for="radio15">?</label>
+                                        <label for="radio15">&#9734;</label>
                                         </p>
                                     </form>
                                 </div>

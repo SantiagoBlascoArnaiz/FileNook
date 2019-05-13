@@ -38,22 +38,6 @@ and open the template in the editor.
                             <li><h1>PedroGonz5</h1></li>
                         </ul>
                         <h1>NOOK MIPS</h1>
-                        <div class="star">
-                            <form>
-                                  <p class="clasificacion">
-                                  <input id="radio41" type="radio" name="estrellas" value="5">
-                                  <label for="radio41">&#9734;</label>
-                                  <input id="radio45" type="radio" name="estrellas" value="4">
-                                  <label for="radio42">&#9734;</label>
-                                  <input id="radio46" type="radio" name="estrellas" value="3">
-                                  <label for="radio43">&#9734;</label>
-                                  <input id="radio47" type="radio" name="estrellas" value="2">
-                                  <label for="radio44">&#9734;</label>
-                                  <input id="radio48" type="radio" name="estrellas" value="1">
-                                  <label for="radio45">&#9734;</label>
-                                </p>
-                            </form>
-                        </div>
                     </div>
                     <div class="pag-nook">
                            <div class="nook">

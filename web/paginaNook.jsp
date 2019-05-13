@@ -28,8 +28,6 @@ and open the template in the editor.
         String resumen = nook.getResumen();
         String autor = nook.getAutor();
         int descargas = nook.getDescargas();
-        
-        
         %>
         <div class="content">
         <header class="header">

@@ -22,11 +22,11 @@ public class Usuario  implements Serializable{
         
     }
     
-    public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, Part imagenPerfil) {
+    public Usuario(String nombre, String apellidos, String nombreUsuario, String clave, String correo, Part imagenPerfil) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nombreUsuario = nombreUsuario;
-        this.clave = contraseña;
+        this.clave = clave;
         this.correo = correo;
         this.imagenPerfil = imagenPerfil;
     }

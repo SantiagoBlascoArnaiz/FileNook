@@ -34,6 +34,7 @@ body{
     list-style: none;
     display: inline-block;
 }
+
 .header{
     background: #3DB000;
     color: #333;
@@ -249,16 +250,21 @@ label {
   unicode-bidi: bidi-override;
 }
 
-.pag-nook{
+.pag-nook_n{
   margin-left: 5%;
   margin-right: 7%;
   width: 85%;
 }
 
 .nooks{
-  padding-left: 70%;
-  margin-right: 10rem;
+    height: 3rem;
 }
+.nooks button{
+    width: 10rem;
+    position: absolute;
+    right: 15rem;
+}
+
 .nookstitulo{
     padding-top: 3rem;
     width: 85%;
@@ -276,17 +282,20 @@ label {
   padding-bottom: 6.8rem;
 }
 
+.nook_n_img{
+    float: left;
+}
+
 input[type="radio"]:hover ~ label {
   color: orange;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 input[type="radio"]:checked ~ label {
   color: orange;
 }
 
-.nook.star {
-    padding-left: 80%;
+.nook .star {
     right: 0;
     left: auto;
 }
@@ -508,6 +517,7 @@ h4{
     margin:  auto;
     margin: 2rem auto auto;
 }
+
 .tabla_crearNook {
     
      margin:auto;

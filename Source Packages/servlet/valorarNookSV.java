@@ -7,19 +7,22 @@ package servlet;
 
 import conexionDB.valoracionesNookDB;
 import java.io.IOException;
+import java.sql.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.ValoracionNook;
 
 /**
  *
  * @author andres
  */
-@WebServlet(name = "valoracionMediaNookSV", urlPatterns = {"/valoracionMediaNookSV"})
-public class valoracionMediaNookSV extends HttpServlet {
+@WebServlet(name = "valorarNookSV", urlPatterns = {"/valorarNookSV"})
+public class valorarNookSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +37,26 @@ public class valoracionMediaNookSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
+        
+        ValoracionNook valoracion = new ValoracionNook();
+        String usr = (String) session.getAttribute("usuario");
         int idNook = Integer.parseInt(request.getParameter("idNook"));
-        double media = valoracionesNookDB.valoracionMediaNook(idNook);
+        int val = Integer.parseInt(request.getParameter("estrellas"+idNook));
+        
+        java.util.Date date = new java.util.Date();  
+        Date fecha = new Date(date.getTime());
+        
+        valoracion.setNook(idNook);
+        valoracion.setUsuario(usr);
+        valoracion.setPuntuacion(val);
+        valoracion.setFecha(fecha);
+                
+        
+        System.out.println(usr + idNook +val + " " + valoracionesNookDB.insert(valoracion));
+        
+        String url = "/misNooksSV";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -55,9 +55,10 @@ and open the template in the editor.
                         for(int i = 0; i < misNooks.size(); i++){
                     %>
                        <div class="nook_n">
-
-                           <a href="/nookSV?idNook=<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
-                               <div class="titulo_nook">
+                            <div class="nook_n_img">
+                                <a href="/nookSV?idNook=<%=misNooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
+                            </div>
+                            <div class="titulo_nook">
                                 <h3><%=misNooks.get(i).getNombre()%></h3>
                                 <%if(misNooksCategorias.get(i)!=null){%>
                                 <h4>Categoria: <%=misNooksCategorias.get(i)%></h4>
@@ -65,19 +66,19 @@ and open the template in the editor.
                                 <h4>Categoria: none<h4>
                                 <%}%>
                                 <p><%=misNooks.get(i).getResumen()%></p>
-                               </div>
+                            </div>
                             <div class="star">
-                                <form class="valoracion"  method="post" action="/valoracionMediaNookSV?idNook=<%=misNooks.get(i).getIdNook()%>">
+                                <form class="valoracion"  method="post" action="/valorarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>">
                                     <p class="clasificacion">
-                                    <input id="<%=misNooks.get(i).getIdNook()%>,5" type="radio" name="estrellas" value="5">
+                                    <input id="<%=misNooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=misNooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();">
                                     <label for="<%=misNooks.get(i).getIdNook()%>,5">&#9734;</label>
-                                    <input id="<%=misNooks.get(i).getIdNook()%>,4" type="radio" name="estrellas" value="4">
+                                    <input id="<%=misNooks.get(i).getIdNook()%>,4" type="radio" name="estrellas<%=misNooks.get(i).getIdNook()%>" value="4" onclick="this.form.submit();">
                                     <label for="<%=misNooks.get(i).getIdNook()%>,4">&#9734;</label>
-                                    <input id="<%=misNooks.get(i).getIdNook()%>,3" type="radio" name="estrellas" value="3">
+                                    <input id="<%=misNooks.get(i).getIdNook()%>,3" type="radio" name="estrellas<%=misNooks.get(i).getIdNook()%>" value="3" onclick="this.form.submit();">
                                     <label for="<%=misNooks.get(i).getIdNook()%>,3">&#9734;</label>
-                                    <input id="<%=misNooks.get(i).getIdNook()%>,2" type="radio" name="estrellas" value="2">
+                                    <input id="<%=misNooks.get(i).getIdNook()%>,2" type="radio" name="estrellas<%=misNooks.get(i).getIdNook()%>" value="2" onclick="this.form.submit();">
                                     <label for="<%=misNooks.get(i).getIdNook()%>,2">&#9734;</label>
-                                    <input id="<%=misNooks.get(i).getIdNook()%>,1" type="radio" name="estrellas" value="1">
+                                    <input id="<%=misNooks.get(i).getIdNook()%>,1" type="radio" name="estrellas<%=misNooks.get(i).getIdNook()%>" value="1" onclick="this.form.submit();">
                                     <label for="<%=misNooks.get(i).getIdNook()%>,1">&#9734;</label>
                                     </p>
                                 </form>

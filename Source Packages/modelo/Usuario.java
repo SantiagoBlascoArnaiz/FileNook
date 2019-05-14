@@ -19,7 +19,13 @@ public class Usuario  implements Serializable{
     private Part imagenPerfil;
    
     public Usuario(){
-        
+      nombre="";
+      apellidos="";
+      nombreUsuario="";
+      clave="";
+      correo="";
+      imagenPerfil=null;
+   
     }
     
     public Usuario(String nombre, String apellidos, String nombreUsuario, String clave, String correo, Part imagenPerfil) {

@@ -17,8 +17,7 @@ CREATE TABLE Usuario(
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
         valoracionMedia NUMERIC(3,1),
-        /*imagenPerfil BLOB,*/
-        imagenPerfil VARCHAR(50),
+        imagenPerfil BLOB,
 	PRIMARY KEY (nombreUsuario)
 );
 
@@ -129,12 +128,12 @@ CREATE TABLE ClasificacionCategorias(
 );
 
 
-INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es',0.0,'/web/imagenes/chica1.png');
+INSERT INTO Usuario VALUES ('Helio','Fernandez Abad','admin','adminfilenook','admin@alumnos.uva.es',0.0,null);
 
-INSERT INTO Usuario VALUES ('Andrés','Cabero Mata','andcabe','1122','andres.cabero@alumnos.uva.es',0.0,'Andres');
-INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','rafael.higelmo@alumnos.uva.es',3.0,'Rafa');
-INSERT INTO Usuario VALUES ('Patricia','Aguado Labrador','patagua','5566','patricia.aguado@alumnos.uva.es',0.0,'Patri');
-INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','santiago.blasco@alumnos.uva.es',0.0,'Santi');
+INSERT INTO Usuario VALUES ('Andrés','Cabero Mata','andcabe','1122','andres.cabero@alumnos.uva.es',0.0,null);
+INSERT INTO Usuario VALUES ('Rafael','Higelmo San Millán','rafhige','3344','rafael.higelmo@alumnos.uva.es',3.0,null);
+INSERT INTO Usuario VALUES ('Patricia','Aguado Labrador','patagua','5566','patricia.aguado@alumnos.uva.es',0.0,null);
+INSERT INTO Usuario VALUES ('Santiago','Blasco Arnaiz','sanblas','7788','santiago.blasco@alumnos.uva.es',0.0,null);
 
 INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES ('Duda','Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',1,'Enviado','patagua','rafhige');
 INSERT INTO Mensaje (asunto,texto,fecha,leido,tipo,autor,destinatario) VALUES ('Duda','Me gustaria que me explicase la función de la lía 127 de su código, gracias.','2019-04-09',0,'Recibido','patagua','rafhige');

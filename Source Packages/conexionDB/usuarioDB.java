@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package conexionDB;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.*;
+import javax.servlet.http.Part;
 import modelo.Usuario;
 public class usuarioDB {
     public static int insert(Usuario user) {
@@ -71,7 +73,7 @@ public class usuarioDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         
-        String consulta="UPDATE  Usuario  SET clave=? WHERE nombre= ?";
+        String consulta="UPDATE  Usuario  SET clave=?  WHERE nombre= ?";
         try {
             PreparedStatement ps =connection.prepareStatement(consulta);
            
@@ -89,17 +91,21 @@ public class usuarioDB {
     }
      
      ////para cambiar la imagen
-     public static int insertImagen(Usuario usr, Blob foto) {
+     public static int insertImagen(String nombre, Part foto) throws IOException {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
-        
-        String consulta="UPDATE  Usuario  SET imagenPerfil=? WHERE nombre= ?";
+        PreparedStatement ps=null;
+        String a="antonio";
+        String consulta="UPDATE  Usuario  SET imagenPerfil=?  WHERE nombreUsuario= ?";
         try {
-            PreparedStatement ps =connection.prepareStatement(consulta);
+            ps =connection.prepareStatement(consulta);
            
-            ps.setBlob(1,foto ); 
-            ps.setString(2, usr.getNombre());
-           
+            ps.setBlob(1, foto.getInputStream() ); 
+            
+            ps.setString(2, nombre);
+            
+               
+            
             int res = ps.executeUpdate();
             ps.close();
             pool.freeConnection(connection);

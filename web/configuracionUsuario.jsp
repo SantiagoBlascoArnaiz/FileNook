@@ -47,7 +47,7 @@ and open the template in the editor.
                     <form class="archivo"  method="post" enctype="multipart/form-data" action="/cogerImagenSV">
                             <ul>
                                  
-                                <li><a href="archivosNook.jsp"><img src= " Imagen?name= " alt="Imagen del perfil de usuario"></a></li>
+                                <li><a href="archivosNook.jsp"><img src= " Imagen?name= " alt="Imagen del perfil"></a></li>
                                 <li><input type="file"  name ="foto"></li>
                                 <li><button type="submit" name="Cambiar">Cambiar</button></li>
 

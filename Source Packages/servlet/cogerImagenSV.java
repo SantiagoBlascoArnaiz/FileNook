@@ -41,19 +41,17 @@ public class cogerImagenSV extends HttpServlet {
             name = (String)session.getAttribute("usuario");
         }
         
+        
         Part foto = request.getPart("foto");
        
-              
-        String url;
-  
-         response.setContentType("image/");
-         OutputStream respuesta = response.getOutputStream();
-         
-         usuarioDB.getImagen(name, respuesta);
-         
-         respuesta.close();
-         response.flushBuffer();
+        Usuario usr = usuarioDB.getUsuario(name);
+      
         
+        usuarioDB.insertImagen(name,foto);     
+        
+         
+         String url;
+  
         url = "/configuracionUsuario.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

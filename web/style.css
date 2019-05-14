@@ -237,10 +237,6 @@ button:hover {
   font-size: 20px;
 }
 
-input[type="radio"] {
-  display: none;
-}
-
 label {
   color: grey;
 }
@@ -286,14 +282,44 @@ label {
     float: left;
 }
 
-input[type="radio"]:hover ~ label {
-  color: orange;
-  cursor: pointer;
+.valoracion{
+    width: 6.5rem;
+    margin-left:100%;
+    pading:0;
+}
+.valoracion:hover{
+    cursor: pointer;
 }
 
-input[type="radio"]:checked ~ label {
-  color: orange;
+.valoracion input{
+    display: none;
 }
+.valoracion label:before{
+    margin: 0.5rem;
+    font-family: FontAwesome;
+}
+
+.valoracion input:checked ~ label,
+.valoracion:not(:checked) label:hover,
+.valoracion:not(:checked) label:hover ~ label{
+    color: #FFD700;
+}
+
+.valoracion input:checked ~ label:hover,
+.valoracion label:hover ~ input:checked ~ label,
+.valoracion input:checked ~ label:hover ~ label{
+    color: #FFED85;
+}
+
+/*
+.valoracion input:hover ~ label {
+  color: #ffc700;
+}
+.valoracion
+.valoracion input:checked ~ label {
+  color: blue;
+}
+*/
 
 .nook .star {
     right: 0;

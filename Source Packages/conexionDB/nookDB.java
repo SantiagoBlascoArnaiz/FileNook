@@ -14,7 +14,7 @@ public class nookDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
-        String query="INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas) VALUES (?, ?, ?, ?, ?, ?)";
+        String query="INSERT INTO Nook (nombre,resumen,autor,fechaCreacion,fechaModificacion,descargas,valoracionmedia) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps =connection.prepareStatement(query);
             ps.setString(1, nook.getNombre());
@@ -23,8 +23,29 @@ public class nookDB {
             ps.setDate(4, (Date) nook.getFechaCreacion());
             ps.setDate(5, (Date) nook.getFechaModificaion());
             ps.setInt(6, nook.getDescargas());
+            ps.setDouble(7, nook.getValoracionMedia());
            
             int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+        public static int actualizarValoracionMedia(int idNook, double media) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
+        String query="UPDATE Nook SET valoracionMedia = ? WHERE idNook = ?";
+        try {
+            PreparedStatement ps =connection.prepareStatement(query);
+            ps.setDouble(1, media);
+            ps.setInt(2, idNook);
+            int res = ps.executeUpdate();
+            
             ps.close();
             pool.freeConnection(connection);
             return res;
@@ -53,7 +74,8 @@ public class nookDB {
                 nook.setFechaCreacion(rs.getDate("fechaCreacion"));
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
-                
+                nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
+
                 nooksPopulares.add(nook);
                 }
                 rs.close();
@@ -85,7 +107,7 @@ public class nookDB {
                 nook.setFechaCreacion(rs.getDate("fechaCreacion"));
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
-                
+                nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
                 nooksDescargas.add(nook);
                 }
                 rs.close();
@@ -117,7 +139,7 @@ public class nookDB {
                 nook.setFechaCreacion(rs.getDate("fechaCreacion"));
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
-                
+                nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
                 nooks.add(nook);
                 }
             
@@ -149,6 +171,8 @@ public class nookDB {
                 nook.setFechaCreacion(rs.getDate("fechaCreacion"));
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
+                nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
+
                 }
             
                 rs.close();

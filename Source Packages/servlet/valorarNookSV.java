@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import conexionDB.nookDB;
 import conexionDB.valoracionesNookDB;
 import java.io.IOException;
 import java.sql.Date;
@@ -50,13 +51,23 @@ public class valorarNookSV extends HttpServlet {
         valoracion.setUsuario(usr);
         valoracion.setPuntuacion(val);
         valoracion.setFecha(fecha);
-                
         
-        System.out.println(usr + idNook +val + " " + valoracionesNookDB.insert(valoracion));
+        valoracionesNookDB.insert(valoracion);
+        
+        double media = valoracionesNookDB.valoracionMediaNook(idNook);
+        if(media!=-1){
+            nookDB.actualizarValoracionMedia(idNook, media);
+        }else{
+            nookDB.actualizarValoracionMedia(idNook, 0);
+        }        
         
         String url = "/misNooksSV";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
+    }
+    
+    private static void actualizarMedia(int idNook){
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

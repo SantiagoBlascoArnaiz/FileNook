@@ -1,3 +1,6 @@
+<%@page import="modelo.Nook"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Documento"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,6 +19,11 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        
+        Nook nook = (Nook) request.getAttribute("nook");
+        
+        String nombre = nook.getNombre();
+        String autor = nook.getAutor();
         %>
         <div class="content">
             <header class="header">
@@ -35,32 +43,23 @@ and open the template in the editor.
                     <div class="paginanook">
                         <ul>
                             <li><img src="imagenes/chico1.png" alt="Imagen del perfil de usuario"></li>
-                            <li><h1>PedroGonz5</h1></li>
+                            <li><h1><%=autor%></h1></li>
                         </ul>
-                        <h1>NOOK MIPS</h1>
+                        <h1><%=nombre%></h1>
                     </div>
+                    
+                    <%
+                                ArrayList<Documento> documentos = (ArrayList<Documento>) request.getAttribute("documentos");
+                                for(int i = 0; i < documentos.size(); i++){
+                            %>
                     <div class="pag-nook">
                            <div class="nook">
-                                   <a href="paginaNook.jsp"><img src="imagenes/sumador.png" alt="Imagen del perfil de usuario"></a>
-                                    <h3>Sumador.s</h3>
-                                    <p>Programa MIPS para suamr número en hexadecimal y que muestre el resultado en binario complemento a dos.</p>
-                           </div>
-                        <div class="nook">
-                                   <a href="paginaNook.jsp"><img src="imagenes/shunting.png" alt="Imagen del perfil de usuario"></a>
-                                    <h3>Shunting.s</h3>
-                                    <p>Algoritmo shunting yard implementado en MIPS mediante el uso de notación polaca inversa que devuelve resultados en decimal o hexadecimal como su entrada.</p>
-                           </div>
-                        <div class="nook">
-                                   <a href="paginaNook.jsp"><img src="imagenes/conversor.png" alt="Imagen del perfil de usuario"></a>
-                                   <h3>Conversor.s</h3>
-                                    <p>Programa MIPS que convierte número de hexadecimal a binario.</p>
-                           </div>
-                        <div class="nook">
-                                   <a href="paginaNook.jsp"><img src="imagenes/segmentacion.png" alt="Imagen del perfil de usuario"></a>
-                                    <h3>Segmentacion.pdf</h3>
-                                    <p>Apuntes sobre la segmentaciónd de los procesadores vistos en la asignatura de Arquitectura y Organización de Computadoras</p>
+                                   <a><img src="imagenes/simpleLogo.png" alt="Imagen del perfil de usuario"></a>
+                                    <h3><%=documentos.get(i).getNombre()%></h3>
+                                    <p><%=documentos.get(i).getResumen()%></p>
                            </div>
                     </div>
+                    <%}%>
                 </div>
             </main>
         </div>

@@ -66,7 +66,7 @@ and open the template in the editor.
                             <li><a href="autor.jsp"><%=autor%></a></li>
                             <li><%=fecha%></li>
                             <li><button type="button">Descargar</button></li>
-                            <li><button type="button" onclick="window.location.href='archivosNook.jsp'">Ver archivos</button></li>
+                            <li><button type="button" onclick="window.location.href='/documentosSV?idNook=<%=nook.getIdNook()%>'">Ver archivos</button></li>
                             <li><text>Descargas: <%=descargas%></text></li>
                         </ul>
                     </div>

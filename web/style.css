@@ -282,11 +282,21 @@ label {
     float: left;
 }
 
+.starNook{
+    float: right;
+    right: 10rem;
+}
+
+.star{
+    margin-left: 100%;
+}
+
 .valoracion{
     width: 6.5rem;
-    margin-left:100%;
-    pading:0;
+    right: 0;
+    padding:0rem;
 }
+
 .valoracion:hover{
     cursor: pointer;
 }
@@ -308,24 +318,9 @@ label {
 .valoracion input:checked ~ label:hover,
 .valoracion label:hover ~ input:checked ~ label,
 .valoracion input:checked ~ label:hover ~ label{
-    color: #FFED85;
+    color: cornflowerblue;
 }
 
-/*
-.valoracion input:hover ~ label {
-  color: #ffc700;
-}
-.valoracion
-.valoracion input:checked ~ label {
-  color: blue;
-}
-*/
-
-.nook .star {
-    right: 0;
-    left: auto;
-}
-/* Estrellas */
 
 .perfil{
     padding-top: 3rem;

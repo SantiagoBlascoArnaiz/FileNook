@@ -61,7 +61,7 @@ public class valorarNookSV extends HttpServlet {
             nookDB.actualizarValoracionMedia(idNook, 0);
         }        
         
-        String url = "/misNooksSV";
+        String url = request.getParameter("urlPagina");
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }

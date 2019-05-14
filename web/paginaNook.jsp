@@ -22,7 +22,7 @@ and open the template in the editor.
         String userName = (String) sesion.getAttribute("usuario");
         
         Nook nook = (Nook) request.getAttribute("nook");
-        
+        Double valoracion = nook.getValoracionMedia();
         String nombre = nook.getNombre();
         Date fecha = nook.getFechaCreacion();
         String resumen = nook.getResumen();
@@ -70,7 +70,22 @@ and open the template in the editor.
                             <li><text>Descargas: <%=descargas%></text></li>
                         </ul>
                     </div>
-
+                    <div class="starNook">
+                        <form class="valoracion"  method="post" action="/valorarNookSV?idNook=<%=nook.getIdNook()%>&urlPagina=/nookSV?idNook=<%=nook.getIdNook()%>">
+                            <p class="clasificacion">
+                            <input id="<%=nook.getIdNook()%>,5" type="radio" name="estrellas<%=nook.getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
+                            <label for="<%=nook.getIdNook()%>,5">&#9733;</label>
+                            <input id="<%=nook.getIdNook()%>,4" type="radio" name="estrellas<%=nook.getIdNook()%>" value="4" onclick="this.form.submit();" <%if(valoracion==4){%> checked <%}%>>
+                            <label for="<%=nook.getIdNook()%>,4">&#9733;</label>
+                            <input id="<%=nook.getIdNook()%>,3" type="radio" name="estrellas<%=nook.getIdNook()%>" value="3" onclick="this.form.submit();" <%if(valoracion==3){%> checked <%}%>>
+                            <label for="<%=nook.getIdNook()%>,3">&#9733;</label>
+                            <input id="<%=nook.getIdNook()%>,2" type="radio" name="estrellas<%=nook.getIdNook()%>" value="2" onclick="this.form.submit();" <%if(valoracion==2){%> checked <%}%>>
+                            <label for="<%=nook.getIdNook()%>,2">&#9733;</label>
+                            <input id="<%=nook.getIdNook()%>,1" type="radio" name="estrellas<%=nook.getIdNook()%>" value="1" onclick="this.form.submit();" <%if(valoracion==1){%> checked <%}%>>
+                            <label for="<%=nook.getIdNook()%>,1">&#9733;</label>
+                            </p>
+                        </form>
+                    </div>
                     <div class="comentarios">
                         <ul>
                             <li id="comentario">
@@ -92,18 +107,18 @@ and open the template in the editor.
                                                                   alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
                                     <p><%=comentarios.get(i).getTexto()%></p>
                                     <div class="star1">
-                                        <form>
+                                        <form class="valoracion">
                                             <p class="clasificacion">
                                                 <input id="<%=comentarios.get(i).getIdComentario()%>,5" type="radio" name="estrellas" value="5">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,5">&#9734;</label>
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,5">&#9733;</label>
                                                 <input id="<%=comentarios.get(i).getIdComentario()%>,4" type="radio" name="estrellas" value="4">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,4">&#9734;</label>
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,4">&#9733;</label>
                                                 <input id="<%=comentarios.get(i).getIdComentario()%>,3" type="radio" name="estrellas" value="3">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,3">&#9734;</label>
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,3">&#9733;</label>
                                                 <input id="<%=comentarios.get(i).getIdComentario()%>,2" type="radio" name="estrellas" value="2">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,2">&#9734;</label>
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,2">&#9733;</label>
                                                 <input id="<%=comentarios.get(i).getIdComentario()%>,1" type="radio" name="estrellas" value="1">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,1">&#9734;</label>
+                                                <label for="<%=comentarios.get(i).getIdComentario()%>,1">&#9733;</label>
                                             </p>
                                         </form>
                                     </div>

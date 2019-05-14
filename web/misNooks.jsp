@@ -43,7 +43,7 @@ and open the template in the editor.
 
 
                 <div class="nooks">
-                    <button type="submit" class="signupbtn" onclick="window.location.href='crearNook.jsp'">Nuevo Nook</button>
+                    <button type="submit" class="nuevoNook" onclick="window.location.href='crearNook.jsp'">Nuevo Nook</button>
                 </div>
 
 
@@ -69,7 +69,7 @@ and open the template in the editor.
                                 <p><%=misNooks.get(i).getResumen()%></p>
                             </div>
                             <div class="star">
-                                <form class="valoracion"  method="post" action="/valorarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>">
+                                <form class="valoracion"  method="post" action="/valorarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>&urlPagina=/misNooksSV">
                                     <p class="clasificacion">
                                     <input id="<%=misNooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=misNooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
                                     <label for="<%=misNooks.get(i).getIdNook()%>,5">&#9733;</label>

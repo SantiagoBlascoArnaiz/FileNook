@@ -28,7 +28,7 @@ and open the template in the editor.
                 <nav class="navigation">
                     <ul>
                         <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
-                        <li><a href="perfil.html"><img src="imagenes/chica2.png"
+                        <li><a href="perfil.html"><img src="recuperarImagenesSV?userName=<%=userName%>" width="100" height="100"
                                                        alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>

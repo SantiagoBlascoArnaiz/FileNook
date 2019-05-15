@@ -24,18 +24,20 @@ public class comentarioDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
-        String query="INSERT INTO Nook (fecha,autor,texto,valoracionMedia) VALUES (?, ?, ?, ?)";
+        String query="INSERT INTO Comentario (idNook,fecha,autor,texto,valoracionMedia) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps =connection.prepareStatement(query);
-            ps.setDate(1, (Date) comentario.getFecha());
-            ps.setString(2, comentario.getAutor());
-            ps.setString(3, comentario.getTexto());
-            ps.setDouble(4, comentario.getValoracionMedia());
+            ps.setInt(1, comentario.getIdNook());
+            ps.setDate(2, (Date) comentario.getFecha());
+            ps.setString(3, comentario.getAutor());
+            ps.setString(4, comentario.getTexto());
+            ps.setDouble(5, comentario.getValoracionMedia());
            
             int res = ps.executeUpdate();
             ps.close();
             pool.freeConnection(connection);
             return res;
+            
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;

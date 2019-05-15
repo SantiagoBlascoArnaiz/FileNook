@@ -8,6 +8,7 @@ package servlet;
 import conexionDB.comentarioDB;
 import conexionDB.nookDB;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -22,10 +23,10 @@ import modelo.Nook;
 
 /**
  *
- * @author Fnac
+ * @author Patricia
  */
-@WebServlet(name = "nookSV", urlPatterns = {"/nookSV"})
-public class nookSV extends HttpServlet {
+@WebServlet(name = "crearComentarioSV", urlPatterns = {"/crearComentarioSV"})
+public class crearComentarioSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,9 +41,30 @@ public class nookSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        HttpSession sesion = request.getSession();
+        String userName = (String) sesion.getAttribute("usuario");
+        
+        String texto = request.getParameter("comentario");
+        System.out.println(texto + "HOLIIIIIIIII SANTIIIII");
         
         int idNook = Integer.parseInt(request.getParameter("idNook"));
         Nook nook = nookDB.getNook(idNook);
+        
+        System.out.println(idNook + "ADIOSSSSSSSSSSI SANTIIIII");
+        
+        java.util.Date date = new java.util.Date();  
+        Date fecha = new Date(date.getTime());
+        
+        Comentario comentario = new Comentario();
+        comentario.setIdNook(idNook);
+        
+        comentario.setFecha(fecha);
+        comentario.setAutor(userName);
+        comentario.setTexto(texto);
+        System.out.println(comentario.getTexto() + "ADIOSSSSSSSSSSI SANTIIIII");
+        comentario.setValoracionMedia(0.0);
+        
+        comentarioDB.insert(comentario);
 
         
         ArrayList<Comentario> comentarios=comentarioDB.getComentariosNook(idNook);

@@ -89,12 +89,15 @@ and open the template in the editor.
                         </form>
                     </div>
                     <div class="comentarios">
-                        <ul>
-                            <li id="comentario">
-                                <input type="text" placeholder="Añada un comentario..." name="comment">
-                            </li>
-                            <li><button type="button">Enviar comentario</button></li>
-                        </ul>
+                        <form method="post"  action="/crearComentarioSV?idNook=<%=nook.getIdNook()%>" >
+                            <ul>
+                                <li><input id="comentario" type="text" placeholder="Añada un comentario..." name="comentario"></li>
+
+                                <li><div class="EnvComment">
+                                    <button type="submit" >Enviar comentario</button>
+                                </div></li>
+                            </ul>
+                        </form>
                     </div>
 
                     <div class="comentariosUsuarios">

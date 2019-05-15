@@ -402,15 +402,20 @@ label {
 
 .comentarios {
     width: 100%;
-    
     display: inline-block;
     padding-left: 5%;
     padding-top: 1rem;
+    margin-bottom: 7%;
 }
 #comentario {
     padding-right: 1rem;
-    width:80%;
-    
+    width: 50%;
+    position: absolute;
+}
+
+.EnvComment{
+    position: absolute;
+    margin-left: 55%;
 }
 
 .comentariosUsuarios ul li{

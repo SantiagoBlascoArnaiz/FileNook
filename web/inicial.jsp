@@ -29,8 +29,8 @@ and open the template in the editor.
                     <div class="navigation">
                         <ul>
                             <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
-                            <li><a href="perfil.jsp"><img src="imagenes/chica2.png"
-                                                           alt="Imagen del perfil de usuario"></a></li>
+                            <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>"
+                                                           alt="Imagen del perfil de usuario" width="100" height="100" ></a></li>
                         </ul>
                     </div>
                 </nav>

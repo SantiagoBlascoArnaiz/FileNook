@@ -52,6 +52,7 @@ public class inicioSesionSV extends HttpServlet {
             if(usr.getClave().equals(clave)){
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario",nombreUsuario);
+                
 
                 url = "/inicialSV";
             }else{

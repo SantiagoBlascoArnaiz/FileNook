@@ -120,22 +120,22 @@ public class usuarioDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection(); 
             
-        String consulta = "SELECT imagen FROM imagenPerfil WHERE nombre=? ";
+        String consulta = "SELECT imagenPerfil FROM Usuario WHERE nombreUsuario=? ";
         try {
             PreparedStatement ps  = connection.prepareStatement(consulta);
             ps.setString(1, nombre);
             ResultSet result = ps.executeQuery();
             
             if (result.next()) {
-                Blob blob = result.getBlob("imagen");
+                Blob blob = result.getBlob("imagenPerfil");
                 if (!result.wasNull() && blob.length() > 1) {
-                InputStream imagen = blob.getBinaryStream();
-                byte[] buffer = new byte[1000];
-                int len = imagen.read(buffer);
-                while (len != -1) {
-                    respuesta.write(buffer, 0, len);
-                    len = imagen.read(buffer);
-                }
+                    InputStream imagen = blob.getBinaryStream();
+                    byte[] buffer = new byte[1000];
+                    int len = imagen.read(buffer);
+                    while (len != -1) {
+                        respuesta.write(buffer, 0, len);
+                        len = imagen.read(buffer);
+                    }
                 imagen.close();
             } }
             pool.freeConnection(connection);

@@ -18,7 +18,7 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
-        
+       
         %>
         <div class="content">
         <header class="header">
@@ -46,8 +46,8 @@ and open the template in the editor.
                     
                     <form class="archivo"  method="post" enctype="multipart/form-data" action="/cogerImagenSV">
                             <ul>
-                                 
-                                <li><a href="archivosNook.jsp"><img src= " Imagen?name= " alt="Imagen del perfil"></a></li>
+                              
+                                <li><a href="archivosNook.jsp"><img  src= " recuperarImagenesSV?userName=<%=userName%>" width="150" height="150"  alt="Imagen del perfil"></a></li>
                                 <li><input type="file"  name ="foto"></li>
                                 <li><button type="submit" name="Cambiar">Cambiar</button></li>
 

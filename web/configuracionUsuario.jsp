@@ -49,7 +49,7 @@ and open the template in the editor.
                     <form class="archivo"  method="post" enctype="multipart/form-data" action="/cogerImagenSV">
                             <ul>
                               
-                                <li><a href="archivosNook.jsp"><img  src= " recuperarImagenesSV?userName=<%=userName%>" width="150" height="150"  alt="Imagen del perfil"></a></li>
+                                <li><a><img  src= "recuperarImagenesSV?userName=<%=userName%>" width="150" height="150"  alt="Imagen del perfil"></a></li>
                                 <li><input type="file"  name ="foto"></li>
                                 <li><button type="submit" name="Cambiar">Cambiar</button></li>
 
@@ -68,7 +68,7 @@ and open the template in the editor.
                                 <label for="psw-repeat"><b>Repetir nueva contraseña</b></label>
                                 <input class="input" type="password" placeholder="Repetir Contraseña" name="pswrepeat" required>
                                     
-                                <button type="submit">Cambiar contrasñea</button>
+                                <button type="submit">Cambiar contraseña</button>
                              </form>
                         
                 </div>

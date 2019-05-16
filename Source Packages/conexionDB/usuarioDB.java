@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package conexionDB;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -32,7 +34,43 @@ public class usuarioDB {
             e.printStackTrace();
             return 0;
         }
+
     }
+    public static int insertImagenDefecto(Usuario user , String fotodef) throws IOException {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+        
+        
+        File initialFile = new File(fotodef + "/defecto.jpg");
+        InputStream fotoDefecto = new FileInputStream(initialFile);
+        
+        
+        String consulta="UPDATE  Usuario  SET imagenPerfil=?  WHERE nombreUsuario= ?";
+        try {
+            ps =connection.prepareStatement(consulta);
+             
+            ps.setBlob(1, fotoDefecto ); 
+            
+            ps.setString(2, user.getNombreUsuario());
+            
+               
+            
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+        
+        
+           
+        
+        
+    
     
     public static Usuario getUsuario(String nombreUsuario) {
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -95,7 +133,7 @@ public class usuarioDB {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps=null;
-        String a="antonio";
+        
         String consulta="UPDATE  Usuario  SET imagenPerfil=?  WHERE nombreUsuario= ?";
         try {
             ps =connection.prepareStatement(consulta);

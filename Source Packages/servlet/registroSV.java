@@ -48,9 +48,13 @@ public class registroSV extends HttpServlet {
         user.setClave(clave);
         user.setCorreo(correo);
         
+        String pathP=getServletContext().getRealPath("/imagenes");
+        
         usuarioDB.insert(user);
+        usuarioDB.insertImagenDefecto(user,pathP);
         
         String url = "/inicioSesion.html";
+        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
         

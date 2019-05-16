@@ -40,7 +40,7 @@ and open the template in the editor.
                             <li><img src="imagenes/chico1.png" alt="Imagen del perfil de usuario"></li>
                             <li><h1>PedroGonz5</h1></li>
                             <li>
-                                <button type="submit" class="enviar_mensaje" onclick="window.location.href='crearMensaje.html'">Enviar mensaje</button>
+                                <button type="submit" class="enviar_mensaje" onclick="window.location.href='crearMensaje.jsp'">Enviar mensaje</button>
                             </li>
                         </ul>
                     </div>

@@ -63,7 +63,9 @@ and open the template in the editor.
 
                     <div class="opciones">
                         <ul>
-                            <li><a href="autor.jsp"><img src="imagenes/chico1.png"
+                            <li><a href="autor.jsp"><img <img src="recuperarimagenOtroSV?autor=<%=autor%>" style="width:90px;
+    height:90px;
+    border-radius: 50px;"
                                                        alt="Imagen del perfil de usuario"></a></li>
                             <li><a href="autor.jsp"><%=autor%></a></li>
                             <li><%=fecha%></li>

@@ -6,6 +6,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
          <script type='text/javascript'  src='js/miscripts.js'></script>
+             <script type="text/javascript">
+            function pswigual(){
+                var a=document.getElementsByName("psw")[0].value;
+                var b=document.getElementsByName("pswrepeat")[0].value;
+                
+                var espacios = false;
+                var cont = 0;
+               
+                if(a !== b){
+                    alert("Los campos \"Contraseña\" y \"Repetir Contraseña\" deben ser iguales");
+                    return false;
+                }
+                while (!espacios && (cont < a.length)) {
+                if (a.charAt(cont) === " ")
+                     espacios = true;
+                     cont++;
+                }
+ 
+                if (espacios) {
+                    alert ("La contraseña no puede contener espacios en blanco");
+                    return false;
+                }
+                if (a.length === 0 || b.length === 0) {
+                    alert("Los campos de la password no pueden quedar vacios");
+                    return false;
+                }
+            }
+            
+          </script>
     </head>
     <body >
         <div class="content">
@@ -16,7 +45,7 @@
         </header>
             <main class="main">
                 <div class="container">
-                    <form class="pag-registro"  onSubmit="return validarPasswd()" method="post"  action="/registroSV" >
+                    <form class="pag-registro" method="post"  action="/registroSV" onSubmit="return pswigual()">
                         <h1>Página de Registro</h1>
                         <hr>
                             <label for="email"><b>Email</b></label>
@@ -35,7 +64,7 @@
                             <input class="input" type="password" id="passwd" placeholder="Contraseña"  name="psw" required>
 
                             <label for="psw-repeat"><b>Repetir Contraseña</b></label>
-                            <input class="input" type="password" id="passwd2" placeholder="Repetir Contraseña" name="psw-repeat" required>
+                            <input class="input" type="password" id="passwd2" placeholder="Repetir Contraseña" name="pswrepeat" required>
 
                             <div class="clearfix">
                                 <button type="submit" class="signupbtn">Registrarse</button>

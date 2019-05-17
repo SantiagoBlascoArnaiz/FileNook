@@ -20,6 +20,19 @@ and open the template in the editor.
         String userName = (String) sesion.getAttribute("usuario");
        
         %>
+        
+        <script type="text/javascript">
+            function pswigual(){
+                var a=document.getElementsByName("pswN")[0].value;
+                var b=document.getElementsByName("pswrepeat")[0].value;
+               
+                if(a !== b){
+                    alert("Los campos \"Nueva contraseña\" y \"Repetir nueva contraseña\" deben ser iguales");
+                    return false;
+                }
+            }
+            
+        </script>
         <div class="content">
         <header class="header">
             <div class="container logo-nav-container">
@@ -57,7 +70,7 @@ and open the template in the editor.
                     </form>
                    
                         
-                             <form class="pag-config"  method="post" action="/cambioClaveSV">
+                             <form class="pag-config"  method="post" action="/cambioClaveSV" onsubmit="return pswigual()">
 
                                 <label for="psw"><b>Antigua contraseña</b></label>
                                 <input class="input" type="password" placeholder="Antigua contraseña" name="psw" required>

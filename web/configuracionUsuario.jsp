@@ -30,6 +30,28 @@ and open the template in the editor.
                     alert("Los campos \"Nueva contraseña\" y \"Repetir nueva contraseña\" deben ser iguales");
                     return false;
                 }
+                 while (!espacios && (cont < a.length)) {
+                if (a.charAt(cont) === " ")
+                     espacios = true;
+                     cont++;
+                }
+ 
+                if (espacios) {
+                    alert ("La contraseña no puede contener espacios en blanco");
+                    return false;
+                }
+                if (a.length === 0 || b.length === 0) {
+                    alert("Los campos de la password no pueden quedar vacios");
+                    return false;
+                }
+                if (a.length <= 4) {
+                    alert("La contraseña debe tener mas de 4 dígitos");
+                    return false;
+                }
+                if (a.length >= 15) {
+                    alert("La contraseña debe tener menos de 15 dígitos");
+                    return false;
+                }
             }
             
         </script>

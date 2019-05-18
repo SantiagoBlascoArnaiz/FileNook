@@ -185,5 +185,48 @@ public class nookDB {
         return null;
         }
     }
+
+    public static ArrayList<Nook> buscarnook(String busqueda) {
+       ConnectionPool pool = ConnectionPool.getInstance();
+       Connection connection = pool.getConnection();
+       ArrayList<Nook> listanooks=null;
+       
+       String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C WHERE  N.idNook=C.idNook AND N.idNook LIKE \"%?%\" OR N.nombre LIKE \"%?%\" OR N.autor LIKE \"%?%\" OR C.categoria LIKE \"%?%\" ";
+       ResultSet rs = null;
+       
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+             rs=ps.executeQuery();
+            
+            ps.setString(1,busqueda);
+            ps.setString(2,busqueda);
+            ps.setString(3,busqueda);
+            ps.setString(4,busqueda);
+            while(rs.next()){
+                Nook nook=new Nook();
+                nook.setIdNook(rs.getInt("idNook"));
+                nook.setNombre(rs.getString("nombre"));
+                nook.setResumen(rs.getString("resumen"));
+                nook.setAutor(rs.getString("autor"));
+                nook.setFechaCreacion(rs.getDate("fechaCreacion"));
+                nook.setFechaModificacion(rs.getDate("fechaModificacion"));
+                nook.setDescargas(rs.getInt("descargas"));
+                nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
+                listanooks.add(nook);
+            }
+            
+                rs.close();
+                ps.close();
+                pool.freeConnection(connection);
+            return listanooks;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        return null;
+        }
+       
+    
+       
+    }
     
 }

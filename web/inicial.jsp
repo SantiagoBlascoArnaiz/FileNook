@@ -21,6 +21,7 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        boolean buscar=false;
         %>
         <div class="content">
             <header class="header">
@@ -40,9 +41,16 @@ and open the template in the editor.
             <main class="main">
                 <div class="container">
                     <div class="proyectos-inicial">
-                        <div class="search-bar">
+                        
+                      
+                        
+                        
+                        <from class="search-bar" method="post" action="/buscarSV" >
                             <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
-                        </div>
+                            <input type="submit" value="Buscar" OnClick=<%buscar=true;%> >
+                        </from>
+                        
+                        
                         
                         <p>Populares</p>
                         <div id="populares" class="slider">      <!-- Give wrapper ID to target with jQuery & CSS -->
@@ -75,6 +83,58 @@ and open the template in the editor.
                                 <button class="MS-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                             </div>
                         </div>
+                            
+                            
+                            
+                            
+                               
+                          
+                        <% if(buscar){%>
+                        <%  
+                        
+                        ArrayList<Nook> nooksB= (ArrayList<Nook>) request.getAttribute("nooksB");
+                        ArrayList<String> NooksCategorias = (ArrayList<String>) request.getAttribute("NooksCategorias");
+                        for(int i = 0; i < nooksB.size(); i++){
+                        double valoracion = Math.round(nooksB.get(i).getValoracionMedia());
+                        
+                        %>
+                       <div class="nook_n">
+                            <div class="nook_n_img">
+                                <a href="/nookSV?idNook=<%=nooksB.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
+                            </div>
+                            <div class="titulo_nook">
+                                <h3><%=nooksB.get(i).getNombre()%></h3>
+                                <%if(NooksCategorias.get(i)!=null){%>
+                                <h4>Categoria: <%=NooksCategorias.get(i)%></h4>
+                                <%}else{%>
+                                <h4>Categoria: none<h4>
+                                <%}%>
+                                <p><%=nooksB.get(i).getResumen()%></p>
+                            </div>
+                            <div class="star">
+                                <form class="valoracion"  method="post" action="/valorarNookSV?idNook=<%=nooksB.get(i).getIdNook()%>&urlPagina=/buscarSV">
+                                    <p class="clasificacion">
+                                    <input id="<%=nooksB.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=nooksB.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
+                                    <label for="<%=nooksB.get(i).getIdNook()%>,5">&#9733;</label>
+                                    <input id="<%=nooksB.get(i).getIdNook()%>,4" type="radio" name="estrellas<%=nooksB.get(i).getIdNook()%>" value="4" onclick="this.form.submit();" <%if(valoracion==4){%> checked <%}%>>
+                                    <label for="<%=nooksB.get(i).getIdNook()%>,4">&#9733;</label>
+                                    <input id="<%=nooksB.get(i).getIdNook()%>,3" type="radio" name="estrellas<%=nooksB.get(i).getIdNook()%>" value="3" onclick="this.form.submit();" <%if(valoracion==3){%> checked <%}%>>
+                                    <label for="<%=nooksB.get(i).getIdNook()%>,3">&#9733;</label>
+                                    <input id="<%=nooksB.get(i).getIdNook()%>,2" type="radio" name="estrellas<%=nooksB.get(i).getIdNook()%>" value="2" onclick="this.form.submit();" <%if(valoracion==2){%> checked <%}%>>
+                                    <label for="<%=nooksB.get(i).getIdNook()%>,2">&#9733;</label>
+                                    <input id="<%=nooksB.get(i).getIdNook()%>,1" type="radio" name="estrellas<%=nooksB.get(i).getIdNook()%>" value="1" onclick="this.form.submit();" <%if(valoracion==1){%> checked <%}%>>
+                                    <label for="<%=nooksB.get(i).getIdNook()%>,1">&#9733;</label>
+                                    </p>
+                                </form>
+                                    
+                            </div>
+                                    
+                       </div>
+                    <%}%> 
+                    <%}%>                        
+                    
+                    
+                    
 
                         <script>
                             $('#populares').multislider({

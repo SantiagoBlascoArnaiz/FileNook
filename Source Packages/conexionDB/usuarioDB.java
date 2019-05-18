@@ -92,8 +92,6 @@ public class usuarioDB {
                 usuario.setNombreUsuario(rs.getString("nombreUsuario"));
                 usuario.setClave(rs.getString("clave"));
                 usuario.setCorreo(rs.getString("correo"));
-               // usuario.setImagenPerfil(rs.getPart("imagenPerfil"));
-                
             }
 
             rs.close();

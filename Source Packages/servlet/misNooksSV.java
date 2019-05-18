@@ -38,16 +38,16 @@ public class misNooksSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String name = "";
+        String nombre = "";
         HttpSession session = request.getSession(false);
         if (session != null){
-            name = (String)session.getAttribute("usuario");
+            nombre = (String)session.getAttribute("usuario");
         }
         
         StringBuilder str;
         ArrayList<String> categoriasNook;
         ArrayList<String> categorias = new ArrayList<>();
-        ArrayList<Nook> nooks= nookDB.getNooksUsuario(name);
+        ArrayList<Nook> nooks= nookDB.getNooksUsuario(nombre);
 
         for(int i=0; i < nooks.size(); i++){
             str =  new StringBuilder();
@@ -68,7 +68,6 @@ public class misNooksSV extends HttpServlet {
         request.setAttribute("misNooks", nooks);
         
         String url = "/misNooks.jsp";
-        System.out.println(url);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     

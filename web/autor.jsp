@@ -1,3 +1,6 @@
+<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Nook"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,6 +19,11 @@ and open the template in the editor.
         <%
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
+        
+        Usuario usuario = (Usuario) request.getAttribute("autor");
+        
+        String autor = usuario.getNombreUsuario();
+
         %>
         <div class="content">
             <header class="header">
@@ -38,91 +46,52 @@ and open the template in the editor.
                     <div class="perfil">
                         <ul>
                             <li><img src="imagenes/chico1.png" alt="Imagen del perfil de usuario"></li>
-                            <li><h1>PedroGonz5</h1></li>
+                            <li><h1><%=autor%></h1></li>
                             <li>
                                 <button type="submit" class="enviar_mensaje" onclick="window.location.href='crearMensaje.jsp'">Enviar mensaje</button>
                             </li>
                         </ul>
                     </div>
                     <div class="pag-nook_n">
+                        <%
+                        ArrayList<Nook> nooks = (ArrayList<Nook>) request.getAttribute("nooks");
+                        ArrayList<String> nooksCategorias = (ArrayList<String>) request.getAttribute("nooksCategorias");
+                        for(int i = 0; i < nooks.size(); i++){
+                        double valoracion = Math.round(nooks.get(i).getValoracionMedia());
+                        %>
+                        
                            <div class="nook_n">
-
-                                   <a href="#"><img src="imagenes/integrales.png"></a>
+                                   <div class="nook_n_img">
+                                    <a href="#"><img src="imagenes/simpleLogo.png"></a>
+                                   </div>
                                    <div class="titulo_nook">
-                                   <h3>Integrales </h3>
-                                   <h4>Categoria:matematicas,integrales,ejercicios,ejemplos</h4>
-                                   <p>Ejemplos y ejercicios de integrales de complejidad ascendente.</p>
+                                   <h3><%=nooks.get(i).getNombre()%></h3>
+                                    <%if(nooksCategorias.get(i)!=null){%>
+                                    <h4>Categoria: <%=nooksCategorias.get(i)%></h4>
+                                    <%}else{%>
+                                    <h4>Categoria: none<h4>
+                                    <%}%>
+                                    <p><%=nooks.get(i).getResumen()%></p>
 
                                    </div>
-                                <div class="star">
-                                    <form>
+                                <div class="star1">
+                                        <form class="valoracion" method="post" action="/valorarNookSV?idNook=<%=nooks.get(i).getIdNook()%>&urlPagina=/autorSV?nombre=<%=autor%>">
                                         <p class="clasificacion">
-                                        <input id="radio11" type="radio" name="estrellas" value="5">
-                                        <label for="radio11">&#9734;</label>
-                                        <input id="radio12" type="radio" name="estrellas" value="4">
-                                        <label for="radio12">&#9734;</label>
-                                        <input id="radio13" type="radio" name="estrellas" value="3">
-                                        <label for="radio13">&#9734;</label>
-                                        <input id="radio14" type="radio" name="estrellas" value="2">
-                                        <label for="radio14">&#9734;</label>
-                                        <input id="radio15" type="radio" name="estrellas" value="1">
-                                        <label for="radio15">&#9734;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,5">&#9734;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,4" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="4" onclick="this.form.submit();" <%if(valoracion==4){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,4">&#9734;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,3" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="3" onclick="this.form.submit();" <%if(valoracion==3){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,3">&#9734;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,2" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="2" onclick="this.form.submit();" <%if(valoracion==2){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,2">&#9734;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,1" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="1" onclick="this.form.submit();" <%if(valoracion==1){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,1">&#9734;</label>
                                         </p>
                                     </form>
                                 </div>
                            </div>
-                           <div class="nook_n">
-
-                                   <a href="#"><img src="imagenes/java.png"></a>
-                                   <div class="titulo_nook">
-                                     <h3>Programación java principiante</h3>
-                                      <h4>Categoria:java,programacion,ejercicios,ejemplos</h4>
-                                      <p>Programas sencillos y conceptos básicos de la progrmación en lenguaje java. </p>
-                                   </div>
-                                <div class="star">
-                                    <form>
-                                        <p class="clasificacion">
-                                        <input id="radio21" type="radio" name="estrellas" value="5">
-                                        <label for="radio21">?</label>
-                                        <input id="radio22" type="radio" name="estrellas" value="4">
-                                        <label for="radio22">?</label>
-                                        <input id="radio23" type="radio" name="estrellas" value="3">
-                                        <label for="radio23">?</label>
-                                        <input id="radio24" type="radio" name="estrellas" value="2">
-                                        <label for="radio24">?</label>
-                                        <input id="radio25" type="radio" name="estrellas" value="1">
-                                        <label for="radio25">?</label>
-                                        </p>
-                                    </form>
-                                </div>
-                           </div>
-
-                            <div class="nook_n">
-
-                                   <a href="#"><img src="imagenes/WW2.png"></a>
-                                   <div class="titulo_nook">
-                                    <h3>Historia la Segunda Guerra Mundial</h3>
-                                     <h4>Categoria:resumen,historia,guerra,mundial,imagenes</h4>
-                                    <p>Resumenes amplios e imágenes para mostrar el trasncurso del conflicto.</p>
-                                   </div>
-                                <div class="star">
-                                    <form>
-                                        <p class="clasificacion">
-                                        <input id="radio31" type="radio" name="estrellas" value="5">
-                                        <label for="radio31">?</label>
-                                        <input id="radio32" type="radio" name="estrellas" value="4">
-                                        <label for="radio32">?</label>
-                                        <input id="radio33" type="radio" name="estrellas" value="3">
-                                        <label for="radio33">?</label>
-                                        <input id="radio34" type="radio" name="estrellas" value="2">
-                                        <label for="radio34">?</label>
-                                        <input id="radio35" type="radio" name="estrellas" value="1">
-                                        <label for="radio35">?</label>
-                                        </p>
-                                    </form>
-                                </div>
-                           </div>
-
+                                        <%}%>
 
                     </div>
             </div>

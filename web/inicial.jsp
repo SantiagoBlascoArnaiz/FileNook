@@ -43,10 +43,10 @@ and open the template in the editor.
                       
                         
                         
-                        <from class="search-bar" method="post" action="/buscarSV" >
+                        <form class="search-bar" method="post" action="/buscarSV" >
                             <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
-                            <input type="submit" value="Buscar">
-                        </from>
+                            <input type="submit" value="Buscar" >
+                        </form>
                         
                         
                         

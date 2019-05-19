@@ -41,7 +41,7 @@ public class buscarSV extends HttpServlet {
        String busqueda= request.getParameter("search");
        ArrayList<String> categoriasNook;
        ArrayList<String> categorias = new ArrayList<>();
-       ArrayList<Nook> listNook=nookDB.buscarnook(busqueda);
+       ArrayList<Nook> listNook=nookDB.buscarNook(busqueda);
        StringBuilder str;
        
        for(int i=0; i < listNook.size(); i++){
@@ -60,7 +60,7 @@ public class buscarSV extends HttpServlet {
         }
        
        request.setAttribute("nooksB", listNook);
-       request.setAttribute("NooksCategorias", categorias);
+       request.setAttribute("categorias", categorias);
        
      
        

@@ -43,8 +43,8 @@
                   </div>
                  <div class="pag-nook_n">
                      <%
-                        ArrayList<Nook> nooks = (ArrayList<Nook>) request.getAttribute("nooks");
-                        ArrayList<String> nooksCategorias = (ArrayList<String>) request.getAttribute("nooksCategorias");
+                        ArrayList<Nook> nooks = (ArrayList<Nook>) request.getAttribute("nooksB");
+                        ArrayList<String> nooksCategorias = (ArrayList<String>) request.getAttribute("categorias");
                         for(int i = 0; i < nooks.size(); i++){
                         double valoracion = Math.round(nooks.get(i).getValoracionMedia());
                         %>
@@ -52,11 +52,16 @@
 
                                  <a href="#"><img src="imagenes/integrales.png"></a>
                                  <div class="titulo_nook">
-                                  <h3>Integrales </h3>
-                                  <h4>Categoria:matematicas,integrales,ejercicios,ejemplos</h4>
-                                  <p>Ejemplos y ejercicios de integrales de complejidad ascendente.</p>
-                                 </div>
-                              <div class="star">
+                                   <h3><%=nooks.get(i).getNombre()%></h3>
+                                    <%if(nooksCategorias.get(i)!=null){%>
+                                    <h4>Categoria: <%=nooksCategorias.get(i)%></h4>
+                                    <%}else{%>
+                                    <h4>Categoria: none<h4>
+                                    <%}%>
+                                    <p><%=nooks.get(i).getResumen()%></p>
+
+                                   </div>
+                              <div class="star1">
                                   <form>
                                       <p class="clasificacion">
                                       <input id="<%=nooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >

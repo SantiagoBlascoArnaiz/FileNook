@@ -5,12 +5,14 @@
  */
 package conexionDB;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.servlet.http.Part;
 import modelo.Documento;
 
 /**
@@ -74,4 +76,26 @@ public class documentoDB {
         }
     }
     
+    public static int insertDocu(int idNook, Part documento) throws IOException {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+        
+        String consulta="UPDATE  Documento  SET documento=?  WHERE nook= ?";
+        try {
+            ps =connection.prepareStatement(consulta);
+           
+            ps.setBlob(1, documento.getInputStream() ); 
+            
+            ps.setInt(2, idNook);
+            
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

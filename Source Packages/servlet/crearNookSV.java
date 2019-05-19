@@ -6,11 +6,9 @@
 package servlet;
 
 import conexionDB.clasificacionCategoriasDB;
+import conexionDB.documentoDB;
 import conexionDB.nookDB;
-import conexionDB.usuarioDB;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import modelo.ClasificacionCategorias;
+import modelo.Documento;
 import modelo.Nook;
 
 /**
@@ -86,8 +85,16 @@ public class crearNookSV extends HttpServlet {
         
         clasificacionCategoriasDB.insert(categoria);
         
+        Documento doc = new Documento();
         
-        nookDB.insertDocu(idNook,documento);
+        doc.setNook(idNook);
+        doc.setNombre(documento.getSubmittedFileName());
+        doc.setFechaCreacion(fecha);
+        doc.setFechaModificacion(fecha);
+        
+        documentoDB.insert(doc);
+        
+        documentoDB.insertDocu(idNook,documento);
         
         
         String url = "/misNooksSV";

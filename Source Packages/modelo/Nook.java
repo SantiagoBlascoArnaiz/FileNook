@@ -17,9 +17,9 @@ public class Nook {
     private String autor;
     private Date fechaCreacion;
     private Date fechaModificacion;
-    private Blob documento;
     private int descargas;
-    private double valoracionMedia;    
+    private double valoracionMedia;
+    
     public Nook(){
         
     }
@@ -99,13 +99,7 @@ public class Nook {
     public void setValoracionMedia(double valoracionMedia) {
         this.valoracionMedia = valoracionMedia;
     }
-    public Blob getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(Blob documento) {
-        this.documento = documento;
-    }
+    
 }
     
 

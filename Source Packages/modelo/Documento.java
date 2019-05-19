@@ -1,6 +1,7 @@
 
 package modelo;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class Documento {
@@ -10,19 +11,20 @@ public class Documento {
     private String resumen;
     private Date fechaCreacion;
     private Date fechaModificacion;
+    private Blob documento;
     
     public Documento(){
         
     }
    
-    public Documento(int nook, String nombre, String resumen, Date fechaCreacion, Date fechaModificacion) {
+    public Documento(int nook, String nombre, String resumen, Date fechaCreacion, Date fechaModificacion, Blob documento) {
         this.nook = nook;
         this.nombre = nombre;
         this.resumen = resumen;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
+        this.documento = documento;
     }
-
 
     public int getNook() {
         return nook;
@@ -62,5 +64,13 @@ public class Documento {
 
     public void setFechaModificacion(Date fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
+    }
+    
+    public Blob getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(Blob documento) {
+        this.documento = documento;
     }
 }

@@ -289,28 +289,5 @@ public class nookDB {
         }
         
     }
-        public static int insertDocu(int idNook, Part documento) throws IOException {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps=null;
-        
-        String consulta="UPDATE  Nook  SET documento=?  WHERE idNook= ?";
-        try {
-            ps =connection.prepareStatement(consulta);
-           
-            ps.setBlob(1, documento.getInputStream() ); 
-            
-            ps.setInt(2, idNook);
-            
-               
-            
-            int res = ps.executeUpdate();
-            ps.close();
-            pool.freeConnection(connection);
-            return res;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
+
 }

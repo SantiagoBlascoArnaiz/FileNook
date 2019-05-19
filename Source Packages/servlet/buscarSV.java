@@ -65,7 +65,7 @@ public class buscarSV extends HttpServlet {
      
        
        
-      String url = "/inicial.jsp";
+      String url = "/bsuqueda.jsp";
       
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
       dispatcher.forward(request, response);

@@ -29,7 +29,7 @@ and open the template in the editor.
                     <ul>
                         <li class="navigation-usuario"><a href="perfil.html"><%=userName%></a></li>
                         <li><a href="perfil.html"><img src="recuperarImagenesSV?userName=<%=userName%>"
-                                                       class="imagenesUsuarios"
+                                                       class="imagenesUsuariosCabecera"
                                                        alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>

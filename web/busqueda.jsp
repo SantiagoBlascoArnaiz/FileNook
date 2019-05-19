@@ -1,3 +1,5 @@
+<%@page import="modelo.Nook"%>
+<%@page import="java.util.ArrayList"%>
 <html lang="es">
     <head>
         <title>FileNook</title>
@@ -18,7 +20,7 @@
                       <ul>
                           <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
                           <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>"
-                                                        class="imagenesUsuarios"
+                                                        class="imagenesUsuariosCabecera"
                                                          alt="Imagen del perfil de usuario"></a></li>
                       </ul>
                   </nav>
@@ -40,6 +42,12 @@
 
                   </div>
                  <div class="pag-nook_n">
+                     <%
+                        ArrayList<Nook> nooks = (ArrayList<Nook>) request.getAttribute("nooks");
+                        ArrayList<String> nooksCategorias = (ArrayList<String>) request.getAttribute("nooksCategorias");
+                        for(int i = 0; i < nooks.size(); i++){
+                        double valoracion = Math.round(nooks.get(i).getValoracionMedia());
+                        %>
                         <div class="nook_n">
 
                                  <a href="#"><img src="imagenes/integrales.png"></a>
@@ -51,20 +59,22 @@
                               <div class="star">
                                   <form>
                                       <p class="clasificacion">
-                                      <input id="radio11" type="radio" name="estrellas" value="5">
-                                      <label for="radio11">?</label>
-                                      <input id="radio12" type="radio" name="estrellas" value="4">
-                                      <label for="radio12">?</label>
-                                      <input id="radio13" type="radio" name="estrellas" value="3">
-                                      <label for="radio13">?</label>
-                                      <input id="radio14" type="radio" name="estrellas" value="2">
-                                      <label for="radio14">?</label>
-                                      <input id="radio15" type="radio" name="estrellas" value="1">
-                                      <label for="radio15">?</label>
+                                      <input id="<%=nooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,5">&#9733;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,4" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="4" onclick="this.form.submit();" <%if(valoracion==4){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,4">&#9733;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,3" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="3" onclick="this.form.submit();" <%if(valoracion==3){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,3">&#9733;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,2" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="2" onclick="this.form.submit();" <%if(valoracion==2){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,2">&#9733;</label>
+                                        <input id="<%=nooks.get(i).getIdNook()%>,1" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="1" onclick="this.form.submit();" <%if(valoracion==1){%> checked <%}%> >
+                                        <label for="<%=nooks.get(i).getIdNook()%>,1">&#9733;</label>
                                       </p>
                                   </form>
                               </div>
                         </div>
+                     <%}%>
+                     
                   </div>
               </div>
           </main>

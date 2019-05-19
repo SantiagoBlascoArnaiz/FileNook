@@ -37,7 +37,7 @@ and open the template in the editor.
                     <ul>
                         <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
                         <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>"
-                                                      class="imagenesUsuarios"
+                                                      class="imagenesUsuariosCabecera"
                                                       alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
@@ -62,10 +62,9 @@ and open the template in the editor.
 
                     <div class="opciones">
                         <ul>
-                            <li><a href="autorSV?nombre=<%=autor%>"><img <img src="recuperarimagenOtroSV?autor=<%=autor%>" style="width:90px;
-    height:90px;
-    border-radius: 50px;"
-                                                       alt="Imagen del perfil de usuario"></a></li>
+                            <li><a href="autorSV?nombre=<%=autor%>"><img <img src="recuperarimagenOtroSV?autor=<%=autor%>"
+                                                                              class="imagenesUsuarios"
+                                                                                alt="Imagen del perfil de usuario"></a></li>
                             <li><a href="autorSV?nombre=<%=autor%>"><%=autor%></a></li>
                             <li><%=fecha%></li>
                             <li><button type="button">Descargar</button></li>
@@ -110,7 +109,7 @@ and open the template in the editor.
                             <li>
                                 <div class="comentarioTexto">
                                     <p class="usuario"><a href="autorSV?nombre=<%=comentarios.get(i).getAutor()%>"><img src="recuperarImagenesSV?userName=<%=comentarios.get(i).getAutor()%>"
-                                                      style="width:90px; height:90px; border-radius: 50px;"
+                                                      class="imagenesUsuariosComentarios"
                                                       alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
                                     <p><%=comentarios.get(i).getTexto()%></p>
                                     <div class="star1">

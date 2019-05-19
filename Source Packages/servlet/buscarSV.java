@@ -41,7 +41,7 @@ public class buscarSV extends HttpServlet {
        String busqueda= request.getParameter("search");
        ArrayList<String> categoriasNook;
        ArrayList<String> categorias = new ArrayList<>();
-       ArrayList<Nook> listNook=nookDB.buscarNook(busqueda);
+       ArrayList<Nook> listNook=nookDB.getNooksDescargas();
        StringBuilder str;
        
        for(int i=0; i < listNook.size(); i++){
@@ -65,7 +65,7 @@ public class buscarSV extends HttpServlet {
      
        
        
-      String url = "/bsuqueda.jsp";
+      String url = "/busqueda.jsp";
       
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
       dispatcher.forward(request, response);

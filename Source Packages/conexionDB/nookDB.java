@@ -192,10 +192,10 @@ public class nookDB {
        ArrayList<Nook> listanooks=null;
        
        String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C "
-               + "WHERE  N.idNook=C.idNook AND "
-               + "OR N.nombre LIKE %\" +?+\"%"
-               + "OR N.autor LIKE %\" +?+\"%"
-               + "OR C.categoria LIKE %\" +?+\"%";
+               + "WHERE  (N.idNook=C.idNook AND "
+               + "N.nombre = ?"
+               + "OR N.autor = ?"
+               + "OR C.categoria = ?)";
        ResultSet rs = null;
        
         try {

@@ -62,8 +62,9 @@ and open the template in the editor.
                         
                            <div class="nook_n">
                                    <div class="nook_n_img">
-                                    <a href="#"><img src="imagenes/simpleLogo.png"></a>
+                                    <a href="/nookSV?idNook=<%=nooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
                                    </div>
+                               
                                    <div class="titulo_nook">
                                    <h3><%=nooks.get(i).getNombre()%></h3>
                                     <%if(nooksCategorias.get(i)!=null){%>
@@ -75,7 +76,7 @@ and open the template in the editor.
 
                                    </div>
                                 <div class="star1">
-                                        <form class="valoracion" method="post" action="/valorarNookSV?idNook=<%=nooks.get(i).getIdNook()%>&urlPagina=/autorSV?nombre=<%=autor%>">
+                                    <form class="valoracion" method="post" action="/valorarNookSV?idNook=<%=nooks.get(i).getIdNook()%>&urlPagina=/autorSV?nombre=<%=autor%>">
                                         <p class="clasificacion">
                                         <input id="<%=nooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
                                         <label for="<%=nooks.get(i).getIdNook()%>,5">&#9733;</label>

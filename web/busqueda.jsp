@@ -50,7 +50,10 @@
                         %>
                         <div class="nook_n">
 
-                                 <a href="#"><img src="imagenes/integrales.png"></a>
+                                 <div class="nook_n_img">
+                                    <a href="/nookSV?idNook=<%=nooks.get(i).getIdNook()%>"><img src="imagenes/simpleLogo.png"></a>
+                                   </div>
+                            
                                  <div class="titulo_nook">
                                    <h3><%=nooks.get(i).getNombre()%></h3>
                                     <%if(nooksCategorias.get(i)!=null){%>
@@ -61,22 +64,7 @@
                                     <p><%=nooks.get(i).getResumen()%></p>
 
                                    </div>
-                              <div class="star1">
-                                  <form>
-                                      <p class="clasificacion">
-                                      <input id="<%=nooks.get(i).getIdNook()%>,5" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="5" onclick="this.form.submit();" <%if(valoracion==5){%> checked <%}%> >
-                                        <label for="<%=nooks.get(i).getIdNook()%>,5">&#9733;</label>
-                                        <input id="<%=nooks.get(i).getIdNook()%>,4" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="4" onclick="this.form.submit();" <%if(valoracion==4){%> checked <%}%> >
-                                        <label for="<%=nooks.get(i).getIdNook()%>,4">&#9733;</label>
-                                        <input id="<%=nooks.get(i).getIdNook()%>,3" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="3" onclick="this.form.submit();" <%if(valoracion==3){%> checked <%}%> >
-                                        <label for="<%=nooks.get(i).getIdNook()%>,3">&#9733;</label>
-                                        <input id="<%=nooks.get(i).getIdNook()%>,2" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="2" onclick="this.form.submit();" <%if(valoracion==2){%> checked <%}%> >
-                                        <label for="<%=nooks.get(i).getIdNook()%>,2">&#9733;</label>
-                                        <input id="<%=nooks.get(i).getIdNook()%>,1" type="radio" name="estrellas<%=nooks.get(i).getIdNook()%>" value="1" onclick="this.form.submit();" <%if(valoracion==1){%> checked <%}%> >
-                                        <label for="<%=nooks.get(i).getIdNook()%>,1">&#9733;</label>
-                                      </p>
-                                  </form>
-                              </div>
+                              
                         </div>
                      <%}%>
                      

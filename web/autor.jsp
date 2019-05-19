@@ -45,7 +45,8 @@ and open the template in the editor.
                     <div class="perfil">
                         <ul>
                             <li><img src="recuperarImagenesSV?userName=<%=autor%>"
-                                     style="width:90px; height:90px; border-radius: 50px;" alt="Imagen del perfil de usuario"></li>
+                                     class="imagenesUsuarios"
+                                     alt="Imagen del perfil de usuario"></li>
                             <li><h1><%=autor%></h1></li>
                             <li>
                                 <button type="submit" class="enviar_mensaje" onclick="window.location.href='crearMensaje.jsp'">Enviar mensaje</button>
@@ -70,7 +71,7 @@ and open the template in the editor.
                                     <%if(nooksCategorias.get(i)!=null){%>
                                     <h4>Categoria: <%=nooksCategorias.get(i)%></h4>
                                     <%}else{%>
-                                    <h4>Categoria: none<h4>
+                                    <h4>Categoria: Ninguna<h4>
                                     <%}%>
                                     <p><%=nooks.get(i).getResumen()%></p>
 

@@ -59,7 +59,7 @@
                                     <%if(nooksCategorias.get(i)!=null){%>
                                     <h4>Categoria: <%=nooksCategorias.get(i)%></h4>
                                     <%}else{%>
-                                    <h4>Categoria: none<h4>
+                                    <h4>Categoria: Ninguna<h4>
                                     <%}%>
                                     <p><%=nooks.get(i).getResumen()%></p>
 

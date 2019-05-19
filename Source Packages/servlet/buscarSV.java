@@ -41,12 +41,12 @@ public class buscarSV extends HttpServlet {
        String busqueda= request.getParameter("search");
        ArrayList<String> categoriasNook;
        ArrayList<String> categorias = new ArrayList<>();
-       ArrayList<Nook> listnook=nookDB.buscarnook(busqueda);
+       ArrayList<Nook> listNook=nookDB.buscarnook(busqueda);
        StringBuilder str;
        
-       for(int i=0; i < listnook.size(); i++){
+       for(int i=0; i < listNook.size(); i++){
             str =  new StringBuilder();
-            categoriasNook = clasificacionCategoriasDB.getCategoriasNook(listnook.get(i).getIdNook());
+            categoriasNook = clasificacionCategoriasDB.getCategoriasNook(listNook.get(i).getIdNook());
             for(int j = 0; j < categoriasNook.size(); j++ ){
                 str.append(categoriasNook.get(j));
                 str.append(',');
@@ -59,7 +59,7 @@ public class buscarSV extends HttpServlet {
             }
         }
        
-       request.setAttribute("nooksB", listnook);
+       request.setAttribute("nooksB", listNook);
        request.setAttribute("NooksCategorias", categorias);
        
      

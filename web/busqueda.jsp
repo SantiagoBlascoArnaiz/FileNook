@@ -17,9 +17,8 @@
                   <nav class="navigation">
                       <ul>
                           <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
-                          <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>" style="width:90px;
-    height:90px;
-    border-radius: 50px;"
+                          <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>"
+                                                        class="imagenesUsuarios"
                                                          alt="Imagen del perfil de usuario"></a></li>
                       </ul>
                   </nav>

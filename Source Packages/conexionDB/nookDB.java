@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package conexionDB;
+import java.io.IOException;
 import java.sql.*;
 import modelo.Nook;
 import java.util.ArrayList;
+import javax.servlet.http.Part;
 
 public class nookDB {
     
@@ -286,5 +288,29 @@ public class nookDB {
             return -1.0;
         }
         
+    }
+        public static int insertDocu(int idNook, Part documento) throws IOException {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+        
+        String consulta="UPDATE  Nook  SET documento=?  WHERE idNook= ?";
+        try {
+            ps =connection.prepareStatement(consulta);
+           
+            ps.setBlob(1, documento.getInputStream() ); 
+            
+            ps.setInt(2, idNook);
+            
+               
+            
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

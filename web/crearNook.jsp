@@ -35,7 +35,7 @@ and open the template in the editor.
                         <h3 style="margin-top: 3rem;">CREAR NOOK</h3>
                     <div class="pag-crearNook">
 
-                        <form class="tablamensajetexto"  method="post" action="/crearNookSV">
+                        <form class="tablamensajetexto"  method="post" enctype="multipart/form-data" action="/crearNookSV" >
 
                             <div class="partes">
                                 <label for="nombre" class="nombreNook" style="padding-right: 2.5em;">Nombre:</label>
@@ -56,7 +56,7 @@ and open the template in the editor.
                             <div class="partes" >
                                 <label for="subirarchivo" class="SubirArchivo" style="padding-right: 2em;">Subir Archivo:</label>
                             </div>
-                                    <input type="file" multiple="multiple"/>
+                            <input type="file" name="documento" required> <!--multiple="multiple"--> 
                                
                             
                             <div class="partes" >

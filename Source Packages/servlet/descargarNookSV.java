@@ -5,32 +5,20 @@
  */
 package servlet;
 
-import conexionDB.clasificacionCategoriasDB;
-import conexionDB.nookDB;
-import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import modelo.ClasificacionCategorias;
-import modelo.Nook;
 
 /**
  *
- * @author Fnac
+ * @author Usuario
  */
-@WebServlet(name = "crearNookSV", urlPatterns = {"/crearNookSV"})
-@MultipartConfig
-public class crearNookSV extends HttpServlet {
+@WebServlet(name = "descargarNookSV", urlPatterns = {"/descargarNookSV"})
+public class descargarNookSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,56 +31,19 @@ public class crearNookSV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nombre = request.getParameter("nombre");
-        String etiquetas = request.getParameter("etiquetas");
-        String resumen = request.getParameter("resumen");
-        
-        Part documento = request.getPart("documento");
-        
-        
-        
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
-
-        Nook nook = new Nook();
-        
-        nook.setNombre(nombre);
-        nook.setResumen(resumen);
-        
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        nook.setAutor(userName);
-        nook.setFechaCreacion(fecha);
-        nook.setFechaModificacion(fecha);
-        nook.setDescargas(0);
-        nook.setValoracionMedia(0.0);
-      
-        nookDB.insert(nook);
-        
-        
-        
-        Nook nookCreado = nookDB.ultimoNook(userName);
-        int idNook = nookCreado.getIdNook();
-        
-        
-        
-        
-        ClasificacionCategorias categoria = new ClasificacionCategorias();
-        
-        categoria.setIdNook(idNook);
-        categoria.setCategoria(etiquetas);
-        
-        clasificacionCategoriasDB.insert(categoria);
-        
-        
-        nookDB.insertDocu(idNook,documento);
-        
-        
-        String url = "/misNooksSV";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet descargarNookSV</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet descargarNookSV at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -133,9 +84,5 @@ public class crearNookSV extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private ClasificacionCategorias ClasificacionCategorias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

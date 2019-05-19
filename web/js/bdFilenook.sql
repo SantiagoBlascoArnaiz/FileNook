@@ -48,6 +48,7 @@ CREATE TABLE Nook(
 	fechaModificacion DATE,
 	descargas INTEGER,
         valoracionMedia NUMERIC(3,1),
+        documento BLOB,
 	PRIMARY KEY (idNook),
 	CONSTRAINT FK_NOOK FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)

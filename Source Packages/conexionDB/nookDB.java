@@ -35,7 +35,7 @@ public class nookDB {
         }
     }
     
-        public static int actualizarValoracionMedia(int idNook, double media) {
+    public static int actualizarValoracionMedia(int idNook, double media) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
@@ -231,5 +231,29 @@ public class nookDB {
     
        
     }
-    
+        public static double valoracionMediaAutor(String autor){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        double media = -1.0;
+        ResultSet rs = null;
+        String consulta="SELECT AVG(cast(valoracionMedia as float)) as media FROM nook WHERE autor = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setString(1, autor);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                media = rs.getDouble("media");    
+            }
+            
+            rs.close();
+            ps.close();
+            pool.freeConnection(connection);
+            return media;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1.0;
+        }
+        
+    }
 }

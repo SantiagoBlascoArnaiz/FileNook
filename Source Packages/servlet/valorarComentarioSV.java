@@ -5,10 +5,10 @@
  */
 package servlet;
 
-import conexionDB.nookDB;
-import conexionDB.usuarioDB;
-import conexionDB.valoracionesNookDB;
+import conexionDB.comentarioDB;
+import conexionDB.valoracionesComentarioDB;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.ValoracionNook;
+import modelo.ValoracionComentario;
 
 /**
  *
  * @author andres
  */
-@WebServlet(name = "valorarNookSV", urlPatterns = {"/valorarNookSV"})
-public class valorarNookSV extends HttpServlet {
+@WebServlet(name = "valorarComentarioSV", urlPatterns = {"/valorarComentarioSV"})
+public class valorarComentarioSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,43 +40,33 @@ public class valorarNookSV extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         
-        ValoracionNook valoracion = new ValoracionNook();
-        String usr = (String) session.getAttribute("usuario");
-        int idNook = Integer.parseInt(request.getParameter("idNook"));
-        int val = Integer.parseInt(request.getParameter("estrellas"+idNook));
+        ValoracionComentario valoracion = new ValoracionComentario();
+        String usuario = (String) session.getAttribute("usuario");
+        int idComentario = Integer.parseInt(request.getParameter("comentario"));
+        int val = Integer.parseInt(request.getParameter("cestrellas"+idComentario));   
         
         java.util.Date date = new java.util.Date();  
         Date fecha = new Date(date.getTime());
         
-        valoracion.setNook(idNook);
-        valoracion.setUsuario(usr);
-        valoracion.setPuntuacion(val);
+        valoracion.setComentario(idComentario);
         valoracion.setFecha(fecha);
+        valoracion.setUsuario(usuario);
+        valoracion.setPuntuacion(val);
         
-        valoracionesNookDB.insert(valoracion);
         
-        double media = valoracionesNookDB.valoracionMediaNook(idNook);
+        valoracionesComentarioDB.insert(valoracion);
+        
+        double media = valoracionesComentarioDB.valoracionMediaComentario(idComentario);
+        
         if(media!=-1){
-            nookDB.actualizarValoracionMedia(idNook, media);
+            comentarioDB.actualizarValoracionMedia(idComentario, media);
         }else{
-            nookDB.actualizarValoracionMedia(idNook, 0);
-        }
-        String autor = nookDB.getNook(idNook).getAutor();
-        
-        double mediaAutor = nookDB.valoracionMediaAutor(autor);
-        if(mediaAutor != -1){
-            usuarioDB.actualizarValoracionMedia(autor, media);
-        }else{
-            usuarioDB.actualizarValoracionMedia(autor, 0);
+            comentarioDB.actualizarValoracionMedia(idComentario, 0);
         }
         
         String url = request.getParameter("urlPagina");
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
-    }
-    
-    private static void actualizarMedia(int idNook){
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

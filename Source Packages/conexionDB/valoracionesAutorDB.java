@@ -6,49 +6,45 @@
 package conexionDB;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import modelo.ValoracionNook;
+import modelo.ValoracionAutor;
 
 /**
  *
  * @author andres
  */
-public class valoracionesNookDB {
+public class valoracionesAutorDB {
 
-    public static int insert(ValoracionNook valoracion){
+    public static int insert(ValoracionAutor valoracion){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         ResultSet rs = null;
         int res = 0;
         String consulta= ""
-                + "SELECT * FROM valoracionesNook "
-                + "WHERE nook = ? and usuario = ?";
+                + "SELECT * FROM ValoracionesAutor "
+                + "WHERE autor = ? and usuario = ?";
         try{
             PreparedStatement ps = connection.prepareStatement(consulta);
-            ps.setInt(1, valoracion.getNook());
+            ps.setString(1, valoracion.getAutor());
             ps.setString(2, valoracion.getUsuario());
             rs = ps.executeQuery();
             System.out.println(rs);
             if(!rs.next()){
-                consulta = "INSERT INTO valoracionesNook (nook, usuario, puntuacion, fecha)"
-                        + " VALUES (?, ?, ?, ?)";
+                consulta = "INSERT INTO ValoracionesAutor (autor, usuario, puntuacion)"
+                        + " VALUES (?, ?, ?)";
                 ps = connection.prepareStatement(consulta);
-                ps.setInt(1, valoracion.getNook());
+                ps.setString(1, valoracion.getAutor());
                 ps.setString(2, valoracion.getUsuario());
-                ps.setInt(3, valoracion.getPuntuacion());
-                ps.setDate(4, (Date) valoracion.getFecha());
+                ps.setDouble(3, valoracion.getPuntuacion());
             } else{
-                consulta = "UPDATE valoracionesNook SET puntuacion = ?, fecha = ? "
-                        + "WHERE nook = ? AND usuario = ?";
+                consulta = "UPDATE ValoracionesAutor SET puntuacion = ? "
+                        + "WHERE autor = ? AND usuario = ?";
                 ps = connection.prepareStatement(consulta);
-                ps.setInt(1, valoracion.getPuntuacion());
-                ps.setDate(2, (Date) valoracion.getFecha());
-                ps.setInt(3, valoracion.getNook());
-                ps.setString(4, valoracion.getUsuario());
+                ps.setDouble(1, valoracion.getPuntuacion());
+                ps.setString(2, valoracion.getAutor());
+                ps.setString(3, valoracion.getUsuario());
             }
             res = ps.executeUpdate();
             rs.close();
@@ -65,15 +61,15 @@ public class valoracionesNookDB {
     
     
     
-    public static double valoracionMediaNook(int idNook){
+    public static double valoracionMediaAutor(String autor){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         double media = -1.0;
         ResultSet rs = null;
-        String consulta="SELECT AVG(cast(puntuacion as float)) as media FROM ValoracionesNook WHERE nook = ?";
+        String consulta="SELECT AVG(puntuacion) as media FROM ValoracionesAutor WHERE autor = ?";
         try{
             PreparedStatement ps = connection.prepareStatement(consulta);
-            ps.setInt(1, idNook);
+            ps.setString(1, autor);
             rs = ps.executeQuery();
             while(rs.next()){
                 media = rs.getDouble("media");    

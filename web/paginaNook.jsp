@@ -18,16 +18,16 @@ and open the template in the editor.
     </head>
     <body >
         <%
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        Nook nook = (Nook) request.getAttribute("nook");
-        Double valoracion = nook.getValoracionMedia();
-        String nombre = nook.getNombre();
-        Date fecha = nook.getFechaCreacion();
-        String resumen = nook.getResumen();
-        String autor = nook.getAutor();
-        int descargas = nook.getDescargas();
+            HttpSession sesion = request.getSession();
+            String userName = (String) sesion.getAttribute("usuario");
+
+            Nook nook = (Nook) request.getAttribute("nook");
+            double valoracion = Math.round(nook.getValoracionMedia());
+            String nombre = nook.getNombre();
+            Date fecha = nook.getFechaCreacion();
+            String resumen = nook.getResumen();
+            String autor = nook.getAutor();
+            int descargas = nook.getDescargas();
         %>
         <div class="content">
         <header class="header">
@@ -105,26 +105,27 @@ and open the template in the editor.
                             <%
                                 ArrayList<Comentario> comentarios = (ArrayList<Comentario>) request.getAttribute("comentarios");
                                 for(int i = 0; i < comentarios.size(); i++){
+                                    double valoracionCo = Math.round(comentarios.get(i).getValoracionMedia());
                             %>
                             <li>
-                                <div class="comentarioTexto">
+                                <div class="comentarioTexto" method="post" action="/valorarComentarioSV?">
                                     <p class="usuario"><a href="autorSV?nombre=<%=comentarios.get(i).getAutor()%>"><img src="recuperarImagenesSV?userName=<%=comentarios.get(i).getAutor()%>"
                                                       class="imagenesUsuariosComentarios"
                                                       alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
                                     <p><%=comentarios.get(i).getTexto()%></p>
                                     <div class="star1">
-                                        <form class="valoracion">
+                                        <form class="valoracion" method="post" action="/valorarComentarioSV?comentario=<%=comentarios.get(i).getIdComentario()%>&urlPagina=/nookSV?idNook=<%=nook.getIdNook()%>">
                                             <p class="clasificacion">
-                                                <input id="<%=comentarios.get(i).getIdComentario()%>,5" type="radio" name="estrellas" value="5">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,5">&#9733;</label>
-                                                <input id="<%=comentarios.get(i).getIdComentario()%>,4" type="radio" name="estrellas" value="4">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,4">&#9733;</label>
-                                                <input id="<%=comentarios.get(i).getIdComentario()%>,3" type="radio" name="estrellas" value="3">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,3">&#9733;</label>
-                                                <input id="<%=comentarios.get(i).getIdComentario()%>,2" type="radio" name="estrellas" value="2">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,2">&#9733;</label>
-                                                <input id="<%=comentarios.get(i).getIdComentario()%>,1" type="radio" name="estrellas" value="1">
-                                                <label for="<%=comentarios.get(i).getIdComentario()%>,1">&#9733;</label>
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,5" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==5){%> checked <%}%> value="5">
+                                                <label for="c<%=comentarios.get(i).getIdComentario()%>,5">&#9733;</label>
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,4" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==4){%> checked <%}%> value="4">
+                                                <label for="c<%=comentarios.get(i).getIdComentario()%>,4">&#9733;</label>
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,3" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==3){%> checked <%}%> value="3">
+                                                <label for="c<%=comentarios.get(i).getIdComentario()%>,3">&#9733;</label>
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,2" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==2){%> checked <%}%> value="2">
+                                                <label for="c<%=comentarios.get(i).getIdComentario()%>,2">&#9733;</label>
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,1" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==1){%> checked <%}%> value="1">
+                                                <label for="c<%=comentarios.get(i).getIdComentario()%>,1">&#9733;</label>
                                             </p>
                                         </form>
                                     </div>

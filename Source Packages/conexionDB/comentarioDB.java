@@ -76,4 +76,24 @@ public class comentarioDB {
         }
     }
     
+    public static int actualizarValoracionMedia(int idComentario, double media) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
+        String query="UPDATE comentario SET valoracionMedia = ? WHERE idComentario = ?";
+        try {
+            PreparedStatement ps =connection.prepareStatement(query);
+            ps.setDouble(1, media);
+            ps.setInt(2, idComentario);
+            int res = ps.executeUpdate();
+            
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
 }

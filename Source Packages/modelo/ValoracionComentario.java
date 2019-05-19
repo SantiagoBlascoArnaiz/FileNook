@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class ValoracionComentario {
 
-    private Comentario comentario;
+    private int comentario;
     private int puntuacion;
     private Date fecha;
     private String usuario;
@@ -20,7 +20,7 @@ public class ValoracionComentario {
         
     }
    
-    public ValoracionComentario(Comentario comentario, int puntuacion, Date fecha, String usuario) {
+    public ValoracionComentario(int comentario, int puntuacion, Date fecha, String usuario) {
         this.comentario = comentario;
         this.puntuacion = puntuacion;
         this.fecha = fecha;
@@ -28,11 +28,11 @@ public class ValoracionComentario {
     }
 
 
-    public Comentario getComentario() {
+    public int getComentario() {
         return comentario;
     }
 
-    public void setComentario(Comentario comentario) {
+    public void setComentario(int comentario) {
         this.comentario = comentario;
     }
 

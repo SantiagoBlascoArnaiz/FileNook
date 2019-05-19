@@ -179,6 +179,26 @@ public class usuarioDB {
        e.printStackTrace();
     } 
   }
+    
+    public static int actualizarValoracionMedia(String usuario, double media) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
+        String query="UPDATE Usuario SET valoracionMedia = ? WHERE nombreUsuario = ?";
+        try {
+            PreparedStatement ps =connection.prepareStatement(query);
+            ps.setDouble(1, media);
+            ps.setString(2, usuario);
+            int res = ps.executeUpdate();
+            
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
 
 }

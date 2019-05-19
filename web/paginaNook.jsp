@@ -36,10 +36,9 @@ and open the template in the editor.
                 <nav class="navigation">
                     <ul>
                         <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>
-                        <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>" style="width:90px;
-    height:90px;
-    border-radius: 50px;"
-                                                       alt="Imagen del perfil de usuario"></a></li>
+                        <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=userName%>"
+                                                      style="width:90px; height:90px; border-radius: 50px;"
+                                                      alt="Imagen del perfil de usuario"></a></li>
                     </ul>
                 </nav>
             </div>
@@ -110,8 +109,9 @@ and open the template in the editor.
                             %>
                             <li>
                                 <div class="comentarioTexto">
-                                    <p class="usuario"><a href="autor.jsp"><img src="imagenes/chica2.png"
-                                                                  alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
+                                    <p class="usuario"><a href="autorSV?nombre=<%=comentarios.get(i).getAutor()%>"><img src="recuperarImagenesSV?userName=<%=comentarios.get(i).getAutor()%>"
+                                                      style="width:90px; height:90px; border-radius: 50px;"
+                                                      alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
                                     <p><%=comentarios.get(i).getTexto()%></p>
                                     <div class="star1">
                                         <form class="valoracion">

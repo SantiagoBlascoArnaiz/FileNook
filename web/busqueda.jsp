@@ -34,7 +34,10 @@
 
 
 
-                      <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
+                      <form class="search-bar" method="post" action="/buscarSV" >
+                            <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
+                            <input type="submit" value="Buscar">
+                      </form>
 
                   </div>
                  <div class="pag-nook_n">
@@ -59,55 +62,6 @@
                                       <label for="radio14">?</label>
                                       <input id="radio15" type="radio" name="estrellas" value="1">
                                       <label for="radio15">?</label>
-                                      </p>
-                                  </form>
-                              </div>
-                        </div>
-                        <div class="nook_n">
-
-                                      <a href="#"><img src="imagenes/java.png"></a>
-                                      <div class="titulo_nook">
-                                       <h3>Programación java principiante</h3>
-                                       <h4>Categoria:java,programacion,ejercicios,ejemplos</h4>
-                                       <p>Programas sencillos y conceptos básicos de la progrmación en lenguaje java. </p>
-                                    </div>
-                              <div class="star">
-                                  <form>
-                                      <p class="clasificacion">
-                                      <input id="radio21" type="radio" name="estrellas" value="5">
-                                      <label for="radio21">?</label>
-                                      <input id="radio22" type="radio" name="estrellas" value="4">
-                                      <label for="radio22">?</label>
-                                      <input id="radio23" type="radio" name="estrellas" value="3">
-                                      <label for="radio23">?</label>
-                                      <input id="radio24" type="radio" name="estrellas" value="2">
-                                      <label for="radio24">?</label>
-                                      <input id="radio25" type="radio" name="estrellas" value="1">
-                                      <label for="radio25">?</label>
-                                      </p>
-                                  </form>
-                              </div>
-                        </div>
-                        <div class="nook_n">
-                                 <a href="#"><img src="imagenes/WW2.png"></a>
-                                 <div class="titulo_nook">
-                                  <h3>Historia la Segunda Guerra Mundial</h3>
-                                  <h4>Categoria:resumen,historia,guerra,mundial,imagenes</h4>
-                                  <p>Resumenes amplios e imágenes para mostrar el trasncurso del conflicto.</p>
-                                 </div>
-                              <div class="star">
-                                  <form>
-                                      <p class="clasificacion">
-                                      <input id="radio31" type="radio" name="estrellas" value="5">
-                                      <label for="radio31">?</label>
-                                      <input id="radio32" type="radio" name="estrellas" value="4">
-                                      <label for="radio32">?</label>
-                                      <input id="radio33" type="radio" name="estrellas" value="3">
-                                      <label for="radio33">?</label>
-                                      <input id="radio34" type="radio" name="estrellas" value="2">
-                                      <label for="radio34">?</label>
-                                      <input id="radio35" type="radio" name="estrellas" value="1">
-                                      <label for="radio35">?</label>
                                       </p>
                                   </form>
                               </div>

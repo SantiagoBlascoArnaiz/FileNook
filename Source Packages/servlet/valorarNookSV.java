@@ -74,10 +74,6 @@ public class valorarNookSV extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
-    
-    private static void actualizarMedia(int idNook){
-
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -7,6 +7,7 @@ package servlet;
 
 import conexionDB.clasificacionCategoriasDB;
 import conexionDB.nookDB;
+import conexionDB.valoracionesNookDB;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -48,10 +49,12 @@ public class misNooksSV extends HttpServlet {
         ArrayList<String> categoriasNook;
         ArrayList<String> categorias = new ArrayList<>();
         ArrayList<Nook> nooks= nookDB.getNooksUsuario(nombre);
+        ArrayList<Integer> valoracionesNook = new ArrayList<>();
 
         for(int i=0; i < nooks.size(); i++){
             str =  new StringBuilder();
             categoriasNook = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
+            valoracionesNook.add(valoracionesNookDB.getValoracionUsuarioNook(nombre, nooks.get(i).getIdNook()));
             for(int j = 0; j < categoriasNook.size(); j++ ){
                 str.append(categoriasNook.get(j));
                 str.append(',');
@@ -66,7 +69,8 @@ public class misNooksSV extends HttpServlet {
         
         request.setAttribute("misNooksCategorias", categorias);
         request.setAttribute("misNooks", nooks);
-        
+        request.setAttribute("valoraciones", valoracionesNook);
+
         String url = "/misNooks.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

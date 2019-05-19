@@ -7,6 +7,8 @@ package servlet;
 
 import conexionDB.comentarioDB;
 import conexionDB.nookDB;
+import conexionDB.valoracionesComentarioDB;
+import conexionDB.valoracionesNookDB;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -40,16 +42,21 @@ public class nookSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        
+        HttpSession session = request.getSession(false);
         int idNook = Integer.parseInt(request.getParameter("idNook"));
         Nook nook = nookDB.getNook(idNook);
-
+        int valoracion = valoracionesNookDB.getValoracionUsuarioNook((String) session.getAttribute("usuario"), idNook);
         
         ArrayList<Comentario> comentarios=comentarioDB.getComentariosNook(idNook);
+        ArrayList<Integer> cValoraciones = new ArrayList();
+        for(int i=0; i<comentarios.size(); i++){
+            cValoraciones.add(valoracionesComentarioDB.getValoracionUsuarioComentario((String) session.getAttribute("usuario"), comentarios.get(i).getIdComentario()));
+        }
         
         request.setAttribute("nook", nook);
         request.setAttribute("comentarios",comentarios);
-        
+        request.setAttribute("valoracion", valoracion);
+        request.setAttribute("cValoraciones", cValoraciones);
         String url = "/paginaNook.jsp";
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

@@ -61,9 +61,30 @@ public class valoracionesNookDB {
         }
         
     }
-    
-    
-    
+
+    public static int getValoracionUsuarioNook(String usuario, int idNook){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        ResultSet rs = null;
+        int puntuacion = -1;
+        String consulta ="SELECT puntuacion FROM ValoracionesNook WHERE nook = ? AND usuario = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setInt(1, idNook);
+            ps.setString(2, usuario);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                puntuacion = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+            pool.freeConnection(connection);
+            return puntuacion;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
     
     public static double valoracionMediaNook(int idNook){
         ConnectionPool pool = ConnectionPool.getInstance();

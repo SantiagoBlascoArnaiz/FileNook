@@ -72,7 +72,7 @@ public class crearComentarioSV extends HttpServlet {
         request.setAttribute("nook", nook);
         request.setAttribute("comentarios",comentarios);
         
-        String url = "/paginaNook.jsp";
+        String url = request.getParameter("url");
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

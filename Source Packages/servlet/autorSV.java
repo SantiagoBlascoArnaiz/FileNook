@@ -8,6 +8,7 @@ package servlet;
 import conexionDB.clasificacionCategoriasDB;
 import conexionDB.nookDB;
 import conexionDB.usuarioDB;
+import conexionDB.valoracionesNookDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Nook;
 import modelo.Usuario;
 
@@ -40,6 +42,7 @@ public class autorSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        HttpSession session = request.getSession(false);
         String nombre = request.getParameter("nombre");
         
         Usuario usuario = usuarioDB.getUsuario(nombre);
@@ -48,10 +51,12 @@ public class autorSV extends HttpServlet {
         ArrayList<String> categoriasNook;
         ArrayList<String> categorias = new ArrayList<>();
         ArrayList<Nook> nooks= nookDB.getNooksUsuario(nombre);
+        ArrayList<Integer> valoracionesNook = new ArrayList<>();
 
         for(int i=0; i < nooks.size(); i++){
             str =  new StringBuilder();
             categoriasNook = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
+            valoracionesNook.add(valoracionesNookDB.getValoracionUsuarioNook((String) session.getAttribute("usuario"), nooks.get(i).getIdNook()));
             for(int j = 0; j < categoriasNook.size(); j++ ){
                 str.append(categoriasNook.get(j));
                 str.append(',');
@@ -67,6 +72,8 @@ public class autorSV extends HttpServlet {
         request.setAttribute("autor",usuario);
         request.setAttribute("nooksCategorias", categorias);
         request.setAttribute("nooks", nooks);
+        request.setAttribute("valoraciones", valoracionesNook);
+        
         
         String url = "/autor.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

@@ -22,7 +22,7 @@ and open the template in the editor.
             String userName = (String) sesion.getAttribute("usuario");
 
             Nook nook = (Nook) request.getAttribute("nook");
-            double valoracion = Math.round(nook.getValoracionMedia());
+            int valoracion = (Integer) request.getAttribute("valoracion");
             String nombre = nook.getNombre();
             Date fecha = nook.getFechaCreacion();
             String resumen = nook.getResumen();
@@ -62,10 +62,17 @@ and open the template in the editor.
 
                     <div class="opciones">
                         <ul>
-                            <li><a href="autorSV?nombre=<%=autor%>"><img <img src="recuperarimagenOtroSV?autor=<%=autor%>"
+                            <%if(userName.equals(autor)){%>
+                            <li><a href="perfil.jsp"><img src="recuperarimagenOtroSV?autor=<%=autor%>"
+                                                                              class="imagenesUsuarios"
+                                                                                alt="Imagen del perfil de usuario"></a></li>
+                            <li><a href="perfil.jsp"><%=autor%></a></li>                            
+                            <%}else{%>
+                            <li><a href="autorSV?nombre=<%=autor%>"><img src="recuperarimagenOtroSV?autor=<%=autor%>"
                                                                               class="imagenesUsuarios"
                                                                                 alt="Imagen del perfil de usuario"></a></li>
                             <li><a href="autorSV?nombre=<%=autor%>"><%=autor%></a></li>
+                            <%}%>
                             <li><%=fecha%></li>
                             <li><button type="button">Descargar</button></li>
                             <li><button type="button" onclick="window.location.href='/documentosSV?idNook=<%=nook.getIdNook()%>'">Ver archivos</button></li>
@@ -86,10 +93,11 @@ and open the template in the editor.
                             <input id="<%=nook.getIdNook()%>,1" type="radio" name="estrellas<%=nook.getIdNook()%>" value="1" onclick="this.form.submit();" <%if(valoracion==1){%> checked <%}%>>
                             <label for="<%=nook.getIdNook()%>,1">&#9733;</label>
                             </p>
+                            <p class="vMedia"><%=nook.getValoracionMedia()%></p>
                         </form>
                     </div>
                     <div class="comentarios">
-                        <form method="post"  action="/crearComentarioSV?idNook=<%=nook.getIdNook()%>" >
+                        <form method="post"  action="/crearComentarioSV?idNook=<%=nook.getIdNook()%>&url=/nookSV?<%=nook.getIdNook()%>" >
                             <ul>
                                 <li><input id="comentario" type="text" placeholder="Añada un comentario..." name="comentario"></li>
 
@@ -104,29 +112,44 @@ and open the template in the editor.
                         <ul>
                             <%
                                 ArrayList<Comentario> comentarios = (ArrayList<Comentario>) request.getAttribute("comentarios");
+                                ArrayList<Integer> cValoraciones = (ArrayList<Integer>) request.getAttribute("cValoraciones");
                                 for(int i = 0; i < comentarios.size(); i++){
-                                    double valoracionCo = Math.round(comentarios.get(i).getValoracionMedia());
                             %>
                             <li>
                                 <div class="comentarioTexto" method="post" action="/valorarComentarioSV?">
-                                    <p class="usuario"><a href="autorSV?nombre=<%=comentarios.get(i).getAutor()%>"><img src="recuperarImagenesSV?userName=<%=comentarios.get(i).getAutor()%>"
+                                    <p class="usuario">
+                                        <%if(userName.equals(autor)){%>
+                                        <a href="perfil.jsp">
+                                            <img src="recuperarImagenesSV?userName=<%=comentarios.get(i).getAutor()%>"
                                                       class="imagenesUsuariosComentarios"
-                                                      alt="Imagen del perfil de usuario"></a><%=comentarios.get(i).getAutor()%><p>
+                                                      alt="Imagen del perfil de usuario">
+                                        </a>
+                                        <%=comentarios.get(i).getAutor()%>
+                                        <%} else {%>
+                                        <a href="autorSV?nombre=<%=comentarios.get(i).getAutor()%>">
+                                            <img src="recuperarImagenesSV?userName=<%=comentarios.get(i).getAutor()%>"
+                                                      class="imagenesUsuariosComentarios"
+                                                      alt="Imagen del perfil de usuario">
+                                        </a>
+                                        <%=comentarios.get(i).getAutor()%>
+                                        <%}%>
+                                    </p>
                                     <p><%=comentarios.get(i).getTexto()%></p>
                                     <div class="star1">
                                         <form class="valoracion" method="post" action="/valorarComentarioSV?comentario=<%=comentarios.get(i).getIdComentario()%>&urlPagina=/nookSV?idNook=<%=nook.getIdNook()%>">
                                             <p class="clasificacion">
-                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,5" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==5){%> checked <%}%> value="5">
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,5" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(cValoraciones.get(i)==5){%> checked <%}%> value="5">
                                                 <label for="c<%=comentarios.get(i).getIdComentario()%>,5">&#9733;</label>
-                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,4" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==4){%> checked <%}%> value="4">
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,4" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(cValoraciones.get(i)==4){%> checked <%}%> value="4">
                                                 <label for="c<%=comentarios.get(i).getIdComentario()%>,4">&#9733;</label>
-                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,3" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==3){%> checked <%}%> value="3">
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,3" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(cValoraciones.get(i)==3){%> checked <%}%> value="3">
                                                 <label for="c<%=comentarios.get(i).getIdComentario()%>,3">&#9733;</label>
-                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,2" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==2){%> checked <%}%> value="2">
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,2" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(cValoraciones.get(i)==2){%> checked <%}%> value="2">
                                                 <label for="c<%=comentarios.get(i).getIdComentario()%>,2">&#9733;</label>
-                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,1" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(valoracionCo==1){%> checked <%}%> value="1">
+                                                <input id="c<%=comentarios.get(i).getIdComentario()%>,1" type="radio" name="cestrellas<%=comentarios.get(i).getIdComentario()%>" onclick="this.form.submit();" <%if(cValoraciones.get(i)==1){%> checked <%}%> value="1">
                                                 <label for="c<%=comentarios.get(i).getIdComentario()%>,1">&#9733;</label>
                                             </p>
+                                            <p class="vMedia"><%=comentarios.get(i).getValoracionMedia()%></p>
                                         </form>
                                     </div>
                                 </div>

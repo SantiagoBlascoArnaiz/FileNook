@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import conexionDB.clasificacionCategoriasDB;
 import conexionDB.nookDB;
 import conexionDB.usuarioDB;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.ClasificacionCategorias;
 import modelo.Nook;
 
 /**
@@ -39,16 +41,13 @@ public class crearNookSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //response.setContentType("text/html;charset=UTF-8");
-        
         String nombre = request.getParameter("nombre");
         String etiquetas = request.getParameter("etiquetas");
         String resumen = request.getParameter("resumen");
         
         java.util.Date date = new java.util.Date();  
         Date fecha = new Date(date.getTime());
-        
-        
+
         Nook nook = new Nook();
         
         nook.setNombre(nombre);
@@ -57,13 +56,24 @@ public class crearNookSV extends HttpServlet {
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
         
-        nook.setAutor(userName); //AQUI VA EL USUARIO LOGUEADO
+        nook.setAutor(userName);
         nook.setFechaCreacion(fecha);
         nook.setFechaModificacion(fecha);
         nook.setDescargas(0);
         nook.setValoracionMedia(0.0);
         
         nookDB.insert(nook);
+        
+        Nook nookCreado = nookDB.ultimoNook(userName);
+        int idNook = nookCreado.getIdNook();
+        
+        ClasificacionCategorias categoria = new ClasificacionCategorias();
+        
+        categoria.setIdNook(idNook);
+        categoria.setCategoria(etiquetas);
+        
+        clasificacionCategoriasDB.insert(categoria);
+        
         
         String url = "/misNooksSV";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
@@ -108,5 +118,9 @@ public class crearNookSV extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private ClasificacionCategorias ClasificacionCategorias() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

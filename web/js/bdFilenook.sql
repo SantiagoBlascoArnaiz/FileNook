@@ -121,7 +121,7 @@ CREATE TABLE ValoracionesComentario(
 
 CREATE TABLE ClasificacionCategorias(
 	idNook INTEGER NOT NULL,
-	categoria VARCHAR(30) NOT NULL,
+	categoria VARCHAR(60) NOT NULL,
 	PRIMARY KEY (idNook, categoria),
 	CONSTRAINT FK_CLASCATEGORIAS FOREIGN KEY (idNook)
 		REFERENCES Nook (idNook)

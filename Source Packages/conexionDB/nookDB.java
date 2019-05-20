@@ -191,19 +191,20 @@ public class nookDB {
        Connection connection = pool.getConnection();
        ArrayList<Nook> listanooks=null;
        
-        String consulta = "SELECT * FROM Nook WHERE nombre = ?";
-               //OR autor LIKE ?";
-       System.out.println("ESTOES LO QUE SE BUSCA :"+"Consulta "+consulta+"     "+busqueda);
-       
+       String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C "
+               + "WHERE  (N.idNook=C.idNook AND "
+               + "N.nombre = ?"
+               + "OR N.autor = ?"
+               + "OR C.categoria = ?)";
        ResultSet rs = null;
        
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
+             rs=ps.executeQuery();
             
-            ps.setString(1, busqueda);
-            rs=ps.executeQuery();
-           // ps.setString(2,"%" + busqueda + "%");
-            //ps.setString(3,"%" + busqueda + "%");
+            ps.setString(1,busqueda);
+            ps.setString(2,busqueda);
+            ps.setString(3,busqueda);
             while(rs.next()){
                 Nook nook=new Nook();
                 nook.setIdNook(rs.getInt("idNook"));
@@ -214,13 +215,7 @@ public class nookDB {
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
                 nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
-                
-                System.out.println("DATOS NOOK: "+rs.getInt("idNook")+rs.getString("nombre")+rs.getString("resumen")+rs.getString("autor")+rs.getDate("fechaCreacion")+rs.getDate("fechaModificacion")+rs.getInt("descargas")+rs.getDouble("valoracionmedia"));
-                
-                System.out.println(nook);
-                
                 listanooks.add(nook);
-                System.out.println(listanooks.size());
             }
             
                 rs.close();

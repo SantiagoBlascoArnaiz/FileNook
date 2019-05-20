@@ -192,7 +192,11 @@ public class nookDB {
        ArrayList<Nook> listaNooks=new ArrayList();
        
        
-       String consulta = "SELECT DISTINCT N.idNook, N.nombre, N.resumen, N.autor, N.fechaCreacion, N.fechaModificacion, N.descargas, N.valoracionMedia FROM Nook N NATURAL JOIN ClasificacionCategorias C WHERE C.categoria LIKE ? OR N.nombre LIKE ? OR N.autor LIKE ?";    
+       String consulta = "SELECT DISTINCT N.idNook, N.nombre, N.resumen, N.autor, N.fechaCreacion, N.fechaModificacion, N.descargas, N.valoracionMedia "
+               + "FROM Nook N, ClasificacionCategorias C "
+               + "WHERE (N.idNook = C.idNook AND C.categoria LIKE ?) "
+               + "OR N.nombre LIKE ? "
+               + "OR N.autor LIKE ?";    
        /*String consulta = "SELECT DISTINCT * FROM Nook NATURAL JOIN ClasificacionCategorias WHERE categoria LIKE ? OR nombre LIKE ? OR autor LIKE ?";*/        
        /*String consulta = "SELECT DISTINCT * FROM Nook WHERE nombre LIKE ? OR autor LIKE ?";*/ 
        /*String consulta = "SELECT * FROM Nook WHERE nombre LIKE ? OR autor LIKE ? ";*/

@@ -43,7 +43,7 @@
                   </div>
                  <div class="pag-nook_n">
                      <%
-                        ArrayList<Nook> nooks = (ArrayList<Nook>) request.getAttribute("nooksB");
+                        ArrayList<Nook> nooks = (ArrayList<Nook>) request.getAttribute("nooks");
                         ArrayList<String> nooksCategorias = (ArrayList<String>) request.getAttribute("categorias");
                         for(int i = 0; i < nooks.size(); i++){
                         double valoracion = Math.round(nooks.get(i).getValoracionMedia());

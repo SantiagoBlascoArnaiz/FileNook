@@ -7,6 +7,7 @@ package servlet;
 
 import conexionDB.clasificacionCategoriasDB;
 import conexionDB.nookDB;
+import conexionDB.valoracionesNookDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Nook;
 
 /**
@@ -38,15 +40,26 @@ public class buscarSV extends HttpServlet {
             throws ServletException, IOException {
        response.setContentType("text/html;charset=UTF-8");
       
+       String nombre = "";
+       HttpSession session = request.getSession(false);
+       if (session != null){
+            nombre = (String)session.getAttribute("usuario");
+        }
+       
        String busqueda= request.getParameter("search");
        ArrayList<String> categoriasNook;
-       ArrayList<String> categorias = new ArrayList<>();
-       ArrayList<Nook> listNook=nookDB.getNooksDescargas();
+       ArrayList<String> categorias = new ArrayList<>();   
+       System.out.println("ESTOES LO QUE SE BUSCA SV :"+busqueda);
+       ArrayList<Nook> listNook=nookDB.buscarNook(busqueda);
+       //ArrayList<Nook> listNook=nookDB.getNooksDescargas();
+       System.out.println("11111111111111111111111111111");
+       ArrayList<Integer> valoracionesNook = new ArrayList<>();
        StringBuilder str;
-       
+      System.out.println("2222222222222222222222222");
        for(int i=0; i < listNook.size(); i++){
             str =  new StringBuilder();
             categoriasNook = clasificacionCategoriasDB.getCategoriasNook(listNook.get(i).getIdNook());
+            valoracionesNook.add(valoracionesNookDB.getValoracionUsuarioNook(nombre, listNook.get(i).getIdNook()));
             for(int j = 0; j < categoriasNook.size(); j++ ){
                 str.append(categoriasNook.get(j));
                 str.append(',');
@@ -58,10 +71,11 @@ public class buscarSV extends HttpServlet {
                 categorias.add(null);
             }
         }
+       System.out.println("ESTOES LO QUE SE BUSCA :"+listNook.toString());
        
-       request.setAttribute("nooksB", listNook);
+       request.setAttribute("nooks", listNook);
        request.setAttribute("categorias", categorias);
-       
+       request.setAttribute("valoraciones", valoracionesNook);
      
        
        

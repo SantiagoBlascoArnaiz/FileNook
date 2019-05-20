@@ -13,6 +13,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
+        <script type='text/javascript'  src='js/miscripts.js'></script>
+        <script>
+            confirmarBorrarNook();
+        </script>
     </head>
     <body >
         <%
@@ -87,7 +91,7 @@ and open the template in the editor.
                                 </form>
                             </div>
                             <div class="nooks">
-                                <button type="submit" class="borrarNook" onclick="window.location.href='borrarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>'">Borrar Nook</button>
+                                <button id="borrar" type="submit"  class="borrarNook" onclick="window.location.href='borrarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>'" onSubmit="return confirmarBorrarNook()"s>Borrar Nook</button>
                             </div>
                        </div>
                     <%}%>

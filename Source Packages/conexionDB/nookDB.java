@@ -191,18 +191,25 @@ public class nookDB {
        Connection connection = pool.getConnection();
        ArrayList<Nook> listaNooks=new ArrayList();
        
-       /*String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C "
-               + "WHERE  (N.idNook=C.idNook AND "
-               + "N.nombre = ?"
-               + "OR N.autor = ?"
-               + "OR C.categoria = ?)";*/
+       
+       
+       
+       String consulta = "SELECT DISTINCT * FROM Nook N, ClasificacionCategorias C WHERE (N.idNook=C.idNook AND C.categoria LIKE ? ) OR N.nombre LIKE ? OR N.autor LIKE ?";
+       
+       
+       
+       
+       /*String consulta = "SELECT * FROM Nook WHERE nombre LIKE ? OR autor LIKE ? ";*/
+       
        ResultSet rs = null;
-       String consulta= "SELECT * FROM Nook WHERE nombre LIKE ? ";
+       /*String consulta= "SELECT * FROM Nook WHERE nombre LIKE ? ";*/
        
        
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
             ps.setString(1,"%" + busqueda + "%");
+            ps.setString(2,"%" + busqueda + "%");
+            ps.setString(3,"%" + busqueda + "%");
             rs=ps.executeQuery();
             
             while(rs.next()){

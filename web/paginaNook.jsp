@@ -152,6 +152,11 @@ and open the template in the editor.
                                             <p class="vMedia"><%=comentarios.get(i).getValoracionMedia()%></p>
                                         </form>
                                     </div>
+                                    <%if(userName.equals(comentarios.get(i).getAutor())){%>
+                                        <div class="borrarComentario">
+                                            <button type="submit"   class="borrarComentario" onclick="window.location.href='borrarComentarioSV?idComentario=<%=comentarios.get(i).getIdComentario()%>&idNook=<%=nook.getIdNook()%>'">Borrar comentario</button>
+                                        </div>
+                                    <%}%>
                                 </div>
                             </li>
                             <%}%>

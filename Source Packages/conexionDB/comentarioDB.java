@@ -96,4 +96,27 @@ public class comentarioDB {
         }
     }
     
+    public static double borrarComentario(int idComentario){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+
+
+        String consulta="DELETE FROM Comentario WHERE idCOmentario = ?";
+        try {
+            ps =connection.prepareStatement(consulta);
+
+            ps.setInt(1, idComentario );
+
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+    
 }

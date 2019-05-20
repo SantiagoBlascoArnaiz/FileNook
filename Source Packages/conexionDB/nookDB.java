@@ -191,11 +191,12 @@ public class nookDB {
        Connection connection = pool.getConnection();
        ArrayList<Nook> listanooks=null;
        
-       String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C "
+       /*String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C "
                + "WHERE  (N.idNook=C.idNook AND "
                + "N.nombre = ?"
                + "OR N.autor = ?"
-               + "OR C.categoria = ?)";
+               + "OR C.categoria = ?)";*/
+       String consulta= "SELECT * FROM Nook WHERE nombre LIKE ? ";
        ResultSet rs = null;
        
         try {

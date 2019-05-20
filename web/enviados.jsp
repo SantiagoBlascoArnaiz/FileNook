@@ -51,7 +51,7 @@ and open the template in the editor.
                             ArrayList<Mensaje> mensajes= (ArrayList<Mensaje>)request.getAttribute("mensajes");
                             for(int i=0;i<mensajes.size();i++){
                         %>
-                        <div class="mensajeBuzon">
+                        <div class="mensajeBuzon" style="background-color: #f2f2f2;">
                             <p class="usuario"><%= mensajes.get(i).getDestinatario()%><p>
                             <p class="asunto"><%= mensajes.get(i).getAsunto() %></p>
                             <p class="fecha"><%= mensajes.get(i).getFecha() %></p>

@@ -99,7 +99,7 @@ and open the template in the editor.
                     <div class="comentarios">
                         <form method="post"  action="/crearComentarioSV?idNook=<%=nook.getIdNook()%>&url=/nookSV?<%=nook.getIdNook()%>" >
                             <ul>
-                                <li><input id="comentario" type="text" placeholder="Añada un comentario..." name="comentario"></li>
+                                <li><input id="comentario" type="text" placeholder="Añada un comentario..." name="comentario" required=""></li>
 
                                 <li><div class="EnvComment">
                                     <button type="submit" >Enviar comentario</button>

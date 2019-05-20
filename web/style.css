@@ -435,8 +435,10 @@ label {
 .comentarioTexto .usuario{
     font-size-adjust: 0.8;
 }
+
 .comentarioTexto .usuario a{
    padding-right: 2rem;
+   text-decoration: none;
 }
 .star1{
     padding-left: 70%;
@@ -718,6 +720,17 @@ margin:auto;
     position: absolute;
     right: 15rem;
 
+}
+
+.pag-agregarDocumento{
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #3DB000; 
+    border-radius: 15px;
+    border: 10px;	
+    width: 60%;
+    margin:  auto;
+    margin: 2rem auto auto;
 }
 
 

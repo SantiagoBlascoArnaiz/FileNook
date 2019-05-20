@@ -27,9 +27,9 @@ import modelo.Nook;
  *
  * @author Fnac
  */
-@WebServlet(name = "crearNookSV", urlPatterns = {"/crearNookSV"})
+@WebServlet(name = "agregarArchivoSV", urlPatterns = {"/agregarArchivoSV"})
 @MultipartConfig
-public class crearNookSV extends HttpServlet {
+public class agregarArchivoSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,39 +43,31 @@ public class crearNookSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String nombre = request.getParameter("nombre");
-        String etiquetas = request.getParameter("etiquetas");
+        Part documento = request.getPart("documento");
         String resumen = request.getParameter("resumen");
-        
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
-
-        Nook nook = new Nook();
-        
-        nook.setNombre(nombre);
-        nook.setResumen(resumen);
         
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
         
-        nook.setAutor(userName);
-        nook.setFechaCreacion(fecha);
-        nook.setFechaModificacion(fecha);
-        nook.setDescargas(0);
-        nook.setValoracionMedia(0.0);
-      
-        nookDB.insert(nook);
- 
-        Nook nookCreado = nookDB.ultimoNook(userName);
-        int idNook = nookCreado.getIdNook();
+        java.util.Date date = new java.util.Date();  
+        Date fecha = new Date(date.getTime());
         
- 
-        ClasificacionCategorias categoria = new ClasificacionCategorias();
+        Nook nook = nookDB.ultimoNook(userName);
         
-        categoria.setIdNook(idNook);
-        categoria.setCategoria(etiquetas);
+        int idNook = nook.getIdNook();
         
-        clasificacionCategoriasDB.insert(categoria);
+        
+        Documento doc = new Documento();
+        
+        doc.setNook(idNook);
+        doc.setNombre(documento.getSubmittedFileName());
+        doc.setFechaCreacion(fecha);
+        doc.setResumen(resumen);
+        doc.setFechaModificacion(fecha);
+        
+        documentoDB.insert(doc);
+        
+        documentoDB.insertDocu(idNook,documento);
         
         String url = "/agregarArchivo.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
@@ -120,9 +112,5 @@ public class crearNookSV extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private ClasificacionCategorias ClasificacionCategorias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

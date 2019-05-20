@@ -32,28 +32,25 @@ and open the template in the editor.
         </header>
             <main class="main">
                 <div class="container">
-                        <h3 style="margin-top: 3rem;">CREAR NOOK</h3>
-                    <div class="pag-crearNook">
+                        <h3 style="margin-top: 3rem;">AGREGAR ARCHIVOS</h3>
+                    <div class="pag-agregarDocumento">
 
-                        <form class="tablamensajetexto"  method="post" action="/crearNookSV" >
-
-                            <div class="partes">
-                                <label for="nombre" class="nombreNook" style="padding-right: 2.5em;">Nombre:</label>
-                                <input class="tablaNooktext" name="nombre" required>
-                            </div>
-
-                            <div class="partes">
-                                <label for="etiquetas" class="etiquetasNook" style="padding-right: 2em;">Etiquetas:</label>
-                                <input class="tablaNooktext" name="etiquetas" required>
-                            </div>
+                        <form class="tablamensajetexto"  method="post" enctype="multipart/form-data" action="/agregarArchivoSV" >
 
                             <div class="partes" >
                                 <label for="resumen" class="descripcionNook" style="padding-right: 1em;">Descripción:</label>
                                 <input class="tablaNooktext" name="resumen" required>
                             </div>
+
+                            <div class="partes" >
+                                <label for="subirarchivo" class="SubirArchivo" style="padding-right: 2em;">Subir Archivo:</label>
+                            </div>
+                            <input type="file" name="documento" required> <!--multiple="multiple"--> 
+
                               <div class="partes" >
-                                <input type="submit" class="button mainaction" tabindex="10" id="crear_NOOKbotton"value="CREAR" >
-                                <input type="reset" class="button mainaction" tabindex="10" id="borrar_NOOKbotton"value="BORRAR" >
+                                <input type="submit" class="button mainaction" tabindex="10" id="agregar_Archivo" value="AGREGAR" >
+                                <input type="submit" class="button mainaction" tabindex="10" id="terminar_archivo" onclick="window.location.href='misNooksSV'" value="TERMINAR" >
+                                <input type="reset" class="button mainaction" tabindex="10" id="borrar_Archivo" value="BORRAR" >
                             </div>
                         </form>
                        

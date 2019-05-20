@@ -497,6 +497,12 @@ h4{
     padding: 1rem;
 }
 
+.nook_n button{
+    width: 10rem;
+    position: absolute;
+    right: 15rem;
+}
+
 .pag-mensajesEnviar{
     margin-left: 7rem;
     margin-right: 20rem;      
@@ -687,6 +693,7 @@ margin:auto;
 }
 
 .imagenesUsuariosComentarios{
+    text-decoration: none;
     width:60px;
     height:60px;
     border-radius: 50px;

@@ -5,10 +5,10 @@
  */
 package servlet;
 
-import conexionDB.usuarioDB;
+import conexionDB.nookDB;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Usuario
+ * @author Fnac
  */
-@WebServlet(name = "recuperarImagenOtroSV", urlPatterns = {"/recuperarImagenOtroSV"})
-public class recuperarImagenOtroSV extends HttpServlet {
+@WebServlet(name = "borrarNookSV", urlPatterns = {"/borrarNookSV"})
+public class borrarNookSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +31,17 @@ public class recuperarImagenOtroSV extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        response.setContentType("image/jpg");
-        OutputStream respuesta = response.getOutputStream();
-        String usuario = request.getParameter("autor");
-        usuarioDB.getImagen(usuario, respuesta);
-        respuesta.close();
-        response.flushBuffer();
+        int idNook = Integer.parseInt(request.getParameter("idNook"));
+        
+        nookDB.borrarNook(idNook);
+        
+        String url = "/misNooksSV";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package conexionDB;
-import java.io.IOException;
 import java.sql.*;
 import modelo.Nook;
 import java.util.ArrayList;
-import javax.servlet.http.Part;
 
 public class nookDB {
     
@@ -264,7 +262,7 @@ public class nookDB {
         return null;
         }
     }
-        public static double valoracionMediaAutor(String autor){
+    public static double valoracionMediaAutor(String autor){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         double media = -1.0;
@@ -287,7 +285,32 @@ public class nookDB {
             e.printStackTrace();
             return -1.0;
         }
+        }
         
+        
+    public static double borrarNook(int idNook){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+
+
+        String consulta="DELETE FROM Nook WHERE idNook = ?";
+        try {
+            ps =connection.prepareStatement(consulta);
+
+            ps.setInt(1, idNook );
+
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
     }
+        
+    
 
 }

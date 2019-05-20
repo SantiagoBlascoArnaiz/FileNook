@@ -55,7 +55,7 @@ and open the template in the editor.
                             %>
                     <div class="pag-nook">
                            <div class="nook">
-                                   <a><img src="imagenes/simpleLogo.png" alt="Imagen del perfil de usuario"></a>
+                                   <a><img src="imagenes/docSimpleLogo.png" alt="Imagen del perfil de usuario"></a>
                                     <h3><%=documentos.get(i).getNombre()%></h3>
                                     <p><%=documentos.get(i).getResumen()%></p>
                            </div>

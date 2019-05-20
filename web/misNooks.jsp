@@ -65,7 +65,7 @@ and open the template in the editor.
                                 <%if(misNooksCategorias.get(i)!=null){%>
                                 <h4>Categoria: <%=misNooksCategorias.get(i)%></h4>
                                 <%}else{%>
-                                <h4>Categoria: none<h4>
+                                <h4>Categoria: Ninguna<h4>
                                 <%}%>
                                 <p><%=misNooks.get(i).getResumen()%></p>
                             </div>
@@ -85,6 +85,9 @@ and open the template in the editor.
                                     </p>
                                     <p class="vMedia"><%=misNooks.get(i).getValoracionMedia()%></p>
                                 </form>
+                            </div>
+                            <div class="nooks">
+                                <button type="submit" class="borrarNook" onclick="window.location.href='borrarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>'">Borrar Nook</button>
                             </div>
                        </div>
                     <%}%>

@@ -64,6 +64,7 @@ CREATE TABLE Documento(
 	PRIMARY KEY (nook, nombre),
 	CONSTRAINT FK_DOCUMENTO FOREIGN KEY (nook)
 		REFERENCES Nook (idNook)
+                ON DELETE CASCADE
 );
 
 
@@ -86,7 +87,8 @@ CREATE TABLE ValoracionesNook(
 	fecha DATE,
 	PRIMARY KEY (nook, usuario),
 	CONSTRAINT FK_VALNOOK FOREIGN KEY (nook)
-		REFERENCES Nook (idNook),
+		REFERENCES Nook (idNook)
+                ON DELETE CASCADE,
 	CONSTRAINT FK_VALNOOK2 FOREIGN KEY (usuario)
 		REFERENCES Usuario (nombreUsuario)
 );
@@ -101,7 +103,8 @@ CREATE TABLE Comentario(
         valoracionMedia NUMERIC(3,1),
 	PRIMARY KEY (idComentario),
         CONSTRAINT FK_COMENTARIO FOREIGN KEY (idNook)
-		REFERENCES Nook (idNook),
+		REFERENCES Nook (idNook)
+                ON DELETE CASCADE,
 	CONSTRAINT FK_COMENTARIO2 FOREIGN KEY (autor)
 		REFERENCES Usuario (nombreUsuario)
 );
@@ -114,7 +117,8 @@ CREATE TABLE ValoracionesComentario(
 	usuario VARCHAR(10),
 	PRIMARY KEY (comentario, usuario),
 	CONSTRAINT FK_VALCOMENTARIO FOREIGN KEY (comentario)
-		REFERENCES Comentario (idComentario),
+		REFERENCES Comentario (idComentario)
+                ON DELETE CASCADE,
 	CONSTRAINT FK_VALCOMENTARIO2 FOREIGN KEY (usuario)
 		REFERENCES Usuario (nombreUsuario)
 );
@@ -126,6 +130,7 @@ CREATE TABLE ClasificacionCategorias(
 	PRIMARY KEY (idNook, categoria),
 	CONSTRAINT FK_CLASCATEGORIAS FOREIGN KEY (idNook)
 		REFERENCES Nook (idNook)
+                ON DELETE CASCADE
 );
 
 

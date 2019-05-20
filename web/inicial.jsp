@@ -45,7 +45,9 @@ and open the template in the editor.
                         
                         <form class="search-bar" method="post" action="/buscarSV" >
                             <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
-                            <input type="submit" value="Buscar" >
+                            <div class="clearfix">
+                                <input type="submit" value="Buscar" >
+                            </div>
                         </form>
                         
                         

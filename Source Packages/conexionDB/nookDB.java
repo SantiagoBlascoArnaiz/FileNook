@@ -189,25 +189,25 @@ public class nookDB {
     public static ArrayList<Nook> buscarNook(String busqueda) {
        ConnectionPool pool = ConnectionPool.getInstance();
        Connection connection = pool.getConnection();
-       ArrayList<Nook> listanooks=null;
+       ArrayList<Nook> listaNooks=new ArrayList();
        
        /*String consulta = "SELECT * FROM Nook N, ClasificacionCategorias C "
                + "WHERE  (N.idNook=C.idNook AND "
                + "N.nombre = ?"
                + "OR N.autor = ?"
                + "OR C.categoria = ?)";*/
-       String consulta= "SELECT * FROM Nook WHERE nombre LIKE ? ";
        ResultSet rs = null;
+       String consulta= "SELECT * FROM Nook WHERE nombre LIKE ? ";
+       
        
         try {
             PreparedStatement ps = connection.prepareStatement(consulta);
-             rs=ps.executeQuery();
+            ps.setString(1,"%" + busqueda + "%");
+            rs=ps.executeQuery();
             
-            ps.setString(1,busqueda);
-            ps.setString(2,busqueda);
-            ps.setString(3,busqueda);
             while(rs.next()){
                 Nook nook=new Nook();
+                
                 nook.setIdNook(rs.getInt("idNook"));
                 nook.setNombre(rs.getString("nombre"));
                 nook.setResumen(rs.getString("resumen"));
@@ -216,13 +216,14 @@ public class nookDB {
                 nook.setFechaModificacion(rs.getDate("fechaModificacion"));
                 nook.setDescargas(rs.getInt("descargas"));
                 nook.setValoracionMedia(rs.getDouble("valoracionmedia"));
-                listanooks.add(nook);
+                
+                listaNooks.add(nook);
             }
             
                 rs.close();
                 ps.close();
                 pool.freeConnection(connection);
-            return listanooks;
+            return listaNooks;
         } catch (SQLException e) {
             e.printStackTrace();
             

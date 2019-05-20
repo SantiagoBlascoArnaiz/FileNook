@@ -45,12 +45,8 @@ public class crearComentarioSV extends HttpServlet {
         String userName = (String) sesion.getAttribute("usuario");
         
         String texto = request.getParameter("comentario");
-        System.out.println(texto + "HOLIIIIIIIII SANTIIIII");
-        
         int idNook = Integer.parseInt(request.getParameter("idNook"));
         Nook nook = nookDB.getNook(idNook);
-        
-        System.out.println(idNook + "ADIOSSSSSSSSSSI SANTIIIII");
         
         java.util.Date date = new java.util.Date();  
         Date fecha = new Date(date.getTime());
@@ -61,7 +57,6 @@ public class crearComentarioSV extends HttpServlet {
         comentario.setFecha(fecha);
         comentario.setAutor(userName);
         comentario.setTexto(texto);
-        System.out.println(comentario.getTexto() + "ADIOSSSSSSSSSSI SANTIIIII");
         comentario.setValoracionMedia(0.0);
         
         comentarioDB.insert(comentario);

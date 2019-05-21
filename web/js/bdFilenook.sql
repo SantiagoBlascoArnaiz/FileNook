@@ -17,7 +17,7 @@ CREATE TABLE Usuario(
 	clave VARCHAR(15) NOT NULL,
 	correo VARCHAR(80) NOT NULL,
         valoracionMedia NUMERIC(3,1),
-        imagenPerfil BLOB,
+        imagenPerfil BLOB(5M),
 	PRIMARY KEY (nombreUsuario)
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE Documento(
 	resumen VARCHAR(400),
 	fechaCreacion DATE,
 	fechaModificacion DATE,
-        documento BLOB,
+        documento BLOB(16M),
 	PRIMARY KEY (nook, nombre),
 	CONSTRAINT FK_DOCUMENTO FOREIGN KEY (nook)
 		REFERENCES Nook (idNook)

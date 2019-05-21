@@ -55,7 +55,7 @@ and open the template in the editor.
                 <div class="pag-archivo">
                     <div class="archivo">
                         <ul>
-                            <li><a href="archivosNook.jsp"><img src="imagenes/simpleLogo.png" alt="Imagen de nook"></a></li>
+                            <li><a><img src="imagenes/simpleLogo.png" alt="Imagen de nook"></a></li>
                             <li><p><%=resumen%></p></li>
                         </ul>
                     </div>

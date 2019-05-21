@@ -81,15 +81,15 @@ public class crearNookSV extends HttpServlet {
         
         ClasificacionCategorias categoria2 = new ClasificacionCategorias();
         
-        categoria1.setIdNook(idNook);
-        categoria1.setCategoria(etiquetas2);
+        categoria2.setIdNook(idNook);
+        categoria2.setCategoria(etiquetas2);
         
         clasificacionCategoriasDB.insert(categoria2);
         
         ClasificacionCategorias categoria3 = new ClasificacionCategorias();
         
-        categoria1.setIdNook(idNook);
-        categoria1.setCategoria(etiquetas3);
+        categoria3.setIdNook(idNook);
+        categoria3.setCategoria(etiquetas3);
         
         clasificacionCategoriasDB.insert(categoria3);
         

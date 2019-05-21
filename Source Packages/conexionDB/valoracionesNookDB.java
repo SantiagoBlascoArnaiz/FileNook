@@ -32,7 +32,6 @@ public class valoracionesNookDB {
             ps.setInt(1, valoracion.getNook());
             ps.setString(2, valoracion.getUsuario());
             rs = ps.executeQuery();
-            System.out.println(rs);
             if(!rs.next()){
                 consulta = "INSERT INTO valoracionesNook (nook, usuario, puntuacion, fecha)"
                         + " VALUES (?, ?, ?, ?)";

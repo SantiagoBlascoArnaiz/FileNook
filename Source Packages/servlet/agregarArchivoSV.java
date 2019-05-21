@@ -48,7 +48,6 @@ public class agregarArchivoSV extends HttpServlet {
         
         HttpSession sesion = request.getSession();
         String userName = (String) sesion.getAttribute("usuario");
-        System.out.println("\n\n\n" + documento.getSize() + "\n\n\n");
         java.util.Date date = new java.util.Date();  
         Date fecha = new Date(date.getTime());
         

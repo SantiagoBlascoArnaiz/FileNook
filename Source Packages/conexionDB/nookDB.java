@@ -54,7 +54,26 @@ public class nookDB {
             return 0;
         }
     }
-    
+       public static int actualizarDescargas(int idNook, int descargas) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
+        String query="UPDATE Nook SET descargas = ? WHERE idNook = ?";
+        try {
+            PreparedStatement ps =connection.prepareStatement(query);
+            ps.setDouble(1, descargas);
+            ps.setInt(2, idNook);
+            int res = ps.executeUpdate();
+            
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+       
     //obtener lista de nooks populares
     public static ArrayList<Nook> getNooksPopulares() {
         ConnectionPool pool = ConnectionPool.getInstance();

@@ -30,7 +30,6 @@ public class valoracionesAutorDB {
             ps.setString(1, valoracion.getAutor());
             ps.setString(2, valoracion.getUsuario());
             rs = ps.executeQuery();
-            System.out.println(rs);
             if(!rs.next()){
                 consulta = "INSERT INTO ValoracionesAutor (autor, usuario, puntuacion)"
                         + " VALUES (?, ?, ?)";

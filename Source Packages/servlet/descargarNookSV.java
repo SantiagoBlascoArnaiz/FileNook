@@ -61,7 +61,6 @@ public class descargarNookSV extends HttpServlet {
         
         for(int i=0; i<documentos.size(); i++){
             archivos.add("temp" + File.separator + nook + File.separator + documentos.get(i).getNombre());
-        System.out.println(archivos.get(i));
         }
         for (int i=0; i < archivos.size(); i++) {
                  
@@ -86,7 +85,6 @@ public class descargarNookSV extends HttpServlet {
         File file = new File(rutaZip);
         OutputStream outStream = null;
         FileInputStream inputStream = null;
-        System.out.println(file.getName());
         if(file.exists()){
             response.setContentType("application/octet-stream");
             response.setHeader("Content-Disposition","attachment; filename=\"" + file.getName() + "\"");
@@ -115,6 +113,21 @@ public class descargarNookSV extends HttpServlet {
             response.setContentType("text/html");
             response.getWriter().println("<h3>File \"+ fileName +\" Is Not Present .....!</h3>");
         }
+        
+        deleteDirectory(new File("temp" + File.separator + nook));
+        
+        nookDB.actualizarDescargas(nook, nookO.getDescargas()+1);
+        
+    }
+    
+    boolean deleteDirectory(File directorio) {
+        File[] contenidos = directorio.listFiles();
+        if (contenidos != null) {
+            for (File file : contenidos) {
+                deleteDirectory(file);
+            }
+        }
+        return directorio.delete();
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

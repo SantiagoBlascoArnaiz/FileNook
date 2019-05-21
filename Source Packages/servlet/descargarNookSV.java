@@ -6,14 +6,18 @@
 package servlet;
 
 import conexionDB.documentoDB;
+import conexionDB.nookDB;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.Documento;
+import modelo.Nook;
 
 /**
  *
@@ -46,12 +51,39 @@ public class descargarNookSV extends HttpServlet {
         String usuario =  (String) session.getAttribute("usuario");
         int nook = Integer.parseInt(request.getParameter("idNook"));
         ArrayList<Documento> documentos = documentoDB.getFiles(nook);
-        String nombreArchivo = documentos.get(0).getNombre();
-       // String rutaAplicacion = getServletContext().getRealPath("");
-       // String rutaDescarga = rutaAplicacion + File.separator + "temp";
-        String ruta = "temp"+ File.separator + nook + File.separator + nombreArchivo;
+        ArrayList<String> archivos = new ArrayList();
+        Nook nookO =  nookDB.getNook(nook);
+        String zipName = nookO.getNombre() + ".zip";
+        String rutaZip = "temp" + File.separator + nook + File.separator + zipName;
+        FileOutputStream fos = new FileOutputStream(rutaZip);
+        ZipOutputStream zos = new ZipOutputStream(fos);
+        byte[] bufferZ = new byte[1024];
         
-        File file = new File(ruta);
+        for(int i=0; i<documentos.size(); i++){
+            archivos.add("temp" + File.separator + nook + File.separator + documentos.get(i).getNombre());
+        System.out.println(archivos.get(i));
+        }
+        for (int i=0; i < archivos.size(); i++) {
+                 
+                File srcFile = new File(archivos.get(i));
+ 
+                FileInputStream fis = new FileInputStream(srcFile);
+                // begin writing a new ZIP entry, positions the stream to the start of the entry data
+                zos.putNextEntry(new ZipEntry(srcFile.getName()));
+                
+                int length;
+                while ((length = fis.read(bufferZ)) > 0) {
+                     zos.write(bufferZ, 0, length);
+                }
+ 
+                zos.closeEntry();
+ 
+                // close the InputStream
+                fis.close();
+                 
+            }
+        zos.close();
+        File file = new File(rutaZip);
         OutputStream outStream = null;
         FileInputStream inputStream = null;
         System.out.println(file.getName());

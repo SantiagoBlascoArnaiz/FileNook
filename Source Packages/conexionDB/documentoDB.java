@@ -50,7 +50,28 @@ public class documentoDB {
             return 0;
         }
     }
-    
+    public static int insertDocu(int idNook, Part documento, String nombre) throws IOException {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+        String consulta="UPDATE  Documento  SET documento=?  WHERE nook= ? AND nombre = ?";
+        try {
+            ps = connection.prepareStatement(consulta);
+           
+            ps.setBinaryStream(1, documento.getInputStream() ); 
+            
+            ps.setInt(2, idNook);
+            ps.setString(3, nombre);
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public static ArrayList<Documento> getDocumentosNook(int idNook) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -149,28 +170,5 @@ public class documentoDB {
             return 0;
         }
 
-    }
-        
-    public static int insertDocu(int idNook, Part documento) throws IOException {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps=null;
-        
-        String consulta="UPDATE  Documento  SET documento=?  WHERE nook= ?";
-        try {
-            ps = connection.prepareStatement(consulta);
-           
-            ps.setBlob(1, documento.getInputStream() ); 
-            
-            ps.setInt(2, idNook);
-            
-            int res = ps.executeUpdate();
-            ps.close();
-            pool.freeConnection(connection);
-            return res;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
     }
 }

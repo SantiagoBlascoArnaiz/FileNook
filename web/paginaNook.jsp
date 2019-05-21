@@ -63,12 +63,12 @@ and open the template in the editor.
                     <div class="opciones">
                         <ul>
                             <%if(userName.equals(autor)){%>
-                            <li><a href="perfil.jsp"><img src="recuperarImagenOtroSV?autor=<%=autor%>"
+                            <li><a href="perfil.jsp"><img src="recuperarImagenesSV?userName=<%=autor%>"
                                                                               class="imagenesUsuarios"
                                                                                 alt="Imagen del perfil de usuario"></a></li>
                             <li><a href="perfil.jsp"><%=autor%></a></li>                            
                             <%}else{%>
-                            <li><a href="autorSV?nombre=<%=autor%>"><img src="recuperarImagenOtroSV?autor=<%=autor%>"
+                            <li><a href="autorSV?nombre=<%=autor%>"><img src="recuperarImagenesSV?userName=<%=autor%>"
                                                                               class="imagenesUsuarios"
                                                                                 alt="Imagen del perfil de usuario"></a></li>
                             <li><a href="autorSV?nombre=<%=autor%>"><%=autor%></a></li>

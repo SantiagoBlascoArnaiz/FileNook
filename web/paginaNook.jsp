@@ -74,7 +74,7 @@ and open the template in the editor.
                             <li><a href="autorSV?nombre=<%=autor%>"><%=autor%></a></li>
                             <%}%>
                             <li><%=fecha%></li>
-                            <li><button type="button">Descargar</button></li>
+                            <li><button type="button" onclick="window.location.href='/descargarNookSV?idNook=<%=nook.getIdNook()%>'">Descargar</button></li>
                             <li><button type="button" onclick="window.location.href='/documentosSV?idNook=<%=nook.getIdNook()%>'">Ver archivos</button></li>
                             <li><text>Descargas: <%=descargas%></text></li>
                         </ul>

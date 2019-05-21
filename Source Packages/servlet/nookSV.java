@@ -57,8 +57,8 @@ public class nookSV extends HttpServlet {
         request.setAttribute("comentarios",comentarios);
         request.setAttribute("valoracion", valoracion);
         request.setAttribute("cValoraciones", cValoraciones);
-        String url = "/paginaNook.jsp";
         
+        String url = "/paginaNook.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
         

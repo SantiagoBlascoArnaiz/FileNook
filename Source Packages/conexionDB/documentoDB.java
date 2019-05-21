@@ -5,7 +5,13 @@
  */
 package conexionDB;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -61,7 +67,7 @@ public class documentoDB {
                 documento.setResumen(rs.getString("resumen"));
                 documento.setFechaCreacion(rs.getDate("fechaCreacion"));
                 documento.setFechaModificacion(rs.getDate("fechaModificacion"));
-                
+                documento.setDocumento(rs.getBlob("documento"));
                 documentos.add(documento);
                 }
             
@@ -73,6 +79,43 @@ public class documentoDB {
             e.printStackTrace();
             
         return null;
+        }
+    }
+    
+        public static ArrayList<Documento> getFiles(int idNook) throws FileNotFoundException, IOException {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        ResultSet rs = null;
+        ArrayList<Documento> documentos=new ArrayList();
+        String consulta = "SELECT * FROM Documento WHERE nook = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(consulta);
+            ps.setInt(1, idNook);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Documento documento=new Documento();
+                documento.setNook(rs.getInt("nook"));
+                documento.setNombre(rs.getString("nombre"));
+                documento.setResumen(rs.getString("resumen"));
+                documento.setFechaCreacion(rs.getDate("fechaCreacion"));
+                documento.setFechaModificacion(rs.getDate("fechaModificacion"));
+                documentos.add(documento);
+                
+                InputStream is =  rs.getBinaryStream("documento");
+                String str = convert(is);
+                new File("temp").mkdir();
+                File file = new File("temp/"+documento.getNombre());
+                FileOutputStream outputStream = new FileOutputStream(file);
+                outputStream.write(str.getBytes());
+                outputStream.close();
+            }
+            rs.close();
+            ps.close();
+            pool.freeConnection(connection);
+            return documentos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
     
@@ -98,4 +141,23 @@ public class documentoDB {
             return 0;
         }
     }
+    
+    private static String convert(InputStream is) {
+        BufferedInputStream bis = new BufferedInputStream(is);
+	ByteArrayOutputStream buf = new ByteArrayOutputStream();
+	int result;
+	String str = null;
+	try {
+            result = bis.read();
+
+            while (result != -1) {
+                buf.write((byte) result);
+                result = bis.read();
+            }
+            str = buf.toString("UTF-8");
+	} catch (IOException e) {
+            e.printStackTrace();
+	}
+	return str;
+	}
 }

@@ -80,7 +80,7 @@ and open the template in the editor.
 
                 <div class="pag-archivo">
                     
-                    <form class="archivo"  method="post" enctype="multipart/form-data" action="/cogerImagenSV">
+                    <form class="archivo"  method="post" enctype="multipart/form-data" action="/configuracionSV">
                             <ul>
                               
                                 <li><a><img  src= "recuperarImagenesSV?userName=<%=userName%>" width="150" height="150"  alt="Imagen del perfil"></a></li>

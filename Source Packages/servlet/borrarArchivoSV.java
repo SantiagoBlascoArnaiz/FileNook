@@ -5,58 +5,43 @@
  */
 package servlet;
 
-import conexionDB.usuarioDB;
+import conexionDB.documentoDB;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import modelo.Usuario;
 
 /**
  *
- * @author Usuario
+ * @author Fnac
  */
-@WebServlet(name = "cogerImagenSV", urlPatterns = {"/cogerImagenSV"})
-@MultipartConfig
-public class cogerImagenSV extends HttpServlet {
+@WebServlet(name = "borrarArchivoSV", urlPatterns = {"/borrarArchivoSV"})
+public class borrarArchivoSV extends HttpServlet {
 
-   
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        String nombre = request.getParameter("nombre");
+        int idNook = Integer.parseInt(request.getParameter("idNook"));
         
-        String name="";
-        HttpSession session = request.getSession(false);
+        documentoDB.borrarArchivo(nombre,idNook);
         
-        
-        if (session != null){
-            name = (String)session.getAttribute("usuario");
-        }
-        
-        
-        Part foto = request.getPart("foto");
-       
-        Usuario usr = usuarioDB.getUsuario(name);
-      
-        
-        usuarioDB.insertImagen(name,foto);     
-        
-         
-         String url;
-  
-        url = "/configuracionUsuario.jsp";
+        String url = "/documentosSV?idNook="+idNook;
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

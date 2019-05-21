@@ -715,7 +715,33 @@ margin:auto;
 }
 
 .borrarComentario button{
+    background-color: #FF626C;
+    width: 10rem;
+    position: absolute;
+    right: 15rem;
 
+}
+
+.borrarArchivo{
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.borrarArchivo button{
+    background-color: #FF626C;
+    width: 10rem;
+    position: absolute;
+    right: 15rem;
+
+}
+
+.borrarNook{
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.borrarNook button{
+    background-color: #FF626C;
     width: 10rem;
     position: absolute;
     right: 15rem;

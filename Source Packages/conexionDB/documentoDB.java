@@ -160,4 +160,28 @@ public class documentoDB {
 	}
 	return str;
 	}
+    
+    public static double borrarArchivo(String nombre, int idNook){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps=null;
+
+
+        String consulta="DELETE FROM Documento WHERE nombre = ? AND nook = ?";
+        try {
+            ps =connection.prepareStatement(consulta);
+        
+            ps.setString(1, nombre );
+            ps.setInt(2, idNook );
+
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
 }

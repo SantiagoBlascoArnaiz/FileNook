@@ -102,7 +102,7 @@ public class comentarioDB {
         PreparedStatement ps=null;
 
 
-        String consulta="DELETE FROM Comentario WHERE idCOmentario = ?";
+        String consulta="DELETE FROM Comentario WHERE idComentario = ?";
         try {
             ps =connection.prepareStatement(consulta);
 

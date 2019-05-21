@@ -58,7 +58,13 @@ and open the template in the editor.
                                    <a><img src="imagenes/docSimpleLogo.png" alt="Imagen del perfil de usuario"></a>
                                     <h3><%=documentos.get(i).getNombre()%></h3>
                                     <p><%=documentos.get(i).getResumen()%></p>
+                                    <%if(userName.equals(autor)){%>
+                                    <div class="borrarArchivo">
+                                        <button type="submit"   class="borrarArchivo" onclick="window.location.href='borrarArchivoSV?nombre=<%=documentos.get(i).getNombre()%>&idNook=<%=nook.getIdNook()%>'">Borrar archivo</button>
+                                    </div>
+                                    <%}%>
                            </div>
+                           
                     </div>
                     <%}%>
                 </div>

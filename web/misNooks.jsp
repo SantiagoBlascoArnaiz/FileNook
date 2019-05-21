@@ -90,7 +90,7 @@ and open the template in the editor.
                                     <p class="vMedia"><%=misNooks.get(i).getValoracionMedia()%></p>
                                 </form>
                             </div>
-                            <div class="nooks">
+                            <div class="borrarNook">
                                 <button type="submit"   class="borrarNook" onclick="window.location.href='borrarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>'">Borrar Nook</button>
                             </div>
                        </div>

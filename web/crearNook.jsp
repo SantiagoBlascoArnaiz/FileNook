@@ -43,8 +43,18 @@ and open the template in the editor.
                             </div>
 
                             <div class="partes">
-                                <label for="etiquetas" class="etiquetasNook" style="padding-right: 2em;">Etiquetas:</label>
-                                <input class="tablaNooktext" name="etiquetas" required>
+                                <label for="etiquetas1" class="etiquetasNook" style="padding-right: 2em;">Categorías:<br></label>
+                                <input class="tablaNooktext" name="etiquetas1" required>
+                            </div>
+                            
+                            <div class="partes">
+                                <label for="etiquetas2" class="etiquetasNook""></label>
+                                <input class="tablaNooktext" name="etiquetas2" required>
+                            </div>
+                            
+                            <div class="partes">
+                                <label for="etiquetas3" class="etiquetasNook""></label>
+                                <input class="tablaNooktext" name="etiquetas3" required>
                             </div>
 
                             <div class="partes" >

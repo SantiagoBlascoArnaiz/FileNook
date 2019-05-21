@@ -39,10 +39,6 @@ and open the template in the editor.
             <main class="main">
                 <div class="container">
                     <div class="proyectos-inicial">
-                        
-                      
-                        
-                        
                         <form class="search-bar" method="post" action="/buscarSV" >
                             <input type="search" placeholder="&#128269 Busca aquí nooks..." name="search" required>
                             <div class="clearfix">
@@ -59,7 +55,7 @@ and open the template in the editor.
                                     ArrayList<Nook> nooksP = (ArrayList<Nook>)request.getAttribute("nooksPopulares");
                                     for(int i=0;i<nooksP.size();i++){
                                 %>
-                                <div class="item"><a href='/nookSV?idNook=<%=nooksP.get(i).getIdNook()%>'><div class="item-link"><%=nooksP.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/nookSV?idNook=<%=nooksP.get(i).getIdNook()%>'><div class="item-link"><%=nooksP.get(i).getNombre()%><br>Valoración media: <%=nooksP.get(i).getValoracionMedia()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">
@@ -75,7 +71,7 @@ and open the template in the editor.
                                     ArrayList<Nook> nooksD = (ArrayList<Nook>) request.getAttribute("nooksDescargas");
                                     for(int i=0;i<nooksD.size();i++){
                                 %>
-                                <div class="item"><a href='/nookSV?idNook=<%=nooksD.get(i).getIdNook()%>'><div class="item-link"><%=nooksD.get(i).getNombre()%></div></a></div>
+                                <div class="item"><a href='/nookSV?idNook=<%=nooksD.get(i).getIdNook()%>'><div class="item-link"><%=nooksD.get(i).getNombre()%><br><br>Nº de descargas: <%=nooksD.get(i).getDescargas()%></div></a></div>
                                 <%}%>
                             </div>
                             <div class="MS-controls">

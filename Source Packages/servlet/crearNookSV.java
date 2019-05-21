@@ -44,7 +44,9 @@ public class crearNookSV extends HttpServlet {
             throws ServletException, IOException {
         
         String nombre = request.getParameter("nombre");
-        String etiquetas = request.getParameter("etiquetas");
+        String etiquetas1 = request.getParameter("etiquetas1");
+        String etiquetas2 = request.getParameter("etiquetas2");
+        String etiquetas3 = request.getParameter("etiquetas3");
         String resumen = request.getParameter("resumen");
         
         java.util.Date date = new java.util.Date();  
@@ -70,12 +72,26 @@ public class crearNookSV extends HttpServlet {
         int idNook = nookCreado.getIdNook();
         
  
-        ClasificacionCategorias categoria = new ClasificacionCategorias();
+        ClasificacionCategorias categoria1 = new ClasificacionCategorias();
         
-        categoria.setIdNook(idNook);
-        categoria.setCategoria(etiquetas);
+        categoria1.setIdNook(idNook);
+        categoria1.setCategoria(etiquetas1);
         
-        clasificacionCategoriasDB.insert(categoria);
+        clasificacionCategoriasDB.insert(categoria1);
+        
+        ClasificacionCategorias categoria2 = new ClasificacionCategorias();
+        
+        categoria1.setIdNook(idNook);
+        categoria1.setCategoria(etiquetas2);
+        
+        clasificacionCategoriasDB.insert(categoria2);
+        
+        ClasificacionCategorias categoria3 = new ClasificacionCategorias();
+        
+        categoria1.setIdNook(idNook);
+        categoria1.setCategoria(etiquetas3);
+        
+        clasificacionCategoriasDB.insert(categoria3);
         
         String url = "/agregarArchivo.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

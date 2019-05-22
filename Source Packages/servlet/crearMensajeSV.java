@@ -49,7 +49,7 @@ public class crearMensajeSV extends HttpServlet {
         mensajeEnv.setAsunto(asunto);
         mensajeEnv.setTexto(texto);
         mensajeEnv.setFecha(fecha);
-        mensajeEnv.setLeido(0);
+        mensajeEnv.setLeido(1);
         mensajeEnv.setTipo("Enviado");
         
         HttpSession sesion = request.getSession();

@@ -150,4 +150,24 @@ public class mensajeDB {
             return null;
         }
     }
+    
+    public static int mnsajeLeido(int idMensaje) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        
+        String consulta="UPDATE  Mensaje  SET leido = 1  WHERE idMensaje = ?";
+        try {
+            PreparedStatement ps =connection.prepareStatement(consulta);
+           
+            ps.setInt(1, idMensaje);
+           
+            int res = ps.executeUpdate();
+            ps.close();
+            pool.freeConnection(connection);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

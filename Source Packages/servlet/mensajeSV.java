@@ -40,6 +40,12 @@ public class mensajeSV extends HttpServlet {
         
         Mensaje mensaje = mensajeDB.getMensaje(idMensaje);
         
+        if(mensaje.getLeido() == 0){
+            mensajeDB.mnsajeLeido(idMensaje);
+        }
+        
+        mensaje = mensajeDB.getMensaje(idMensaje);
+        
         request.setAttribute("mensaje", mensaje);
         
         String url = "/mensajeEnviado.jsp";

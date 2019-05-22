@@ -8,7 +8,6 @@ package servlet;
 import conexionDB.comentarioDB;
 import conexionDB.valoracionesComentarioDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

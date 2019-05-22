@@ -6,7 +6,6 @@
 package servlet;
 
 import conexionDB.clasificacionCategoriasDB;
-import conexionDB.documentoDB;
 import conexionDB.nookDB;
 import java.io.IOException;
 import java.sql.Date;
@@ -18,9 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import modelo.ClasificacionCategorias;
-import modelo.Documento;
 import modelo.Nook;
 
 /**

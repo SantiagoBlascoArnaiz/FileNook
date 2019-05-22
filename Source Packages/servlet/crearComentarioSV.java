@@ -8,7 +8,6 @@ package servlet;
 import conexionDB.comentarioDB;
 import conexionDB.nookDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;

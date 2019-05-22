@@ -10,7 +10,6 @@ import conexionDB.nookDB;
 import conexionDB.usuarioDB;
 import conexionDB.valoracionesNookDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

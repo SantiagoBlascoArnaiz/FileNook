@@ -7,7 +7,6 @@ package servlet;
 
 import conexionDB.usuarioDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,9 +57,6 @@ public class registroSV extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
         
-//        String url = "/inicialSV";
-  //      RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-    //    dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

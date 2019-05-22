@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Nook;
 
 /**
@@ -35,15 +36,24 @@ public class inicialSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*Falta crear la clase*/
-        ArrayList<Nook> nooksPopulares =nookDB.getNooksPopulares();
-        ArrayList<Nook> nooksDescargas =nookDB.getNooksDescargas();
         
-        String url = "/inicial.jsp";
-        request.setAttribute("nooksPopulares", nooksPopulares);
-        request.setAttribute("nooksDescargas", nooksDescargas);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+
+            ArrayList<Nook> nooksPopulares =nookDB.getNooksPopulares();
+            ArrayList<Nook> nooksDescargas =nookDB.getNooksDescargas();
+
+            String url = "/inicial.jsp";
+            request.setAttribute("nooksPopulares", nooksPopulares);
+            request.setAttribute("nooksDescargas", nooksDescargas);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

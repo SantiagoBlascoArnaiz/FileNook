@@ -33,14 +33,19 @@ public class cerrarSesionSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession();
-        session.invalidate();
         
-        String url = "/index.html";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+            session.invalidate();
+            String url = "/index.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     

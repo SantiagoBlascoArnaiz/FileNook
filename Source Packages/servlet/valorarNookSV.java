@@ -38,41 +38,47 @@ public class valorarNookSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession session = request.getSession(false);
-        
-        ValoracionNook valoracion = new ValoracionNook();
-        String usr = (String) session.getAttribute("usuario");
-        int idNook = Integer.parseInt(request.getParameter("idNook"));
-        int val = Integer.parseInt(request.getParameter("estrellas"+idNook));
-        
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
-        
-        valoracion.setNook(idNook);
-        valoracion.setUsuario(usr);
-        valoracion.setPuntuacion(val);
-        valoracion.setFecha(fecha);
-        
-        valoracionesNookDB.insert(valoracion);
-        
-        double media = valoracionesNookDB.valoracionMediaNook(idNook);
-        if(media!=-1){
-            nookDB.actualizarValoracionMedia(idNook, media);
-        }else{
-            nookDB.actualizarValoracionMedia(idNook, 0);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        } else {
+            String usr = (String) session.getAttribute("usuario");        
+            ValoracionNook valoracion = new ValoracionNook();
+            int idNook = Integer.parseInt(request.getParameter("idNook"));
+            int val = Integer.parseInt(request.getParameter("estrellas"+idNook));
+
+            java.util.Date date = new java.util.Date();  
+            Date fecha = new Date(date.getTime());
+
+            valoracion.setNook(idNook);
+            valoracion.setUsuario(usr);
+            valoracion.setPuntuacion(val);
+            valoracion.setFecha(fecha);
+
+            valoracionesNookDB.insert(valoracion);
+
+            double media = valoracionesNookDB.valoracionMediaNook(idNook);
+            if(media!=-1){
+                nookDB.actualizarValoracionMedia(idNook, media);
+            }else{
+                nookDB.actualizarValoracionMedia(idNook, 0);
+            }
+            String autor = nookDB.getNook(idNook).getAutor();
+
+            double mediaAutor = nookDB.valoracionMediaAutor(autor);
+            if(mediaAutor != -1){
+                usuarioDB.actualizarValoracionMedia(autor, media);
+            }else{
+                usuarioDB.actualizarValoracionMedia(autor, 0);
+            }
+
+            String url = request.getParameter("urlPagina");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-        String autor = nookDB.getNook(idNook).getAutor();
-        
-        double mediaAutor = nookDB.valoracionMediaAutor(autor);
-        if(mediaAutor != -1){
-            usuarioDB.actualizarValoracionMedia(autor, media);
-        }else{
-            usuarioDB.actualizarValoracionMedia(autor, 0);
-        }
-        
-        String url = request.getParameter("urlPagina");
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

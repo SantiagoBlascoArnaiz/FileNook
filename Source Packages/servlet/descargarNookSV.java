@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,76 +49,82 @@ public class descargarNookSV extends HttpServlet {
             throws ServletException, IOException, SQLException {
         
         HttpSession session = request.getSession(false);
-        String usuario =  (String) session.getAttribute("usuario");
-        int nook = Integer.parseInt(request.getParameter("idNook"));
-        ArrayList<Documento> documentos = documentoDB.getFiles(nook);
-        ArrayList<String> archivos = new ArrayList();
-        Nook nookO =  nookDB.getNook(nook);
-        String zipName = nookO.getNombre() + ".zip";
-        String rutaZip = "temp" + File.separator + nook + File.separator + zipName;
-        FileOutputStream fos = new FileOutputStream(rutaZip);
-        ZipOutputStream zos = new ZipOutputStream(fos);
-        byte[] bufferZ = new byte[1024];
-        
-        for(int i=0; i<documentos.size(); i++){
-            archivos.add("temp" + File.separator + nook + File.separator + documentos.get(i).getNombre());
-        }
-        for (int i=0; i < archivos.size(); i++) {
-                 
-                File srcFile = new File(archivos.get(i));
- 
-                FileInputStream fis = new FileInputStream(srcFile);
-                // begin writing a new ZIP entry, positions the stream to the start of the entry data
-                zos.putNextEntry(new ZipEntry(srcFile.getName()));
-                
-                int length;
-                while ((length = fis.read(bufferZ)) > 0) {
-                     zos.write(bufferZ, 0, length);
-                }
- 
-                zos.closeEntry();
- 
-                // close the InputStream
-                fis.close();
-                 
-            }
-        zos.close();
-        File file = new File(rutaZip);
-        OutputStream outStream = null;
-        FileInputStream inputStream = null;
-        if(file.exists()){
-            response.setContentType("application/octet-stream");
-            response.setHeader("Content-Disposition","attachment; filename=\"" + file.getName() + "\"");
-            try{
-                outStream = response.getOutputStream();
-                inputStream = new FileInputStream(file);
-                byte[] buffer = new byte[1024*100];
-                int bytesRead = -1;
-                while((bytesRead= inputStream.read(buffer))!=-1){
-                    outStream.write(buffer, 0, bytesRead);
-                }
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
 
-            } catch(IOException e){
-                e.printStackTrace();
-            } finally{
-                if(inputStream != null) {
-                    inputStream.close();
-                }
+            int nook = Integer.parseInt(request.getParameter("idNook"));
+            ArrayList<Documento> documentos = documentoDB.getFiles(nook);
+            ArrayList<String> archivos = new ArrayList();
+            Nook nookO =  nookDB.getNook(nook);
+            String zipName = nookO.getNombre() + ".zip";
+            String rutaZip = "temp" + File.separator + nook + File.separator + zipName;
+            FileOutputStream fos = new FileOutputStream(rutaZip);
+            ZipOutputStream zos = new ZipOutputStream(fos);
+            byte[] bufferZ = new byte[1024];
 
-                outStream.flush();
-                if(outStream != null){
-                    outStream.close();
-                }
+            for(int i=0; i<documentos.size(); i++){
+                archivos.add("temp" + File.separator + nook + File.separator + documentos.get(i).getNombre());
             }
-        } else{
-            response.setContentType("text/html");
-            response.getWriter().println("<h3>File \"+ fileName +\" Is Not Present .....!</h3>");
+            for (int i=0; i < archivos.size(); i++) {
+
+                    File srcFile = new File(archivos.get(i));
+
+                    FileInputStream fis = new FileInputStream(srcFile);
+                    // begin writing a new ZIP entry, positions the stream to the start of the entry data
+                    zos.putNextEntry(new ZipEntry(srcFile.getName()));
+
+                    int length;
+                    while ((length = fis.read(bufferZ)) > 0) {
+                         zos.write(bufferZ, 0, length);
+                    }
+
+                    zos.closeEntry();
+
+                    // close the InputStream
+                    fis.close();
+
+                }
+            zos.close();
+            File file = new File(rutaZip);
+            OutputStream outStream = null;
+            FileInputStream inputStream = null;
+            if(file.exists()){
+                response.setContentType("application/octet-stream");
+                response.setHeader("Content-Disposition","attachment; filename=\"" + file.getName() + "\"");
+                try{
+                    outStream = response.getOutputStream();
+                    inputStream = new FileInputStream(file);
+                    byte[] buffer = new byte[1024*100];
+                    int bytesRead = -1;
+                    while((bytesRead= inputStream.read(buffer))!=-1){
+                        outStream.write(buffer, 0, bytesRead);
+                    }
+
+                } catch(IOException e){
+                    e.printStackTrace();
+                } finally{
+                    if(inputStream != null) {
+                        inputStream.close();
+                    }
+
+                    outStream.flush();
+                    if(outStream != null){
+                        outStream.close();
+                    }
+                }
+            } else{
+                response.setContentType("text/html");
+                response.getWriter().println("<h3>File \"+ fileName +\" Is Not Present .....!</h3>");
+            }
+
+            deleteDirectory(new File("temp" + File.separator + nook));
+
+            nookDB.actualizarDescargas(nook, nookO.getDescargas()+1);
         }
-        
-        deleteDirectory(new File("temp" + File.separator + nook));
-        
-        nookDB.actualizarDescargas(nook, nookO.getDescargas()+1);
-        
     }
     
     boolean deleteDirectory(File directorio) {

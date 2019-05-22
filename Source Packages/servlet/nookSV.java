@@ -42,25 +42,31 @@ public class nookSV extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(false);
-        int idNook = Integer.parseInt(request.getParameter("idNook"));
-        Nook nook = nookDB.getNook(idNook);
-        int valoracion = valoracionesNookDB.getValoracionUsuarioNook((String) session.getAttribute("usuario"), idNook);
-        
-        ArrayList<Comentario> comentarios=comentarioDB.getComentariosNook(idNook);
-        ArrayList<Integer> cValoraciones = new ArrayList();
-        for(int i=0; i<comentarios.size(); i++){
-            cValoraciones.add(valoracionesComentarioDB.getValoracionUsuarioComentario((String) session.getAttribute("usuario"), comentarios.get(i).getIdComentario()));
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+            int idNook = Integer.parseInt(request.getParameter("idNook"));
+            Nook nook = nookDB.getNook(idNook);
+            int valoracion = valoracionesNookDB.getValoracionUsuarioNook((String) session.getAttribute("usuario"), idNook);
+
+            ArrayList<Comentario> comentarios=comentarioDB.getComentariosNook(idNook);
+            ArrayList<Integer> cValoraciones = new ArrayList();
+            for(int i=0; i<comentarios.size(); i++){
+                cValoraciones.add(valoracionesComentarioDB.getValoracionUsuarioComentario((String) session.getAttribute("usuario"), comentarios.get(i).getIdComentario()));
+            }
+
+            request.setAttribute("nook", nook);
+            request.setAttribute("comentarios",comentarios);
+            request.setAttribute("valoracion", valoracion);
+            request.setAttribute("cValoraciones", cValoraciones);
+
+            String url = "/paginaNook.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-        
-        request.setAttribute("nook", nook);
-        request.setAttribute("comentarios",comentarios);
-        request.setAttribute("valoracion", valoracion);
-        request.setAttribute("cValoraciones", cValoraciones);
-        
-        String url = "/paginaNook.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

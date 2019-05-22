@@ -37,16 +37,22 @@ public class enviadosSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        ArrayList<Mensaje> mensajes = mensajeDB.getMensajesEnviados(userName);
-        
-        request.setAttribute("mensajes", mensajes);
-        
-        String url = "/enviados.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+
+            ArrayList<Mensaje> mensajes = mensajeDB.getMensajesEnviados(userName);
+
+            request.setAttribute("mensajes", mensajes);
+
+            String url = "/enviados.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

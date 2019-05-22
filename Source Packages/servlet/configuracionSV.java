@@ -30,29 +30,28 @@ public class configuracionSV extends HttpServlet {
             throws ServletException, IOException {
        response.setContentType("text/html;charset=UTF-8");
         
-        String name="";
         HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String name = (String) session.getAttribute("usuario");
+
+            Part foto = request.getPart("foto");
+
+
+
+            usuarioDB.insertImagen(name,foto);     
+
+
+             String url;
+
+            url = "/configuracionUsuario.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         
-        
-        if (session != null){
-            name = (String)session.getAttribute("usuario");
         }
-        
-        
-        Part foto = request.getPart("foto");
-       
-      
-        
-        usuarioDB.insertImagen(name,foto);     
-        
-         
-         String url;
-  
-        url = "/configuracionUsuario.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

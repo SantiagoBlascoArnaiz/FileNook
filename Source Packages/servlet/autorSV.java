@@ -42,42 +42,47 @@ public class autorSV extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(false);
-        String nombre = request.getParameter("nombre");
-        
-        Usuario usuario = usuarioDB.getUsuario(nombre);
-        
-        StringBuilder str;
-        ArrayList<String> categoriasNook;
-        ArrayList<String> categorias = new ArrayList<>();
-        ArrayList<Nook> nooks= nookDB.getNooksUsuario(nombre);
-        ArrayList<Integer> valoracionesNook = new ArrayList<>();
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String nombre = (String) session.getAttribute("usuario");
 
-        for(int i=0; i < nooks.size(); i++){
-            str =  new StringBuilder();
-            categoriasNook = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
-            valoracionesNook.add(valoracionesNookDB.getValoracionUsuarioNook((String) session.getAttribute("usuario"), nooks.get(i).getIdNook()));
-            for(int j = 0; j < categoriasNook.size(); j++ ){
-                str.append(categoriasNook.get(j));
-                str.append(',');
+            Usuario usuario = usuarioDB.getUsuario(nombre);
+
+            StringBuilder str;
+            ArrayList<String> categoriasNook;
+            ArrayList<String> categorias = new ArrayList<>();
+            ArrayList<Nook> nooks= nookDB.getNooksUsuario(nombre);
+            ArrayList<Integer> valoracionesNook = new ArrayList<>();
+
+            for(int i=0; i < nooks.size(); i++){
+                str =  new StringBuilder();
+                categoriasNook = clasificacionCategoriasDB.getCategoriasNook(nooks.get(i).getIdNook());
+                valoracionesNook.add(valoracionesNookDB.getValoracionUsuarioNook((String) session.getAttribute("usuario"), nooks.get(i).getIdNook()));
+                for(int j = 0; j < categoriasNook.size(); j++ ){
+                    str.append(categoriasNook.get(j));
+                    str.append(',');
+                }
+                if(str.length() > 0){
+                    str.deleteCharAt(str.length()-1);
+                    categorias.add(str.toString());
+                }else{
+                    categorias.add(null);
+                }
             }
-            if(str.length() > 0){
-                str.deleteCharAt(str.length()-1);
-                categorias.add(str.toString());
-            }else{
-                categorias.add(null);
-            }
+
+            request.setAttribute("autor",usuario);
+            request.setAttribute("nooksCategorias", categorias);
+            request.setAttribute("nooks", nooks);
+            request.setAttribute("valoraciones", valoracionesNook);
+
+
+            String url = "/autor.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-        
-        request.setAttribute("autor",usuario);
-        request.setAttribute("nooksCategorias", categorias);
-        request.setAttribute("nooks", nooks);
-        request.setAttribute("valoraciones", valoracionesNook);
-        
-        
-        String url = "/autor.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

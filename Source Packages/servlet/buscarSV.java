@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Nook;
 
 /**
@@ -35,39 +36,48 @@ public class buscarSV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
-      
-       String busqueda= request.getParameter("search");
-       ArrayList<String> categoriasNook;
-       ArrayList<String> categorias = new ArrayList<>();
-       ArrayList<Nook> listNook=nookDB.buscarNook(busqueda);
-       StringBuilder str;
+        response.setContentType("text/html;charset=UTF-8");
        
-       for(int i=0; i < listNook.size(); i++){
-            str =  new StringBuilder();
-            categoriasNook = clasificacionCategoriasDB.getCategoriasNook(listNook.get(i).getIdNook());
-            for(int j = 0; j < categoriasNook.size(); j++ ){
-                str.append(categoriasNook.get(j));
-                str.append(',');
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+
+            String busqueda= request.getParameter("search");
+            ArrayList<String> categoriasNook;
+            ArrayList<String> categorias = new ArrayList<>();
+            ArrayList<Nook> listNook=nookDB.buscarNook(busqueda);
+            StringBuilder str;
+
+            for(int i=0; i < listNook.size(); i++){
+                str =  new StringBuilder();
+                categoriasNook = clasificacionCategoriasDB.getCategoriasNook(listNook.get(i).getIdNook());
+                for(int j = 0; j < categoriasNook.size(); j++ ){
+                    str.append(categoriasNook.get(j));
+                    str.append(',');
+                }
+                if(str.length() > 0){
+                    str.deleteCharAt(str.length()-1);
+                    categorias.add(str.toString());
+                }else{
+                    categorias.add(null);
+                }
             }
-            if(str.length() > 0){
-                str.deleteCharAt(str.length()-1);
-                categorias.add(str.toString());
-            }else{
-                categorias.add(null);
-            }
+
+            request.setAttribute("nooksB", listNook);
+            request.setAttribute("categorias", categorias);
+
+
+
+
+            String url = "/busqueda.jsp";
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-       
-       request.setAttribute("nooksB", listNook);
-       request.setAttribute("categorias", categorias);
-       
-     
-       
-       
-      String url = "/busqueda.jsp";
-      
-      RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-      dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

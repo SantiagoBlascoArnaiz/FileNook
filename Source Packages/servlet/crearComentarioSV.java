@@ -40,37 +40,42 @@ public class crearComentarioSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        String texto = request.getParameter("comentario");
-        int idNook = Integer.parseInt(request.getParameter("idNook"));
-        Nook nook = nookDB.getNook(idNook);
-        
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
-        
-        Comentario comentario = new Comentario();
-        comentario.setIdNook(idNook);
-        
-        comentario.setFecha(fecha);
-        comentario.setAutor(userName);
-        comentario.setTexto(texto);
-        comentario.setValoracionMedia(0.0);
-        
-        comentarioDB.insert(comentario);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
 
-        
-        ArrayList<Comentario> comentarios=comentarioDB.getComentariosNook(idNook);
-        
-        request.setAttribute("nook", nook);
-        request.setAttribute("comentarios",comentarios);
-        
-        String url = request.getParameter("url");
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
+            String texto = request.getParameter("comentario");
+            int idNook = Integer.parseInt(request.getParameter("idNook"));
+            Nook nook = nookDB.getNook(idNook);
+
+            java.util.Date date = new java.util.Date();  
+            Date fecha = new Date(date.getTime());
+
+            Comentario comentario = new Comentario();
+            comentario.setIdNook(idNook);
+
+            comentario.setFecha(fecha);
+            comentario.setAutor(userName);
+            comentario.setTexto(texto);
+            comentario.setValoracionMedia(0.0);
+
+            comentarioDB.insert(comentario);
+
+
+            ArrayList<Comentario> comentarios=comentarioDB.getComentariosNook(idNook);
+
+            request.setAttribute("nook", nook);
+            request.setAttribute("comentarios",comentarios);
+
+            String url = request.getParameter("url");
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

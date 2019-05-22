@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Usuario;
 
 /**
@@ -34,29 +35,37 @@ public class registroSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String correo = request.getParameter("email");
-        String nombre = request.getParameter("nom");
-        String apellidos = request.getParameter("ape");
-        String usuario = request.getParameter("usr");
-        String clave = request.getParameter("psw");
         
-        Usuario user = new Usuario();
-        user.setNombre(nombre);
-        user.setApellidos(apellidos);
-        user.setNombreUsuario(usuario);
-        user.setClave(clave);
-        user.setCorreo(correo);
-        
-        String pathP=getServletContext().getRealPath("/imagenes");
-        
-        usuarioDB.insert(user);
-        usuarioDB.insertImagenDefecto(user,pathP);
-        
-        String url = "/inicioSesion.html";
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        } else{
+            String userName = (String) session.getAttribute("usuario");
+            String correo = request.getParameter("email");
+            String nombre = request.getParameter("nom");
+            String apellidos = request.getParameter("ape");
+            String usuario = request.getParameter("usr");
+            String clave = request.getParameter("psw");
+
+            Usuario user = new Usuario();
+            user.setNombre(nombre);
+            user.setApellidos(apellidos);
+            user.setNombreUsuario(usuario);
+            user.setClave(clave);
+            user.setCorreo(correo);
+
+            String pathP=getServletContext().getRealPath("/imagenes");
+
+            usuarioDB.insert(user);
+            usuarioDB.insertImagenDefecto(user,pathP);
+
+            String url = "/inicioSesion.html";
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

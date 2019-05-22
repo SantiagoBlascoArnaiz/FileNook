@@ -38,34 +38,39 @@ public class valorarComentarioSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        
-        ValoracionComentario valoracion = new ValoracionComentario();
-        String usuario = (String) session.getAttribute("usuario");
-        int idComentario = Integer.parseInt(request.getParameter("comentario"));
-        int val = Integer.parseInt(request.getParameter("cestrellas"+idComentario));   
-        
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
-        
-        valoracion.setComentario(idComentario);
-        valoracion.setFecha(fecha);
-        valoracion.setUsuario(usuario);
-        valoracion.setPuntuacion(val);
-        
-        
-        valoracionesComentarioDB.insert(valoracion);
-        
-        double media = valoracionesComentarioDB.valoracionMediaComentario(idComentario);
-        
-        if(media!=-1){
-            comentarioDB.actualizarValoracionMedia(idComentario, media);
-        }else{
-            comentarioDB.actualizarValoracionMedia(idComentario, 0);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        } else {
+            String usuario = (String) session.getAttribute("usuario");        
+            ValoracionComentario valoracion = new ValoracionComentario();
+            int idComentario = Integer.parseInt(request.getParameter("comentario"));
+            int val = Integer.parseInt(request.getParameter("cestrellas"+idComentario));   
+
+            java.util.Date date = new java.util.Date();  
+            Date fecha = new Date(date.getTime());
+
+            valoracion.setComentario(idComentario);
+            valoracion.setFecha(fecha);
+            valoracion.setUsuario(usuario);
+            valoracion.setPuntuacion(val);
+
+
+            valoracionesComentarioDB.insert(valoracion);
+
+            double media = valoracionesComentarioDB.valoracionMediaComentario(idComentario);
+
+            if(media!=-1){
+                comentarioDB.actualizarValoracionMedia(idComentario, media);
+            }else{
+                comentarioDB.actualizarValoracionMedia(idComentario, 0);
+            }
+
+            String url = request.getParameter("urlPagina");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-        
-        String url = request.getParameter("urlPagina");
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

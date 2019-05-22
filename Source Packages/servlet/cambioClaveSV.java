@@ -36,34 +36,35 @@ public class cambioClaveSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String name="";
         HttpSession session = request.getSession(false);
         
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String name = (String) session.getAttribute("usuario");
+
+            String passAntigua = request.getParameter("psw");
+            String passNueva = request.getParameter("pswN");
+            String repePass = request.getParameter("pswrepeat");
+
+
+            String url;
+            Usuario usr = usuarioDB.getUsuario(name);
+            if(usr.getClave().equals(passAntigua)){
+
+                  usuarioDB.insertClave(usr,passNueva);
+
+
+           }
+
+
+            url = "/configuracionUsuario.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         
-        if (session != null){
-            name = (String)session.getAttribute("usuario");
-        }
-        
-        String passAntigua = request.getParameter("psw");
-        String passNueva = request.getParameter("pswN");
-        String repePass = request.getParameter("pswrepeat");
-        
-        
-        String url;
-        Usuario usr = usuarioDB.getUsuario(name);
-        if(usr.getClave().equals(passAntigua)){
-            
-              usuarioDB.insertClave(usr,passNueva);
-                          
-              
-       }
-       
-       
-        url = "/configuracionUsuario.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-        
-        
+       }   
         
     }
 

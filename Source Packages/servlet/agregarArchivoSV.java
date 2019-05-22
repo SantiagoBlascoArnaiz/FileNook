@@ -41,34 +41,41 @@ public class agregarArchivoSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Part documento = request.getPart("documento");
-        String resumen = request.getParameter("resumen");
-        
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        java.util.Date date = new java.util.Date();  
-        Date fecha = new Date(date.getTime());
-        
-        Nook nook = nookDB.ultimoNook(userName);
-        
-        int idNook = nook.getIdNook();
-        
-        
-        Documento doc = new Documento();
-        
-        doc.setNook(idNook);
-        doc.setNombre(documento.getSubmittedFileName());
-        doc.setFechaCreacion(fecha);
-        doc.setResumen(resumen);
-        doc.setFechaModificacion(fecha);
-        
-        documentoDB.insert(doc);
-        
-        documentoDB.insertDocu(idNook,documento, doc.getNombre());
-        
-        String url = "/agregarArchivo.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+
+            Part documento = request.getPart("documento");
+            String resumen = request.getParameter("resumen");
+
+            java.util.Date date = new java.util.Date();  
+            Date fecha = new Date(date.getTime());
+
+            Nook nook = nookDB.ultimoNook(userName);
+
+            int idNook = nook.getIdNook();
+
+
+            Documento doc = new Documento();
+
+            doc.setNook(idNook);
+            doc.setNombre(documento.getSubmittedFileName());
+            doc.setFechaCreacion(fecha);
+            doc.setResumen(resumen);
+            doc.setFechaModificacion(fecha);
+
+            documentoDB.insert(doc);
+
+            documentoDB.insertDocu(idNook,documento, doc.getNombre());
+
+            String url = "/agregarArchivo.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

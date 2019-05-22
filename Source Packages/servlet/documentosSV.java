@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Documento;
 import modelo.Nook;
 
@@ -38,17 +39,26 @@ public class documentosSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int idNook = Integer.parseInt(request.getParameter("idNook"));
-        Nook nook = nookDB.getNook(idNook);
-        
-        ArrayList<Documento> documentos = documentoDB.getDocumentosNook(idNook);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
 
-        request.setAttribute("documentos", documentos);
-        request.setAttribute("nook", nook);
-        
-        String url = "/archivosNook.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+            int idNook = Integer.parseInt(request.getParameter("idNook"));
+            Nook nook = nookDB.getNook(idNook);
+
+            ArrayList<Documento> documentos = documentoDB.getDocumentosNook(idNook);
+
+            request.setAttribute("documentos", documentos);
+            request.setAttribute("nook", nook);
+
+            String url = "/archivosNook.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

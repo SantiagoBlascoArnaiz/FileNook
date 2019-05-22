@@ -8,11 +8,13 @@ package servlet;
 import conexionDB.usuarioDB;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,13 +35,20 @@ public class recuperarImagenesSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        response.setContentType("image/jpg");
-        OutputStream respuesta = response.getOutputStream();
-        String usuario = request.getParameter("userName");
-        usuarioDB.getImagen(usuario, respuesta);
-        respuesta.close();
-        response.flushBuffer();
+                HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String usuario = (String) session.getAttribute("usuario");
+            response.setContentType("image/jpg");
+            OutputStream respuesta = response.getOutputStream();
+
+            usuarioDB.getImagen(usuario, respuesta);
+            respuesta.close();
+            response.flushBuffer();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

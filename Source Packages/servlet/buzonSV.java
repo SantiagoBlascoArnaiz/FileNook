@@ -37,18 +37,23 @@ public class buzonSV extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        
-        ArrayList<Mensaje> mensajes = mensajeDB.getMensajesBuzon(userName);
-        
-        request.setAttribute("mensajes", mensajes);
-        
-        String url = "/buzon.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
 
+
+            ArrayList<Mensaje> mensajes = mensajeDB.getMensajesBuzon(userName);
+
+            request.setAttribute("mensajes", mensajes);
+
+            String url = "/buzon.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
     
 

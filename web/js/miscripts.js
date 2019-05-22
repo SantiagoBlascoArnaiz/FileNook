@@ -40,26 +40,3 @@ function pswigual(){
     }
                 
 }
-
-
-function Warn() {
-   alert ("This is a warning message!");
-   document.write ("This is a warning message!");
-}  
-
-
-function confirmarBorarNook(){
-    
-    confirm("mensaje");
-    
-
-    var mensaje;
-    var opcion = confirm("Clicka en Aceptar o Cancelar");
-    if (opcion == true) {
-        mensaje = "Has clickado OK";
-  } else {
-      mensaje = "Has clickado Cancelar";
-  }
-  document.getElementById("borrar").innerHTML = mensaje;
-
-}

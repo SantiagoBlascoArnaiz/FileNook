@@ -15,6 +15,13 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
+        <script type='text/javascript'>
+            function confirmar(url, mensaje){
+                if(confirm(mensaje)){
+                    window.location.href=url;
+                }
+            }
+        </script>
     </head>
     <body >
         <%
@@ -154,7 +161,7 @@ and open the template in the editor.
                                     </div>
                                     <%if(userName.equals(comentarios.get(i).getAutor())){%>
                                         <div class="borrarComentario">
-                                            <button type="submit"   class="borrarComentario" onclick="window.location.href='borrarComentarioSV?idComentario=<%=comentarios.get(i).getIdComentario()%>&idNook=<%=nook.getIdNook()%>'">Borrar comentario</button>
+                                            <button type="submit"   class="borrarComentario" onclick="confirmar('borrarComentarioSV?idComentario=<%=comentarios.get(i).getIdComentario()%>&idNook=<%=nook.getIdNook()%>', '¿Seguro que quiere borrar el comentario?')"> Borrar comentario</button>
                                         </div>
                                     <%}%>
                                 </div>

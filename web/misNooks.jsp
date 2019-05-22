@@ -15,7 +15,7 @@ and open the template in the editor.
         <link href="style.css" rel="stylesheet">
         <script type='text/javascript'  src='js/miscripts.js'></script>
         <script>
-            confirmarBorrarNook();
+            warn();
         </script>
     </head>
     <body >

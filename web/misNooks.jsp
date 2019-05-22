@@ -31,7 +31,7 @@ and open the template in the editor.
         <div class="content">
         <header class="header">
             <div class="container logo-nav-container">
-                <a href="/inicialSV" class="logo">FILENOOK</a>
+                <a href="/inicialSV" class="logo"><img id="imagenlogo" src="imagenes/LOGO.png" alt="Imagen logo">FILENOOK</a>
                 <nav class="navigation">
                     <ul>
                         <li class="navigation-usuario"><a href="perfil.jsp"><%=userName%></a></li>

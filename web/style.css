@@ -800,3 +800,10 @@ margin:auto;
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: black;
 }
+
+#imagenlogo{
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0;
+    padding: 0;
+}

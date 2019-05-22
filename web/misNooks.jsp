@@ -13,9 +13,14 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
+        <script type='text/javascript'  src='js/jquery-2.2.4.min.js'></script>
         <script type='text/javascript'  src='js/miscripts.js'></script>
-        <script>
-            warn();
+        <script type='text/javascript'>
+            function confirmar(url, mensaje){
+                if(confirm(mensaje)){
+                    window.location.href=url;
+                }
+            }
         </script>
     </head>
     <body >
@@ -91,7 +96,7 @@ and open the template in the editor.
                                 </form>
                             </div>
                             <div class="borrarNook">
-                                <button type="submit"   class="borrarNook" onclick="window.location.href='borrarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>'">Borrar Nook</button>
+                                <button type="submit"   class="borrarNook" onclick="confirmar('borrarNookSV?idNook=<%=misNooks.get(i).getIdNook()%>','¿Seguro que quieres borrar el nook?');">Borrar Nook</button>
                             </div>
                        </div>
                     <%}%>

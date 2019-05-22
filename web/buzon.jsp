@@ -48,10 +48,13 @@ and open the template in the editor.
                         
                         <%
                             ArrayList<Mensaje> mensajes= (ArrayList<Mensaje>)request.getAttribute("mensajes");
-                            for(int i=0;i<mensajes.size();i++){
+                            for(int i=mensajes.size()-1; i >= 0;i--){
                         %>
                         <div class="mensajeBuzon">
-                            <p class="usuario"><%= mensajes.get(i).getAutor() %><p>
+                            
+                            <p class="usuario"><%= mensajes.get(i).getAutor() %> <%if(mensajes.get(i).getLeido() == 0){%>
+                                <span class="leido">Nuevo</span>
+                            <%}%><p>
                             <p class="asunto"><%= mensajes.get(i).getAsunto() %></p>
                             <p class="fecha"><%= mensajes.get(i).getFecha() %></p>
                             <p class="verMensaje"><button type="submit" onclick="window.location.href='mensajeSV?idMensaje=<%=mensajes.get(i).getIdMensaje()%>&tipo=<%=mensajes.get(i).getTipo()%>'">Ver</button></p>

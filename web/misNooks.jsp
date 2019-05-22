@@ -63,7 +63,7 @@ and open the template in the editor.
                         ArrayList<Nook> misNooks = (ArrayList<Nook>) request.getAttribute("misNooks");
                         ArrayList<String> misNooksCategorias = (ArrayList<String>) request.getAttribute("misNooksCategorias");
                         ArrayList<Integer> valoraciones = (ArrayList<Integer>) request.getAttribute("valoraciones");
-                        for(int i = misNooks.size() - 1; i > 0; i--){
+                        for(int i = misNooks.size() - 1; i >= 0; i--){
                     %>
                        <div class="nook_n">
                             <div class="nook_n_img">

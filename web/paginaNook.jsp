@@ -120,7 +120,7 @@ and open the template in the editor.
                             <%
                                 ArrayList<Comentario> comentarios = (ArrayList<Comentario>) request.getAttribute("comentarios");
                                 ArrayList<Integer> cValoraciones = (ArrayList<Integer>) request.getAttribute("cValoraciones");
-                                for(int i = comentarios.size() - 1; i > 0; i--){
+                                for(int i = comentarios.size() - 1; i >= 0; i--){
                             %>
                             <li>
                                 <div class="comentarioTexto" method="post" action="/valorarComentarioSV?">

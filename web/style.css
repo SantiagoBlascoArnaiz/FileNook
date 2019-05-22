@@ -786,3 +786,17 @@ margin:auto;
 .confirm .message {
    text-align: left;
 }
+
+.checkLeido{
+    padding-top: 1rem;
+    padding-left: 90%;
+    margin-right:0;
+    width: 20rem;
+}
+
+.leido{
+    color:#FFD700;
+    font-size: 1rem;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+}

@@ -36,45 +36,49 @@ public class crearMensajeSV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String destinatario = request.getParameter("destinatario");
-        String asunto = request.getParameter("asunto");
-        String texto = request.getParameter("texto");
-        
-        java.util.Date date = new java.util.Date();
-        Date fecha = new Date(date.getTime());
-        
-        Mensaje mensajeEnv = new Mensaje();
-        
-        mensajeEnv.setAsunto(asunto);
-        mensajeEnv.setTexto(texto);
-        mensajeEnv.setFecha(fecha);
-        mensajeEnv.setLeido(1);
-        mensajeEnv.setTipo("Enviado");
-        
-        HttpSession sesion = request.getSession();
-        String userName = (String) sesion.getAttribute("usuario");
-        
-        mensajeEnv.setAutor(userName);
-        mensajeEnv.setDestinatario(destinatario);
-        
-        mensajeDB.insert(mensajeEnv);
-        
-        Mensaje mensajeRec = new Mensaje();
-        
-        mensajeRec.setAsunto(asunto);
-        mensajeRec.setTexto(texto);
-        mensajeRec.setFecha(fecha);
-        mensajeRec.setLeido(0);
-        mensajeRec.setTipo("Recibido");
-        mensajeRec.setAutor(userName);
-        mensajeRec.setDestinatario(destinatario);
-        
-        mensajeDB.insert(mensajeRec);
-        
-        String url = "/enviadosSV";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            String url = "/inicioSesion.html";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }else{
+            String userName = (String) session.getAttribute("usuario");
+            String destinatario = request.getParameter("destinatario");
+            String asunto = request.getParameter("asunto");
+            String texto = request.getParameter("texto");
+
+            java.util.Date date = new java.util.Date();
+            Date fecha = new Date(date.getTime());
+
+            Mensaje mensajeEnv = new Mensaje();
+
+            mensajeEnv.setAsunto(asunto);
+            mensajeEnv.setTexto(texto);
+            mensajeEnv.setFecha(fecha);
+            mensajeEnv.setLeido(1);
+            mensajeEnv.setTipo("Enviado");
+
+            mensajeEnv.setAutor(userName);
+            mensajeEnv.setDestinatario(destinatario);
+
+            mensajeDB.insert(mensajeEnv);
+
+            Mensaje mensajeRec = new Mensaje();
+
+            mensajeRec.setAsunto(asunto);
+            mensajeRec.setTexto(texto);
+            mensajeRec.setFecha(fecha);
+            mensajeRec.setLeido(0);
+            mensajeRec.setTipo("Recibido");
+            mensajeRec.setAutor(userName);
+            mensajeRec.setDestinatario(destinatario);
+
+            mensajeDB.insert(mensajeRec);
+
+            String url = "/enviadosSV";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
